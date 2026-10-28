@@ -703,7 +703,7 @@ const WORKS=[
  {t:"Smoking Pages",cat:"pages",st:"still",tech:"oil_linen",s:"avail",pal:["#3a4a8a","#e09a6a","#8a7a5a","#e9dccb","#2a2a4a"],seed:77,img:"works/smoking-pages.jpg"},
  {t:"Pearls of Wisdom",cat:"pages",st:"still",tech:"oil_linen",h:29,w:23,s:"sold",pal:["#2b2622","#7d6e5c","#e8e0d0","#c9b07a","#4a3e34"],seed:67,img:"works/pearls-of-wisdom.jpg"}
 ];
-let lang="en";try{const s=localStorage.getItem("lang");if(s&&T[s])lang=s}catch(e){}
+let lang="en";try{localStorage.removeItem("lang");const s=localStorage.getItem("site-lang");if(s&&T[s])lang=s}catch(e){}
 const calm=matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function rng(seed){let s=seed*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280}}
@@ -848,7 +848,7 @@ room.addEventListener("touchend",e=>{if(sx===null)return;const t=e.changedTouche
 document.addEventListener("keydown",e=>{if(room.hidden)return;if(e.key==="Escape")room.hidden=true;
   if(e.key==="ArrowRight")openRoom(cur+1);if(e.key==="ArrowLeft")openRoom(cur-1,null,-1)});
 
-function setLang(l){lang=l;try{localStorage.setItem("lang",l)}catch(e){}
+function setLang(l,chosen){lang=l;if(chosen)try{localStorage.setItem("site-lang",l)}catch(e){}
   document.documentElement.lang=l;
   const D=L();
   document.querySelectorAll("[data-i]").forEach(el=>{const v=D[el.dataset.i];if(typeof v==="string")el.textContent=v});
@@ -859,7 +859,7 @@ function renderLangPick(){const cur=LANGS.find(x=>x[0]===lang)||LANGS[0],btn=doc
   document.getElementById("langFlag").innerHTML=flagSVG(cur[2]);btn.setAttribute("aria-label","Language: "+cur[1]);btn.title=cur[1];
   ul.innerHTML="";LANGS.forEach(([code,name,fl])=>{const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.lang=code;
     b.innerHTML=`<span class="flag">${flagSVG(fl)}</span><span></span>`;b.lastChild.textContent=name;if(code===lang)b.setAttribute("aria-current","true");
-    b.onclick=()=>{closeLang();if(code!==lang)setLang(code);btn.focus()};li.appendChild(b);ul.appendChild(li)})}
+    b.onclick=()=>{closeLang();if(code!==lang)setLang(code,true);btn.focus()};li.appendChild(b);ul.appendChild(li)})}
 function closeLang(){document.getElementById("langList").hidden=true;document.getElementById("langBtn").setAttribute("aria-expanded","false")}
 document.getElementById("langBtn").onclick=e=>{e.stopPropagation();const ul=document.getElementById("langList"),open=ul.hidden;
   ul.hidden=!open;e.currentTarget.setAttribute("aria-expanded",String(open));if(open){const c=ul.querySelector('[aria-current="true"]')||ul.querySelector("button");c.focus()}};
