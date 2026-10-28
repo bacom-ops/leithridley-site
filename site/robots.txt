@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /atelier/
+Disallow: /api/
+
+Sitemap: https://leithridleyart.com/sitemap.xml
