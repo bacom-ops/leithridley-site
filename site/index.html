@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Leith Ridley, peintre franco-sud-africaine. Danseuse, décoratrice et bruiteuse de cinéma, elle construit chaque tableau comme une partition. Atelier en Bulgarie.">
-<meta property="og:title" content="Leith Ridley, peintre">
-<meta property="og:description" content="Chaque toile commence par un rythme.">
+<meta name="description" content="Leith Ridley, French–South African painter. A former dancer, film set decorator and Foley artist, she builds every canvas like a score. Studio in Bulgaria.">
+<meta property="og:title" content="Leith Ridley, painter">
+<meta property="og:description" content="Every canvas begins with a rhythm.">
 <meta property="og:image" content="works/genesis.jpg">
 <meta name="theme-color" content="#121110">
-<title>Leith Ridley · peintre</title>
+<title>Leith Ridley · painter</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-114%20-1095%201501%201501%22%3E%3Crect%20x%3D%22-114%22%20y%3D%22-1095%22%20width%3D%221501%22%20height%3D%221501%22%20rx%3D%22270%22%20fill%3D%22%23121110%22/%3E%3Cpath%20fill%3D%22%23c9a46a%22%20d%3D%22M21%20-700H381V-678H275V-22H311Q396%20-22%20446.5%20-74.0Q497%20-126%20549%20-234H570L551%200H21V-22H80V-678H21Z%20M884%20-354H831V-19H896V0H571V-19H636V-681H571V-700H873Q1003%20-700%201057.5%20-686.5Q1112%20-673%201134%20-654Q1182%20-615%201182.0%20-530.0Q1182%20-445%201140.0%20-408.5Q1098%20-372%201012%20-365V-362Q1093%20-351%201125.0%20-314.0Q1157%20-277%201157%20-190V-137Q1157%20-85%201162.5%20-67.0Q1168%20-49%201186.0%20-49.0Q1204%20-49%201214.5%20-65.5Q1225%20-82%201234%20-135L1251%20-133Q1240%20-48%201212.5%20-19.0Q1185%2010%201103.0%2010.0Q1021%2010%20986.5%20-28.5Q952%20-67%20952%20-173V-246Q952%20-302%20937.5%20-328.0Q923%20-354%20884%20-354ZM831%20-681V-373H863Q920%20-373%20947.5%20-408.0Q975%20-443%20975%20-522V-551Q975%20-630%20948.5%20-655.5Q922%20-681%20864%20-681Z%22/%3E%3C/svg%3E">
 <link rel="preload" as="image" href="works/genesis.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,7 +60,19 @@ button.txt[aria-pressed="true"]{color:var(--ink);text-decoration-color:var(--gil
 .top nav{display:flex;gap:20px;flex-wrap:wrap}
 .top nav a{text-decoration:none}
 .top nav a:hover{color:var(--ink)}
-.lang{display:flex;gap:8px;font-size:.85rem}
+.lang{position:relative;font-size:.85rem}
+#langBtn{display:flex;align-items:center;gap:7px;background:none;border:1px solid transparent;border-radius:3px;padding:6px 8px;min-height:38px;cursor:pointer;color:var(--muted);font:inherit}
+#langBtn:hover,#langBtn[aria-expanded="true"]{border-color:var(--line);color:var(--ink)}
+#langBtn .caret{font-size:.7rem}
+.flag{display:inline-block;width:22px;height:15px;border-radius:2px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.16)}
+.flag svg{display:block;width:100%;height:100%}
+#langList{position:absolute;right:0;top:calc(100% + 6px);z-index:50;list-style:none;margin:0;padding:6px;min-width:200px;max-height:72vh;overflow-y:auto;background:rgba(27,25,23,.97);border:1px solid var(--line);border-radius:4px;box-shadow:0 18px 44px rgba(0,0,0,.55)}
+#langList button{display:flex;align-items:center;gap:12px;width:100%;min-height:42px;padding:8px 10px;background:none;border:0;border-radius:3px;color:var(--ink);font:inherit;font-size:.95rem;text-align:left;cursor:pointer}
+#langList button:hover,#langList button:focus-visible{background:#2a2622;outline:none}
+#langList button[aria-current="true"]{color:var(--gilt)}
+/* scripts that Libre Caslon does not cover */
+html:lang(zh){--display:"Noto Serif SC","Songti SC","STSong","SimSun",serif;--text:"Noto Serif SC","Songti SC","STSong","SimSun",serif}
+html:lang(ja){--display:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;--text:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}
 
 /* opening painting with signature */
 .opening{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px);align-items:stretch;margin-top:clamp(40px,7vh,72px)}
@@ -312,9 +324,9 @@ html{scroll-padding-top:100px}
       <a href="#collections" data-i="nav_coll">Expositions</a>
       <a href="#contact" data-i="nav_contact">Écrire</a>
     </nav>
-    <div class="lang" role="group" aria-label="Langue / Language">
-      <button class="txt" type="button" id="l-fr" aria-pressed="true">français</button>
-      <button class="txt" type="button" id="l-en" aria-pressed="false">english</button>
+    <div class="lang" id="langPick">
+      <button type="button" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langList" aria-label="Language"><span class="flag" id="langFlag"></span><span class="caret" aria-hidden="true">▾</span></button>
+      <ul id="langList" hidden></ul>
     </div>
   </div>
 
@@ -380,16 +392,21 @@ html{scroll-padding-top:100px}
       <div class="out" id="copyOut" aria-live="polite"></div>
       <p class="sg-note"><span data-i="sg_note">Une sélection de plus de cent toiles est aussi en vente sur</span> <a href="https://www.singulart.com/fr/artiste/leith-ridley-combe-4189" target="_blank" rel="noopener">Singulart ↗</a></p>
     </div>
-    <form id="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <!-- Netlify reads the field names of this hidden copy: they become the headings of the email Leith receives -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+      <label>Nom du visiteur <input name="name"></label><label>E-mail du visiteur <input name="email"></label>
+      <label>Sujet <input name="subject"></label><label>Message <textarea name="message"></textarea></label><input name="bot-field">
+    </form>
+    <form id="form" method="POST">
       <input type="hidden" name="form-name" value="contact">
       <p hidden><label>Ne pas remplir <input name="bot-field"></label></p>
       <label for="f-name"><span data-i="f_name">Votre nom</span><input id="f-name" name="name" autocomplete="name" required></label>
       <label for="f-email"><span data-i="f_email">Votre e-mail</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
       <label for="f-subject"><span data-i="f_subject">Au sujet de</span>
         <select id="f-subject" name="subject">
-          <option value="buy" data-i="o_buy">l'achat d'une toile</option>
-          <option value="commission" data-i="o_comm">une commande</option>
-          <option value="other" data-i="o_other">autre chose</option>
+          <option value="Achat d'une toile" data-i="o_buy">l'achat d'une toile</option>
+          <option value="Commande d'un tableau" data-i="o_comm">une commande</option>
+          <option value="Autre" data-i="o_other">autre chose</option>
         </select></label>
       <label for="f-msg"><span data-i="f_msg">Votre message</span><textarea id="f-msg" name="message" required></textarea></label>
       <button class="send" type="submit" data-i="f_send">Envoyer</button>
@@ -413,7 +430,7 @@ html{scroll-padding-top:100px}
 
 <script>
 const T={
- fr:{nav_gal:"Œuvres",nav_about:"L'artiste",nav_coll:"Expositions",nav_contact:"Écrire",ex_short:"Image provisoire",
+ fr:{nav_gal:"Œuvres",nav_about:"L'artiste",nav_coll:"Expositions",nav_contact:"Écrire",untitled:"Sans titre",ex_short:"Image provisoire",
   intro:"Chaque toile commence par un rythme.",intro_sub:"Leith Ridley, peintre franco-sud-africaine. Danseuse classique, puis décoratrice et bruiteuse de cinéma, elle construit chaque tableau comme une partition, couche après couche.",
   gal_title:"Sur le mur de l'atelier",see:"Voir :",
   gal_note:"Titres, formats et prix repris de son site actuel.",scale_note:"Chaque toile est accrochée à l'échelle de son format réel.",
@@ -433,7 +450,7 @@ const T={
   foot_r:"Atelier en Bulgarie · Images reproduites avec l'accord de l'artiste.",prev:"précédente",next:"suivante",close:"fermer",
   avail:"disponible",sold:"vendu",hold:"réservé",private:"collection privée",
   oil_linen:"huile sur lin",acry_linen:"acrylique sur lin",acryoil_linen:"acrylique et huile sur lin",acryoil_canvas:"acrylique et huile sur toile",acry_collage_canvas:"acrylique et collage sur toile",oil_board:"huile sur panneau",oil_paper:"huile sur papier",acry_canvas:"acrylique sur toile",acry_board:"acrylique sur panneau",acry_paper:"acrylique sur papier",mixed_canvas:"technique mixte sur toile",watercolour_paper:"aquarelle sur papier",acry_collage_linen:"acrylique et collage sur lin",oil_canvas:"huile sur toile",acry:"acrylique",acryoil:"acrylique et huile",linen:"sur lin",nosize:"format à préciser",look:"voir",d_pages:"Inspiration, symbolisme, esprit et connaissance : les pages brûlantes des mots écrits, des livres, des écritures, des messages."},
- en:{nav_gal:"Works",nav_about:"The artist",nav_coll:"Exhibitions",nav_contact:"Write",ex_short:"Placeholder image",
+ en:{nav_gal:"Works",nav_about:"The artist",nav_coll:"Exhibitions",nav_contact:"Write",untitled:"Untitled",ex_short:"Placeholder image",
   intro:"Every canvas begins with a rhythm.",intro_sub:"Leith Ridley, French–South African painter. A classical dancer, then a film set decorator and Foley artist, she builds every canvas like a score, layer upon layer.",
   gal_title:"On the studio wall",see:"Show:",
   gal_note:"Titles, sizes and prices come from her current site.",scale_note:"Each canvas is hung at the scale of its real size.",
@@ -452,8 +469,208 @@ const T={
   formDone:"Thank you, your message is on its way. Leith will reply by email.",formMail:"Your email app is opening with the message ready to send.",formFail:"Copying didn't work: select your message and copy it.",
   foot_r:"Studio in Bulgaria · Images reproduced with the artist's permission.",prev:"previous",next:"next",close:"close",
   avail:"available",sold:"sold",hold:"on hold",private:"private collection",
-  oil_linen:"oil on linen",acry_linen:"acrylic on linen",acryoil_linen:"acrylic and oil on linen",acryoil_canvas:"acrylic and oil on canvas",acry_collage_canvas:"acrylic and collage on canvas",oil_board:"oil on board",oil_paper:"oil on paper",acry_canvas:"acrylic on canvas",acry_board:"acrylic on board",acry_paper:"acrylic on paper",mixed_canvas:"mixed media on canvas",watercolour_paper:"watercolour on paper",acry_collage_linen:"acrylic and collage on linen",oil_canvas:"oil on canvas",acry:"acrylic",acryoil:"acrylic and oil",linen:"on linen",nosize:"size to be confirmed",look:"view",d_pages:"Inspiration, symbolism, spirit and learning: the smoking hot pages of written words, books, scriptures, messages."}
+  oil_linen:"oil on linen",acry_linen:"acrylic on linen",acryoil_linen:"acrylic and oil on linen",acryoil_canvas:"acrylic and oil on canvas",acry_collage_canvas:"acrylic and collage on canvas",oil_board:"oil on board",oil_paper:"oil on paper",acry_canvas:"acrylic on canvas",acry_board:"acrylic on board",acry_paper:"acrylic on paper",mixed_canvas:"mixed media on canvas",watercolour_paper:"watercolour on paper",acry_collage_linen:"acrylic and collage on linen",oil_canvas:"oil on canvas",acry:"acrylic",acryoil:"acrylic and oil",linen:"on linen",nosize:"size to be confirmed",look:"view",d_pages:"Inspiration, symbolism, spirit and learning: the smoking hot pages of written words, books, scriptures, messages."},
+ es:{nav_gal:"Obras",nav_about:"La artista",nav_coll:"Exposiciones",nav_contact:"Escribir",untitled:"Sin título",
+  intro:"Cada lienzo empieza con un ritmo.",intro_sub:"Leith Ridley, pintora franco-sudafricana. Bailarina clásica, después decoradora y artista de efectos sonoros en el cine, construye cada cuadro como una partitura, capa a capa.",
+  gal_title:"En la pared del taller",see:"Ver:",gal_note:"Títulos, formatos y precios tomados de su sitio actual.",scale_note:"Cada lienzo está colgado a la escala de su tamaño real.",
+  metre:"1 metro",more:"Ver {n} obras más",less:"Mostrar menos",all:"Todas las obras",flowers:"Flores",portraits:"Retratos",mountain:"Bosques de montaña",abstracts:"Abstractos y paisajes",
+  about_title:"La artista",portrait_alt:"Leith Ridley, pincel en mano, pintando una gran escena decorativa",
+  about_p1:"Leith Ridley es una pintora franco-sudafricana. Ha expuesto en Sofía, Marsella, Londres y Francia, y sus lienzos forman parte de colecciones privadas en Europa, Australia y Estados Unidos.",
+  about_p2:"Antes del taller, estuvo el escenario. Como bailarina clásica profesional en Europa aprendió el ritmo, la disciplina y lo que puede decir un cuerpo en movimiento. Después llegó el cine, en Sudáfrica: como decoradora pintaba mundos enteros a la escala de un plató; como artista de efectos sonoros construía sonidos capa a capa. La pintura la ha acompañado siempre.",
+  about_p3:"De esas vidas conservó una manera de pintar. Cada lienzo se construye como una banda sonora, en capas sucesivas, y se ajusta como una coreografía, entre el impulso y la contención. Sus cuadros son partituras silenciosas en las que el color y la materia toman el relevo del movimiento.",
+  said:"«Quiero que el espectador pueda ver lo que encuentra en ella, para que la pintura viva y uno nunca se canse de mirarla.»",
+  about_p4:"Pasa libremente de un tema a otro: libros que humean y ángeles mensajeros, bosques de montaña, peonías, árboles que bailan. Siempre con la misma precisión técnica y la misma intensidad. Hoy pinta en su taller en Bulgaria, al pie de las montañas.",
+  d_trees:"Árboles que bailan: colores francos, pintura espesa aplicada con espátula, una alegría que no se contiene.",d_mountain:"Los bosques de montaña que rodean su taller: la luz entre los troncos, la primavera, el agua de los arroyos.",d_flowers:"Peonías, rosas, frutas y mariposas: el bodegón, pintado con ternura y a veces con una sonrisa.",d_abstracts:"Paisajes que se deshacen en color y materia: la montaña, el viento, el azul, la luz del invierno.",d_portraits:"Rostros pintados en la tradición de los antiguos maestros: la luz sobre la piel, el peso de las telas, el brillo de las joyas.",d_pages:"Inspiración, simbolismo, espíritu y conocimiento: las páginas ardientes de las palabras escritas, los libros, las escrituras, los mensajes.",
+  coll_title:"Exposiciones y colecciones",coll_p:"Quince exposiciones desde 1982, de Sofía a Marsella, Londres, Beaune y Cork. Sus lienzos forman parte de colecciones privadas en siete países:",
+  expo_next:"Exposiciones individuales",group_t:"Exposiciones colectivas",sg_buy:"Comprar en Singulart ↗",sg_note:"Una selección de más de cien lienzos también está a la venta en",
+  countries:["Australia","Estados Unidos","Francia","Italia","Alemania","Bélgica","Bulgaria"],
+  contact_title:"Escribir a la artista",contact_p:"Para adquirir un lienzo o encargar un cuadro, escriba a Leith:",copy:"copiar la dirección",copied:"Dirección copiada.",copyFail:"Seleccione la dirección para copiarla.",
+  f_name:"Su nombre",f_subject:"Asunto",f_msg:"Su mensaje",f_send:"Enviar",f_email:"Su correo electrónico",o_buy:"comprar un lienzo",o_comm:"un encargo",o_other:"otra cosa",
+  formDone:"Gracias, su mensaje ha sido enviado. Leith le responderá por correo electrónico.",formMail:"Se abre su aplicación de correo con el mensaje listo para enviar.",formFail:"No se pudo copiar: seleccione su mensaje y cópielo.",
+  foot_r:"Taller en Bulgaria · Imágenes reproducidas con permiso de la artista.",prev:"anterior",next:"siguiente",close:"cerrar",
+  avail:"disponible",sold:"vendido",hold:"reservado",private:"colección privada",
+  oil_linen:"óleo sobre lino",acry_linen:"acrílico sobre lino",acryoil_linen:"acrílico y óleo sobre lino",acryoil_canvas:"acrílico y óleo sobre lienzo",acry_collage_canvas:"acrílico y collage sobre lienzo",oil_board:"óleo sobre tabla",oil_paper:"óleo sobre papel",acry_canvas:"acrílico sobre lienzo",acry_board:"acrílico sobre tabla",acry_paper:"acrílico sobre papel",mixed_canvas:"técnica mixta sobre lienzo",watercolour_paper:"acuarela sobre papel",acry_collage_linen:"acrílico y collage sobre lino",oil_canvas:"óleo sobre lienzo",acry:"acrílico",acryoil:"acrílico y óleo",linen:"sobre lino",nosize:"formato por confirmar",look:"ver"},
+ de:{nav_gal:"Werke",nav_about:"Die Künstlerin",nav_coll:"Ausstellungen",nav_contact:"Kontakt",untitled:"Ohne Titel",
+  intro:"Jedes Bild beginnt mit einem Rhythmus.",intro_sub:"Leith Ridley, französisch-südafrikanische Malerin. Zuerst klassische Tänzerin, dann Szenenbildnerin und Geräuschemacherin beim Film, baut sie jedes Bild wie eine Partitur auf, Schicht für Schicht.",
+  gal_title:"An der Atelierwand",see:"Zeigen:",gal_note:"Titel, Formate und Preise stammen von ihrer bisherigen Website.",scale_note:"Jedes Bild hängt im Maßstab seiner tatsächlichen Größe.",
+  metre:"1 Meter",more:"{n} weitere Werke ansehen",less:"Weniger anzeigen",all:"Alle Werke",flowers:"Blumen",portraits:"Porträts",mountain:"Bergwälder",abstracts:"Abstraktes & Landschaften",
+  about_title:"Die Künstlerin",portrait_alt:"Leith Ridley mit dem Pinsel in der Hand beim Malen einer großen dekorativen Szene",
+  about_p1:"Leith Ridley ist eine französisch-südafrikanische Malerin. Sie hat in Sofia, Marseille, London und Frankreich ausgestellt, und ihre Bilder befinden sich in Privatsammlungen in Europa, Australien und den Vereinigten Staaten.",
+  about_p2:"Vor dem Atelier war die Bühne. Als professionelle klassische Tänzerin in Europa lernte sie Rhythmus, Disziplin und das, was ein Körper in Bewegung erzählen kann. Dann kam der Film, in Südafrika: Als Szenenbildnerin malte sie ganze Welten im Maßstab eines Filmstudios, als Geräuschemacherin baute sie Klänge Schicht für Schicht auf. Die Malerei hat sie immer begleitet.",
+  about_p3:"Aus diesen Leben hat sie eine Art zu malen bewahrt. Jedes Bild entsteht wie ein Soundtrack, in aufeinanderfolgenden Schichten, und wird wie eine Choreografie austariert, zwischen Schwung und Zurückhaltung. Ihre Bilder sind stille Partituren, in denen Farbe und Material die Bewegung übernehmen.",
+  said:"„Ich möchte, dass der Betrachter darin sehen kann, was er findet, damit das Bild lebt und man nie müde wird, es anzuschauen.“",
+  about_p4:"Sie wechselt frei zwischen den Motiven: rauchende Bücher und Botenengel, Bergwälder, Pfingstrosen, tanzende Bäume. Immer mit derselben technischen Präzision und derselben Intensität. Heute malt sie in ihrem Atelier in Bulgarien, am Fuß der Berge.",
+  d_trees:"Tanzende Bäume: kräftige Farben, dick mit dem Spachtel aufgetragen, eine Freude, die sich nicht zurückhält.",d_mountain:"Die Bergwälder rund um ihr Atelier: Licht zwischen den Stämmen, der Frühling, das Wasser der Bäche.",d_flowers:"Pfingstrosen, Rosen, Früchte und Schmetterlinge: Stillleben, mit Zärtlichkeit und manchmal einem Lächeln gemalt.",d_abstracts:"Landschaften, die sich in Farbe und Material auflösen: der Berg, der Wind, das Blau, das Winterlicht.",d_portraits:"Gesichter in der Tradition der alten Meister: Licht auf der Haut, das Gewicht der Stoffe, der Glanz der Juwelen.",d_pages:"Inspiration, Symbolik, Geist und Wissen: die brennenden Seiten geschriebener Worte, Bücher, Schriften und Botschaften.",
+  coll_title:"Ausstellungen und Sammlungen",coll_p:"Fünfzehn Ausstellungen seit 1982, von Sofia bis Marseille, London, Beaune und Cork. Ihre Bilder befinden sich in Privatsammlungen in sieben Ländern:",
+  expo_next:"Einzelausstellungen",group_t:"Gruppenausstellungen",sg_buy:"Auf Singulart kaufen ↗",sg_note:"Eine Auswahl von mehr als hundert Bildern ist auch erhältlich auf",
+  countries:["Australien","Vereinigte Staaten","Frankreich","Italien","Deutschland","Belgien","Bulgarien"],
+  contact_title:"Der Künstlerin schreiben",contact_p:"Um ein Bild zu erwerben oder ein Werk in Auftrag zu geben, schreiben Sie Leith:",copy:"Adresse kopieren",copied:"Adresse kopiert.",copyFail:"Markieren Sie die Adresse, um sie zu kopieren.",
+  f_name:"Ihr Name",f_subject:"Betreff",f_msg:"Ihre Nachricht",f_send:"Senden",f_email:"Ihre E-Mail",o_buy:"Kauf eines Bildes",o_comm:"Auftragsarbeit",o_other:"Sonstiges",
+  formDone:"Vielen Dank, Ihre Nachricht wurde gesendet. Leith antwortet Ihnen per E-Mail.",formMail:"Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht.",formFail:"Kopieren hat nicht funktioniert: Markieren und kopieren Sie Ihre Nachricht.",
+  foot_r:"Atelier in Bulgarien · Abbildungen mit Genehmigung der Künstlerin.",prev:"zurück",next:"weiter",close:"schließen",
+  avail:"verfügbar",sold:"verkauft",hold:"reserviert",private:"Privatsammlung",
+  oil_linen:"Öl auf Leinen",acry_linen:"Acryl auf Leinen",acryoil_linen:"Acryl und Öl auf Leinen",acryoil_canvas:"Acryl und Öl auf Leinwand",acry_collage_canvas:"Acryl und Collage auf Leinwand",oil_board:"Öl auf Holz",oil_paper:"Öl auf Papier",acry_canvas:"Acryl auf Leinwand",acry_board:"Acryl auf Holz",acry_paper:"Acryl auf Papier",mixed_canvas:"Mischtechnik auf Leinwand",watercolour_paper:"Aquarell auf Papier",acry_collage_linen:"Acryl und Collage auf Leinen",oil_canvas:"Öl auf Leinwand",acry:"Acryl",acryoil:"Acryl und Öl",linen:"auf Leinen",nosize:"Format folgt",look:"ansehen"},
+ pt:{nav_gal:"Obras",nav_about:"A artista",nav_coll:"Exposições",nav_contact:"Contacto",untitled:"Sem título",
+  intro:"Cada tela começa com um ritmo.",intro_sub:"Leith Ridley, pintora franco-sul-africana. Bailarina clássica, depois cenógrafa e artista de efeitos sonoros no cinema, constrói cada quadro como uma partitura, camada a camada.",
+  gal_title:"Na parede do ateliê",see:"Ver:",gal_note:"Títulos, formatos e preços retirados do seu site atual.",scale_note:"Cada tela está pendurada à escala do seu tamanho real.",
+  metre:"1 metro",more:"Ver mais {n} obras",less:"Mostrar menos",all:"Todas as obras",flowers:"Flores",portraits:"Retratos",mountain:"Florestas de montanha",abstracts:"Abstratos e paisagens",
+  about_title:"A artista",portrait_alt:"Leith Ridley, de pincel na mão, a pintar uma grande cena decorativa",
+  about_p1:"Leith Ridley é uma pintora franco-sul-africana. Expôs em Sófia, Marselha, Londres e França, e as suas telas integram coleções privadas na Europa, na Austrália e nos Estados Unidos.",
+  about_p2:"Antes do ateliê, houve o palco. Como bailarina clássica profissional na Europa, aprendeu o ritmo, a disciplina e aquilo que um corpo em movimento consegue dizer. Depois veio o cinema, na África do Sul: como cenógrafa pintava mundos inteiros à escala de um estúdio; como artista de efeitos sonoros construía sons camada a camada. A pintura acompanhou-a sempre.",
+  about_p3:"Dessas vidas guardou uma maneira de pintar. Cada tela constrói-se como uma banda sonora, em camadas sucessivas, e afina-se como uma coreografia, entre o impulso e a contenção. Os seus quadros são partituras silenciosas em que a cor e a matéria tomam o lugar do movimento.",
+  said:"«Quero que o espectador possa ver aquilo que nela encontra, para que a pintura viva e nunca nos cansemos de a olhar.»",
+  about_p4:"Passa livremente de um tema a outro: livros que fumegam e anjos mensageiros, florestas de montanha, peónias, árvores que dançam. Sempre com a mesma precisão técnica e a mesma intensidade. Hoje pinta no seu ateliê na Bulgária, no sopé das montanhas.",
+  d_trees:"Árvores que dançam: cores francas, tinta espessa aplicada à espátula, uma alegria que não se contém.",d_mountain:"As florestas de montanha à volta do seu ateliê: a luz entre os troncos, a primavera, a água dos ribeiros.",d_flowers:"Peónias, rosas, frutos e borboletas: a natureza-morta, pintada com ternura e por vezes com um sorriso.",d_abstracts:"Paisagens que se desfazem em cor e matéria: a montanha, o vento, o azul, a luz do inverno.",d_portraits:"Rostos pintados na tradição dos velhos mestres: a luz na pele, o peso dos tecidos, o brilho das joias.",d_pages:"Inspiração, simbolismo, espírito e conhecimento: as páginas ardentes das palavras escritas, dos livros, das escrituras, das mensagens.",
+  coll_title:"Exposições e coleções",coll_p:"Quinze exposições desde 1982, de Sófia a Marselha, Londres, Beaune e Cork. As suas telas fazem parte de coleções privadas em sete países:",
+  expo_next:"Exposições individuais",group_t:"Exposições coletivas",sg_buy:"Comprar na Singulart ↗",sg_note:"Uma seleção de mais de cem telas está também à venda na",
+  countries:["Austrália","Estados Unidos","França","Itália","Alemanha","Bélgica","Bulgária"],
+  contact_title:"Escrever à artista",contact_p:"Para adquirir uma tela ou encomendar um quadro, escreva à Leith:",copy:"copiar o endereço",copied:"Endereço copiado.",copyFail:"Selecione o endereço para o copiar.",
+  f_name:"O seu nome",f_subject:"Assunto",f_msg:"A sua mensagem",f_send:"Enviar",f_email:"O seu e-mail",o_buy:"compra de uma tela",o_comm:"uma encomenda",o_other:"outro assunto",
+  formDone:"Obrigado, a sua mensagem foi enviada. A Leith responderá por e-mail.",formMail:"A sua aplicação de e-mail abre-se com a mensagem pronta a enviar.",formFail:"Não foi possível copiar: selecione a sua mensagem e copie-a.",
+  foot_r:"Ateliê na Bulgária · Imagens reproduzidas com autorização da artista.",prev:"anterior",next:"seguinte",close:"fechar",
+  avail:"disponível",sold:"vendido",hold:"reservado",private:"coleção privada",
+  oil_linen:"óleo sobre linho",acry_linen:"acrílico sobre linho",acryoil_linen:"acrílico e óleo sobre linho",acryoil_canvas:"acrílico e óleo sobre tela",acry_collage_canvas:"acrílico e colagem sobre tela",oil_board:"óleo sobre madeira",oil_paper:"óleo sobre papel",acry_canvas:"acrílico sobre tela",acry_board:"acrílico sobre madeira",acry_paper:"acrílico sobre papel",mixed_canvas:"técnica mista sobre tela",watercolour_paper:"aguarela sobre papel",acry_collage_linen:"acrílico e colagem sobre linho",oil_canvas:"óleo sobre tela",acry:"acrílico",acryoil:"acrílico e óleo",linen:"sobre linho",nosize:"formato a confirmar",look:"ver"},
+ af:{nav_gal:"Werke",nav_about:"Die kunstenaar",nav_coll:"Uitstallings",nav_contact:"Kontak",untitled:"Sonder titel",
+  intro:"Elke doek begin met 'n ritme.",intro_sub:"Leith Ridley, Frans-Suid-Afrikaanse skilder. Eers 'n klassieke danser, toe 'n stelversierder en klankeffekkunstenaar in die rolprentbedryf, bou sy elke skildery soos 'n partituur op, laag vir laag.",
+  gal_title:"Op die ateljeemuur",see:"Wys:",gal_note:"Titels, groottes en pryse kom van haar huidige webwerf.",scale_note:"Elke doek hang op die skaal van sy werklike grootte.",
+  metre:"1 meter",more:"Sien nog {n} werke",less:"Wys minder",all:"Alle werke",flowers:"Blomme",portraits:"Portrette",mountain:"Bergwoude",abstracts:"Abstrak en landskappe",
+  about_title:"Die kunstenaar",portrait_alt:"Leith Ridley met 'n kwas in die hand terwyl sy 'n groot dekoratiewe toneel skilder",
+  about_p1:"Leith Ridley is 'n Frans-Suid-Afrikaanse skilder. Sy het in Sofia, Marseille, Londen en Frankryk uitgestal, en haar doeke is deel van privaat versamelings in Europa, Australië en die Verenigde State.",
+  about_p2:"Voor die ateljee was daar die verhoog. As professionele klassieke danser in Europa het sy ritme, dissipline en die taal van 'n liggaam in beweging geleer. Toe kom die rolprentwêreld, in Suid-Afrika: as stelversierder het sy hele wêrelde op die skaal van 'n ateljee geskilder; as klankeffekkunstenaar het sy klanke laag vir laag opgebou. Skilderkuns was nog altyd deel van haar lewe.",
+  about_p3:"Uit daardie lewens het sy 'n manier van skilder behou. Elke doek word soos 'n klankbaan opgebou, in opeenvolgende lae, en soos 'n choreografie ingestel, tussen impuls en selfbeheersing. Haar skilderye is stil partiture waarin kleur en tekstuur by die beweging oorneem.",
+  said:"“Ek wil hê dat kykers kan sien wat hulle daarin vind, sodat die skildery lewe en jy nooit moeg word om daarna te kyk nie.”",
+  about_p4:"Sy beweeg vrylik tussen onderwerpe: rokende boeke en boodskapper-engele, bergwoude, pioene, dansende bome. Altyd met dieselfde tegniese presisie en dieselfde intensiteit. Vandag skilder sy in haar ateljee in Bulgarye, aan die voet van die berge.",
+  d_trees:"Dansende bome: helder kleure, dik verf met die spatel aangewend, 'n vreugde wat nie teruggehou word nie.",d_mountain:"Die bergwoude rondom haar ateljee: lig tussen die stamme, die lente, die water van die strome.",d_flowers:"Pioene, rose, vrugte en skoenlappers: stillewe, met teerheid en soms 'n glimlag geskilder.",d_abstracts:"Landskappe wat in kleur en tekstuur oplos: die berg, die wind, die blou, die winterlig.",d_portraits:"Gesigte geskilder in die tradisie van die ou meesters: lig op die vel, die gewig van stof, die glans van juwele.",d_pages:"Inspirasie, simboliek, gees en kennis: die brandende bladsye van geskrewe woorde, boeke, geskrifte en boodskappe.",
+  coll_title:"Uitstallings en versamelings",coll_p:"Vyftien uitstallings sedert 1982, van Sofia tot Marseille, Londen, Beaune en Cork. Haar doeke is deel van privaat versamelings in sewe lande:",
+  expo_next:"Solo-uitstallings",group_t:"Groepuitstallings",sg_buy:"Koop op Singulart ↗",sg_note:"'n Keuse van meer as honderd doeke is ook te koop op",
+  countries:["Australië","Verenigde State","Frankryk","Italië","Duitsland","België","Bulgarye"],
+  contact_title:"Skryf aan die kunstenaar",contact_p:"Om 'n doek aan te koop of 'n skildery te bestel, skryf aan Leith:",copy:"kopieer adres",copied:"Adres gekopieer.",copyFail:"Kies die adres om dit te kopieer.",
+  f_name:"Jou naam",f_subject:"Onderwerp",f_msg:"Jou boodskap",f_send:"Stuur",f_email:"Jou e-posadres",o_buy:"die aankoop van 'n doek",o_comm:"'n bestelling",o_other:"iets anders",
+  formDone:"Dankie, jou boodskap is gestuur. Leith sal per e-pos antwoord.",formMail:"Jou e-posprogram maak oop met die boodskap gereed om te stuur.",formFail:"Kopieer het nie gewerk nie: kies jou boodskap en kopieer dit.",
+  foot_r:"Ateljee in Bulgarye · Beelde gereproduseer met die kunstenaar se toestemming.",prev:"vorige",next:"volgende",close:"maak toe",
+  avail:"beskikbaar",sold:"verkoop",hold:"gereserveer",private:"privaat versameling",
+  oil_linen:"olie op linne",acry_linen:"akriel op linne",acryoil_linen:"akriel en olie op linne",acryoil_canvas:"akriel en olie op doek",acry_collage_canvas:"akriel en collage op doek",oil_board:"olie op paneel",oil_paper:"olie op papier",acry_canvas:"akriel op doek",acry_board:"akriel op paneel",acry_paper:"akriel op papier",mixed_canvas:"gemengde media op doek",watercolour_paper:"waterverf op papier",acry_collage_linen:"akriel en collage op linne",oil_canvas:"olie op doek",acry:"akriel",acryoil:"akriel en olie",linen:"op linne",nosize:"grootte word bevestig",look:"kyk"},
+ tr:{nav_gal:"Eserler",nav_about:"Sanatçı",nav_coll:"Sergiler",nav_contact:"İletişim",untitled:"İsimsiz",
+  intro:"Her tuval bir ritimle başlar.",intro_sub:"Leith Ridley, Fransız-Güney Afrikalı ressam. Önce klasik dansçı, ardından sinemada set dekoratörü ve ses efekti sanatçısı olan Ridley, her tabloyu bir partisyon gibi, katman katman kurar.",
+  gal_title:"Atölye duvarında",see:"Göster:",gal_note:"Başlıklar, ölçüler ve fiyatlar mevcut sitesinden alınmıştır.",scale_note:"Her tuval gerçek boyutunun ölçeğinde asılmıştır.",
+  metre:"1 metre",more:"{n} eser daha gör",less:"Daha az göster",all:"Tüm eserler",flowers:"Çiçekler",portraits:"Portreler",mountain:"Dağ ormanları",abstracts:"Soyut ve manzaralar",
+  about_title:"Sanatçı",portrait_alt:"Elinde fırçayla büyük bir dekoratif sahne boyayan Leith Ridley",
+  about_p1:"Leith Ridley, Fransız-Güney Afrikalı bir ressamdır. Sofya, Marsilya, Londra ve Fransa'da sergiler açmış; tuvalleri Avrupa, Avustralya ve Amerika Birleşik Devletleri'ndeki özel koleksiyonlarda yer almaktadır.",
+  about_p2:"Atölyeden önce sahne vardı. Avrupa'da profesyonel klasik dansçı olarak ritmi, disiplini ve hareket hâlindeki bir bedenin neler anlatabileceğini öğrendi. Ardından Güney Afrika'da sinema geldi: set dekoratörü olarak koca dünyaları bir stüdyo ölçeğinde boyadı; ses efekti sanatçısı olarak sesleri katman katman kurdu. Resim ise hep yanındaydı.",
+  about_p3:"Bu hayatlardan geriye bir resim yapma biçimi kaldı. Her tuval bir film müziği gibi, ardışık katmanlarla kurulur ve bir koreografi gibi, coşku ile ölçülülük arasında ayarlanır. Tabloları, rengin ve dokunun hareketin yerini aldığı sessiz partisyonlardır.",
+  said:"“İzleyicinin resimde kendi bulduğunu görebilmesini istiyorum; böylece resim yaşasın ve ona bakmaktan hiç bıkılmasın.”",
+  about_p4:"Bir konudan diğerine özgürce geçer: tüten kitaplar ve haberci melekler, dağ ormanları, şakayıklar, dans eden ağaçlar. Her zaman aynı teknik titizlik ve aynı yoğunlukla. Bugün Bulgaristan'daki atölyesinde, dağların eteğinde resim yapıyor.",
+  d_trees:"Dans eden ağaçlar: canlı renkler, spatulayla sürülmüş kalın boya, kendini tutmayan bir neşe.",d_mountain:"Atölyesini çevreleyen dağ ormanları: gövdeler arasından süzülen ışık, bahar, derelerin suyu.",d_flowers:"Şakayıklar, güller, meyveler ve kelebekler: şefkatle ve bazen bir gülümsemeyle boyanmış natürmortlar.",d_abstracts:"Renge ve dokuya dönüşen manzaralar: dağ, rüzgâr, mavi, kış ışığı.",d_portraits:"Eski ustalar geleneğinde boyanmış yüzler: tendeki ışık, kumaşların ağırlığı, mücevherlerin parıltısı.",d_pages:"İlham, sembolizm, ruh ve bilgi: yazılı sözcüklerin, kitapların, kutsal metinlerin ve mesajların yanan sayfaları.",
+  coll_title:"Sergiler ve koleksiyonlar",coll_p:"1982'den bu yana Sofya'dan Marsilya'ya, Londra'ya, Beaune'a ve Cork'a on beş sergi. Tuvalleri yedi ülkedeki özel koleksiyonlarda yer alıyor:",
+  expo_next:"Kişisel sergiler",group_t:"Karma sergiler",sg_buy:"Singulart'ta satın al ↗",sg_note:"Yüzü aşkın tuvalden oluşan bir seçki ayrıca şurada satışta:",
+  countries:["Avustralya","Amerika Birleşik Devletleri","Fransa","İtalya","Almanya","Belçika","Bulgaristan"],
+  contact_title:"Sanatçıya yazın",contact_p:"Bir tuval satın almak ya da tablo sipariş etmek için Leith'e yazın:",copy:"adresi kopyala",copied:"Adres kopyalandı.",copyFail:"Kopyalamak için adresi seçin.",
+  f_name:"Adınız",f_subject:"Konu",f_msg:"Mesajınız",f_send:"Gönder",f_email:"E-posta adresiniz",o_buy:"tuval satın alma",o_comm:"tablo siparişi",o_other:"diğer",
+  formDone:"Teşekkürler, mesajınız gönderildi. Leith size e-postayla yanıt verecek.",formMail:"E-posta uygulamanız, gönderilmeye hazır mesajla açılıyor.",formFail:"Kopyalanamadı: mesajınızı seçip kopyalayın.",
+  foot_r:"Atölye Bulgaristan'da · Görseller sanatçının izniyle yayımlanmıştır.",prev:"önceki",next:"sonraki",close:"kapat",
+  avail:"satışta",sold:"satıldı",hold:"ayrıldı",private:"özel koleksiyon",
+  oil_linen:"keten üzerine yağlıboya",acry_linen:"keten üzerine akrilik",acryoil_linen:"keten üzerine akrilik ve yağlıboya",acryoil_canvas:"tuval üzerine akrilik ve yağlıboya",acry_collage_canvas:"tuval üzerine akrilik ve kolaj",oil_board:"pano üzerine yağlıboya",oil_paper:"kâğıt üzerine yağlıboya",acry_canvas:"tuval üzerine akrilik",acry_board:"pano üzerine akrilik",acry_paper:"kâğıt üzerine akrilik",mixed_canvas:"tuval üzerine karışık teknik",watercolour_paper:"kâğıt üzerine suluboya",acry_collage_linen:"keten üzerine akrilik ve kolaj",oil_canvas:"tuval üzerine yağlıboya",acry:"akrilik",acryoil:"akrilik ve yağlıboya",linen:"keten üzerine",nosize:"ölçü belirtilecek",look:"bak"},
+ ru:{nav_gal:"Работы",nav_about:"Художница",nav_coll:"Выставки",nav_contact:"Написать",untitled:"Без названия",
+  intro:"Каждое полотно начинается с ритма.",intro_sub:"Лейт Ридли — франко-южноафриканская художница. Классическая балерина, затем художник-декоратор и шумовик в кино, она выстраивает каждую картину как партитуру — слой за слоем.",
+  gal_title:"На стене мастерской",see:"Показать:",gal_note:"Названия, размеры и цены взяты с её нынешнего сайта.",scale_note:"Каждое полотно повешено в масштабе его реального размера.",
+  metre:"1 метр",more:"Показать остальные ({n})",less:"Свернуть",all:"Все работы",flowers:"Цветы",portraits:"Портреты",mountain:"Горные леса",abstracts:"Абстракции и пейзажи",
+  about_title:"Художница",portrait_alt:"Лейт Ридли с кистью в руке пишет большую декоративную сцену",
+  about_p1:"Лейт Ридли — франко-южноафриканская художница. Её работы выставлялись в Софии, Марселе, Лондоне и во Франции, а полотна находятся в частных коллекциях Европы, Австралии и США.",
+  about_p2:"До мастерской была сцена. Профессиональная классическая балерина в Европе, она научилась ритму, дисциплине и тому, что может рассказать тело в движении. Затем было кино в Южной Африке: как художник-декоратор она писала целые миры в масштабе съёмочного павильона, как шумовик выстраивала звуки слой за слоем. Живопись сопровождала её всегда.",
+  about_p3:"Из этих жизней она вынесла свою манеру письма. Каждое полотно строится как саундтрек, последовательными слоями, и выверяется как хореография — между порывом и сдержанностью. Её картины — безмолвные партитуры, в которых цвет и фактура подхватывают движение.",
+  said:"«Я хочу, чтобы зритель мог увидеть в картине то, что он в ней находит, чтобы живопись жила и на неё никогда не надоедало смотреть».",
+  about_p4:"Она свободно переходит от одного сюжета к другому: дымящиеся книги и ангелы-вестники, горные леса, пионы, танцующие деревья. Всегда с той же технической точностью и той же силой. Сегодня она пишет в своей мастерской в Болгарии, у подножия гор.",
+  d_trees:"Танцующие деревья: чистые цвета, густая краска, положенная мастихином, радость, которую никто не сдерживает.",d_mountain:"Горные леса вокруг её мастерской: свет между стволами, весна, вода ручьёв.",d_flowers:"Пионы, розы, фрукты и бабочки: натюрморт, написанный с нежностью, а порой и с улыбкой.",d_abstracts:"Пейзажи, растворяющиеся в цвете и фактуре: гора, ветер, синева, зимний свет.",d_portraits:"Лица, написанные в традиции старых мастеров: свет на коже, тяжесть тканей, блеск драгоценностей.",d_pages:"Вдохновение, символизм, дух и знание: пылающие страницы написанных слов, книг, писаний и посланий.",
+  coll_title:"Выставки и коллекции",coll_p:"Пятнадцать выставок с 1982 года — от Софии до Марселя, Лондона, Бона и Корка. Её полотна находятся в частных коллекциях семи стран:",
+  expo_next:"Персональные выставки",group_t:"Групповые выставки",sg_buy:"Купить на Singulart ↗",sg_note:"Подборка из более чем ста полотен также продаётся на",
+  countries:["Австралия","США","Франция","Италия","Германия","Бельгия","Болгария"],
+  contact_title:"Написать художнице",contact_p:"Чтобы приобрести полотно или заказать картину, напишите Лейт:",copy:"скопировать адрес",copied:"Адрес скопирован.",copyFail:"Выделите адрес, чтобы скопировать его.",
+  f_name:"Ваше имя",f_subject:"Тема",f_msg:"Ваше сообщение",f_send:"Отправить",f_email:"Ваш e-mail",o_buy:"покупка полотна",o_comm:"заказ картины",o_other:"другое",
+  formDone:"Спасибо, ваше сообщение отправлено. Лейт ответит вам по электронной почте.",formMail:"Открывается ваша почтовая программа с готовым сообщением.",formFail:"Не удалось скопировать: выделите сообщение и скопируйте его.",
+  foot_r:"Мастерская в Болгарии · Изображения воспроизводятся с разрешения художницы.",prev:"назад",next:"далее",close:"закрыть",
+  avail:"в продаже",sold:"продано",hold:"забронировано",private:"частная коллекция",
+  oil_linen:"масло на льняном холсте",acry_linen:"акрил на льняном холсте",acryoil_linen:"акрил и масло на льняном холсте",acryoil_canvas:"акрил и масло на холсте",acry_collage_canvas:"акрил и коллаж на холсте",oil_board:"масло на доске",oil_paper:"масло на бумаге",acry_canvas:"акрил на холсте",acry_board:"акрил на доске",acry_paper:"акрил на бумаге",mixed_canvas:"смешанная техника на холсте",watercolour_paper:"акварель на бумаге",acry_collage_linen:"акрил и коллаж на льняном холсте",oil_canvas:"масло на холсте",acry:"акрил",acryoil:"акрил и масло",linen:"на льняном холсте",nosize:"размер уточняется",look:"смотреть"},
+ bg:{nav_gal:"Творби",nav_about:"Художничката",nav_coll:"Изложби",nav_contact:"Контакт",untitled:"Без заглавие",
+  intro:"Всяко платно започва с ритъм.",intro_sub:"Лийт Ридли — френско-южноафриканска художничка. Класическа балерина, после декоратор и шумов артист в киното, тя изгражда всяка картина като партитура, пласт след пласт.",
+  gal_title:"На стената на ателието",see:"Покажи:",gal_note:"Заглавията, размерите и цените са взети от сегашния ѝ сайт.",scale_note:"Всяко платно е окачено в мащаба на реалния си размер.",
+  metre:"1 метър",more:"Покажи останалите ({n})",less:"Покажи по-малко",all:"Всички творби",flowers:"Цветя",portraits:"Портрети",mountain:"Планински гори",abstracts:"Абстракции и пейзажи",
+  about_title:"Художничката",portrait_alt:"Лийт Ридли с четка в ръка рисува голяма декоративна сцена",
+  about_p1:"Лийт Ридли е френско-южноафриканска художничка. Излагала е в София, Марсилия, Лондон и Франция, а нейни платна са част от частни колекции в Европа, Австралия и САЩ.",
+  about_p2:"Преди ателието беше сцената. Като професионална класическа балерина в Европа тя научава ритъма, дисциплината и това, което може да разкаже едно тяло в движение. След това идва киното в Южна Африка: като декоратор рисува цели светове в мащаба на снимачен павилион, като шумов артист изгражда звуци пласт след пласт. Живописта винаги е била до нея.",
+  about_p3:"От тези животи тя запазва начин на рисуване. Всяко платно се изгражда като саундтрак, с последователни пластове, и се настройва като хореография — между порива и сдържаността. Картините ѝ са безмълвни партитури, в които цветът и материята поемат движението.",
+  said:"„Искам зрителят да може да види това, което открива в картината, за да живее тя и никога да не ти омръзва да я гледаш.“",
+  about_p4:"Тя преминава свободно от една тема към друга: димящи книги и ангели вестители, планински гори, божури, танцуващи дървета. Винаги със същата техническа прецизност и същата сила. Днес рисува в ателието си в България, в подножието на планината.",
+  d_trees:"Танцуващи дървета: чисти цветове, гъста боя, нанесена с шпатула, радост, която не се сдържа.",d_mountain:"Планинските гори около ателието ѝ: светлината между стволовете, пролетта, водата на потоците.",d_flowers:"Божури, рози, плодове и пеперуди: натюрморт, рисуван с нежност и понякога с усмивка.",d_abstracts:"Пейзажи, които се разтварят в цвят и материя: планината, вятърът, синьото, зимната светлина.",d_portraits:"Лица, рисувани в традицията на старите майстори: светлината върху кожата, тежестта на тъканите, блясъкът на бижутата.",d_pages:"Вдъхновение, символизъм, дух и познание: горящите страници на написаните думи, книгите, писанията и посланията.",
+  coll_title:"Изложби и колекции",coll_p:"Петнадесет изложби от 1982 г. насам — от София до Марсилия, Лондон, Бон и Корк. Нейни платна има в частни колекции в седем държави:",
+  expo_next:"Самостоятелни изложби",group_t:"Общи изложби",sg_buy:"Купете от Singulart ↗",sg_note:"Селекция от над сто платна се продава и в",
+  countries:["Австралия","САЩ","Франция","Италия","Германия","Белгия","България"],
+  contact_title:"Пишете на художничката",contact_p:"За да закупите платно или да поръчате картина, пишете на Лийт:",copy:"копирай адреса",copied:"Адресът е копиран.",copyFail:"Маркирайте адреса, за да го копирате.",
+  f_name:"Вашето име",f_subject:"Относно",f_msg:"Вашето съобщение",f_send:"Изпрати",f_email:"Вашият имейл",o_buy:"покупка на платно",o_comm:"поръчка на картина",o_other:"друго",
+  formDone:"Благодарим ви, съобщението е изпратено. Лийт ще ви отговори по имейл.",formMail:"Пощенската ви програма се отваря с готово за изпращане съобщение.",formFail:"Копирането не успя: маркирайте съобщението и го копирайте.",
+  foot_r:"Ателие в България · Изображенията са публикувани с разрешението на художничката.",prev:"предишна",next:"следваща",close:"затвори",
+  avail:"налична",sold:"продадена",hold:"запазена",private:"частна колекция",
+  oil_linen:"масло върху лен",acry_linen:"акрил върху лен",acryoil_linen:"акрил и масло върху лен",acryoil_canvas:"акрил и масло върху платно",acry_collage_canvas:"акрил и колаж върху платно",oil_board:"масло върху дърво",oil_paper:"масло върху хартия",acry_canvas:"акрил върху платно",acry_board:"акрил върху дърво",acry_paper:"акрил върху хартия",mixed_canvas:"смесена техника върху платно",watercolour_paper:"акварел върху хартия",acry_collage_linen:"акрил и колаж върху лен",oil_canvas:"масло върху платно",acry:"акрил",acryoil:"акрил и масло",linen:"върху лен",nosize:"размерът предстои",look:"виж"},
+ zh:{nav_gal:"作品",nav_about:"艺术家",nav_coll:"展览",nav_contact:"联系",untitled:"无题",
+  intro:"每一幅画，都从一种节奏开始。",intro_sub:"莉丝·里德利（Leith Ridley），法国与南非双重背景的画家。她曾是古典芭蕾舞者，后在电影业担任布景师和拟音师。她像谱写乐谱一样，一层一层地构建每一幅画。",
+  gal_title:"画室的墙上",see:"浏览：",gal_note:"标题、尺寸和价格均来自她现有的网站。",scale_note:"每幅画都按实际尺寸的比例悬挂。",
+  metre:"1 米",more:"查看其余 {n} 件作品",less:"收起",all:"全部作品",flowers:"花卉",portraits:"肖像",mountain:"山林",abstracts:"抽象与风景",
+  about_title:"艺术家",portrait_alt:"莉丝·里德利手持画笔，正在绘制一幅大型装饰场景",
+  about_p1:"莉丝·里德利是一位法国与南非双重背景的画家。她曾在索非亚、马赛、伦敦以及法国各地举办展览，作品为欧洲、澳大利亚和美国的私人藏家所收藏。",
+  about_p2:"在画室之前，是舞台。作为欧洲的职业古典芭蕾舞者，她学会了节奏、纪律，以及运动中的身体所能诉说的一切。随后是在南非的电影生涯：作为布景师，她以摄影棚的尺度描绘整个世界；作为拟音师，她一层一层地构建声音。而绘画，始终伴随着她。",
+  about_p3:"从这些经历中，她留下了一种作画的方式。每幅画都像电影配乐一样，以层层叠加的方式构建，又像编舞一样，在激情与克制之间反复调校。她的画是无声的乐谱，色彩与肌理接续了舞蹈的律动。",
+  said:"“我希望观者能在画中看见他们自己发现的东西，让画作拥有生命，让人百看不厌。”",
+  about_p4:"她在不同题材之间自由穿行：冒烟的书本与信使天使、山林、牡丹、起舞的树。始终保持同样的技术精度与同样的强度。如今，她在保加利亚山脚下的画室中创作。",
+  d_trees:"起舞的树：鲜明的色彩，用画刀堆砌的厚重颜料，一种毫不掩饰的喜悦。",d_mountain:"环绕她画室的山林：树干间洒落的光线、春天、溪流的水。",d_flowers:"牡丹、玫瑰、水果与蝴蝶：以温柔、有时带着微笑描绘的静物。",d_abstracts:"在色彩与肌理中消融的风景：山、风、蓝色、冬日的光。",d_portraits:"以古典大师传统描绘的面孔：肌肤上的光、织物的重量、珠宝的光泽。",d_pages:"灵感、象征、精神与知识：书写的文字、书籍、经文与信息那燃烧的书页。",
+  coll_title:"展览与收藏",coll_p:"自 1982 年以来举办十五场展览，从索非亚到马赛、伦敦、博讷和科克。她的作品为七个国家的私人藏家所收藏：",
+  expo_next:"个展",group_t:"联展",sg_buy:"在 Singulart 购买 ↗",sg_note:"另有一百多幅作品在以下平台出售：",
+  countries:["澳大利亚","美国","法国","意大利","德国","比利时","保加利亚"],
+  contact_title:"联系艺术家",contact_p:"如需购买作品或定制画作，请写信给莉丝：",copy:"复制邮箱",copied:"邮箱已复制。",copyFail:"请选中邮箱地址进行复制。",
+  f_name:"您的姓名",f_subject:"事由",f_msg:"您的留言",f_send:"发送",f_email:"您的邮箱",o_buy:"购买画作",o_comm:"定制画作",o_other:"其他",
+  formDone:"谢谢，您的留言已发送。莉丝会通过邮件回复您。",formMail:"您的邮件应用正在打开，留言已准备好发送。",formFail:"复制失败：请选中您的留言并复制。",
+  foot_r:"画室位于保加利亚 · 图片经艺术家授权使用。",prev:"上一幅",next:"下一幅",close:"关闭",
+  avail:"可售",sold:"已售",hold:"已预订",private:"私人收藏",
+  oil_linen:"亚麻布面油画",acry_linen:"亚麻布面丙烯",acryoil_linen:"亚麻布面丙烯与油彩",acryoil_canvas:"布面丙烯与油彩",acry_collage_canvas:"布面丙烯与拼贴",oil_board:"木板油画",oil_paper:"纸本油画",acry_canvas:"布面丙烯",acry_board:"木板丙烯",acry_paper:"纸本丙烯",mixed_canvas:"布面综合材料",watercolour_paper:"纸本水彩",acry_collage_linen:"亚麻布面丙烯与拼贴",oil_canvas:"布面油画",acry:"丙烯",acryoil:"丙烯与油彩",linen:"亚麻布面",nosize:"尺寸待定",look:"查看"},
+ ja:{nav_gal:"作品",nav_about:"アーティスト",nav_coll:"展覧会",nav_contact:"お問い合わせ",untitled:"無題",
+  intro:"すべてのキャンバスは、ひとつのリズムから始まる。",intro_sub:"リース・リドリー。フランスと南アフリカにルーツを持つ画家。クラシックバレエのダンサーを経て、映画の装飾美術とフォーリー（効果音）の仕事に携わり、一枚一枚の絵を楽譜のように、層を重ねて築き上げる。",
+  gal_title:"アトリエの壁に",see:"表示：",gal_note:"タイトル、サイズ、価格は現在のサイトから引用しています。",scale_note:"各作品は実寸の比率で展示しています。",
+  metre:"1メートル",more:"残り{n}点の作品を見る",less:"閉じる",all:"すべての作品",flowers:"花",portraits:"肖像画",mountain:"山の森",abstracts:"抽象と風景",
+  about_title:"アーティスト",portrait_alt:"筆を手に、大きな装飾画を描くリース・リドリー",
+  about_p1:"リース・リドリーは、フランスと南アフリカにルーツを持つ画家です。ソフィア、マルセイユ、ロンドン、そしてフランス各地で展覧会を開き、作品はヨーロッパ、オーストラリア、アメリカの個人コレクションに収められています。",
+  about_p2:"アトリエの前に、舞台がありました。ヨーロッパでプロのクラシックバレエダンサーとして、リズムと規律、そして動く身体が語りうるものを学びました。その後、南アフリカで映画の世界へ。装飾美術として撮影スタジオの規模で世界をまるごと描き、フォーリーアーティストとして音を一層ずつ重ねていきました。絵画は、いつも彼女とともにありました。",
+  about_p3:"そうした人生から、彼女は独自の描き方を受け継ぎました。一枚のキャンバスはサウンドトラックのように層を重ねて築かれ、振付のように、躍動と抑制のあいだで調整されます。彼女の絵は、色と質感が動きを引き継ぐ、静かな楽譜なのです。",
+  said:"「見る人が、そこに自分の見つけたものを見られるようにしたい。絵が生き続け、いつまでも見飽きることのないように。」",
+  about_p4:"煙を上げる本と使者の天使、山の森、牡丹、踊る木々。彼女は主題から主題へと自由に移りながら、常に同じ技術の精度と同じ強さで描きます。現在はブルガリアの山のふもとにあるアトリエで制作しています。",
+  d_trees:"踊る木々：鮮やかな色、ペインティングナイフで厚く塗られた絵具、抑えきれない喜び。",d_mountain:"アトリエを囲む山の森：幹のあいだに差し込む光、春、小川の水。",d_flowers:"牡丹、薔薇、果物、蝶：やさしさと、ときに微笑みを込めて描かれた静物画。",d_abstracts:"色と質感に溶けていく風景：山、風、青、冬の光。",d_portraits:"古典の巨匠の伝統に倣って描かれた顔：肌に落ちる光、布の重み、宝石のきらめき。",d_pages:"インスピレーション、象徴、精神、知識：書かれた言葉、本、聖典、メッセージの燃えるページ。",
+  coll_title:"展覧会とコレクション",coll_p:"1982年以来、ソフィアからマルセイユ、ロンドン、ボーヌ、コークまで15回の展覧会。作品は7か国の個人コレクションに収められています：",
+  expo_next:"個展",group_t:"グループ展",sg_buy:"Singulartで購入 ↗",sg_note:"100点を超える作品のセレクションは、こちらでも販売しています：",
+  countries:["オーストラリア","アメリカ","フランス","イタリア","ドイツ","ベルギー","ブルガリア"],
+  contact_title:"アーティストへのお問い合わせ",contact_p:"作品のご購入やご依頼は、リースまでご連絡ください：",copy:"アドレスをコピー",copied:"アドレスをコピーしました。",copyFail:"アドレスを選択してコピーしてください。",
+  f_name:"お名前",f_subject:"ご用件",f_msg:"メッセージ",f_send:"送信",f_email:"メールアドレス",o_buy:"作品の購入",o_comm:"制作のご依頼",o_other:"その他",
+  formDone:"ありがとうございます。メッセージを送信しました。リースよりメールでご返信いたします。",formMail:"メールアプリが開き、メッセージの送信準備ができています。",formFail:"コピーできませんでした。メッセージを選択してコピーしてください。",
+  foot_r:"アトリエ：ブルガリア · 画像は作家の許可を得て掲載しています。",prev:"前へ",next:"次へ",close:"閉じる",
+  avail:"販売中",sold:"売約済",hold:"商談中",private:"個人蔵",
+  oil_linen:"リネンに油彩",acry_linen:"リネンにアクリル",acryoil_linen:"リネンにアクリル・油彩",acryoil_canvas:"キャンバスにアクリル・油彩",acry_collage_canvas:"キャンバスにアクリル・コラージュ",oil_board:"板に油彩",oil_paper:"紙に油彩",acry_canvas:"キャンバスにアクリル",acry_board:"板にアクリル",acry_paper:"紙にアクリル",mixed_canvas:"キャンバスにミクストメディア",watercolour_paper:"紙に水彩",acry_collage_linen:"リネンにアクリル・コラージュ",oil_canvas:"キャンバスに油彩",acry:"アクリル",acryoil:"アクリル・油彩",linen:"リネン",nosize:"サイズ未定",look:"見る"}
 };
+// languages offered, in menu order, with the flag shown for each
+const LANGS=[["en","English","gb"],["fr","Français","fr"],["es","Español","es"],["de","Deutsch","de"],["pt","Português","pt"],["af","Afrikaans","za"],["tr","Türkçe","tr"],["ru","Русский","ru"],["bg","Български","bg"],["zh","中文","cn"],["ja","日本語","jp"]];
+const LOCALE={en:"en-US",fr:"fr-FR",es:"es-ES",de:"de-DE",pt:"pt-PT",af:"af-ZA",tr:"tr-TR",ru:"ru-RU",bg:"bg-BG",zh:"zh-CN",ja:"ja-JP"};
+// flags drawn in SVG, so they look the same on every computer and phone
+let flagN=0;
+function starPath(cx,cy,r,rot=-90){let d="";for(let i=0;i<10;i++){const a=(rot+i*36)*Math.PI/180,rr=i%2?r*.382:r;d+=(i?"L":"M")+(cx+Math.cos(a)*rr).toFixed(2)+","+(cy+Math.sin(a)*rr).toFixed(2)}return d+"Z"}
+function flagSVG(c){const id="fl"+(flagN++),o='<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true" ';
+  const bands=(cols,vert)=>{const n=cols.length;return o+`viewBox="0 0 ${vert?n*2:3} ${vert?n*2*2/3:2}">`+cols.map((col,i)=>vert?`<rect x="${i*2}" width="2" height="${n*4/3}" fill="${col}"/>`:`<rect y="${i*2/n}" width="3" height="${2/n+.01}" fill="${col}"/>`).join("")+"</svg>"};
+  switch(c){
+    case"fr":return bands(["#002654","#fff","#ce1126"],true);
+    case"de":return bands(["#000","#dd0000","#ffce00"]);
+    case"ru":return bands(["#fff","#0039a6","#d52b1e"]);
+    case"bg":return bands(["#fff","#00966e","#d62612"]);
+    case"es":return o+'viewBox="0 0 3 2"><rect width="3" height="2" fill="#aa151b"/><rect y=".5" width="3" height="1" fill="#f1bf00"/></svg>';
+    case"jp":return o+'viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg>';
+    case"cn":return o+`viewBox="0 0 30 20"><rect width="30" height="20" fill="#ee1c25"/><path fill="#ffde00" d="${starPath(5,5,3)}${starPath(10,2,1,-60)}${starPath(12,4,1,-80)}${starPath(12,7,1,-100)}${starPath(10,9,1,-120)}"/></svg>`;
+    case"tr":return o+`viewBox="0 0 30 20"><rect width="30" height="20" fill="#e30a17"/><circle cx="10" cy="10" r="5" fill="#fff"/><circle cx="11.25" cy="10" r="4" fill="#e30a17"/><path fill="#fff" d="${starPath(16.2,10,2.5,0)}"/></svg>`;
+    case"pt":return o+'viewBox="0 0 600 400"><rect width="600" height="400" fill="#f00"/><rect width="240" height="400" fill="#060"/><circle cx="240" cy="200" r="80" fill="none" stroke="#ff0" stroke-width="22"/><path d="M200 150h80v70a40 40 0 0 1-80 0z" fill="#f00" stroke="#fff" stroke-width="10"/></svg>';
+    case"za":return o+'viewBox="0 0 900 600"><rect width="900" height="600" fill="#002395"/><rect width="900" height="300" fill="#e03c31"/><path d="M0,0L450,300H900M0,600L450,300" fill="none" stroke="#fff" stroke-width="200"/><path d="M0,0L450,300H900M0,600L450,300" fill="none" stroke="#007a4d" stroke-width="120"/><path d="M0,72L342,300L0,528Z" fill="#ffb612"/><path d="M0,120L270,300L0,480Z" fill="#000"/></svg>';
+    default: /* gb */ return o+`viewBox="0 0 60 30"><clipPath id="${id}"><path d="M30,15h30v15zv15h-30zh-30v-15zv-15h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" clip-path="url(#${id})" stroke="#c8102e" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#c8102e" stroke-width="6"/></svg>`}}
 // h × w in cm, as listed on her current site (height first)
 const WORKS=[
  {t:"50 Shades of Orange",cat:"pages",st:"abstract",tech:"oil_linen",h:81,w:116,s:"hold",pal:["#5a220c","#c2531a","#ec8a2e","#f6c27a","#3a1608"],seed:43,img:"works/50-shades-of-orange.jpg"},
@@ -486,7 +703,7 @@ const WORKS=[
  {t:"Smoking Pages",cat:"pages",st:"still",tech:"oil_linen",s:"avail",pal:["#3a4a8a","#e09a6a","#8a7a5a","#e9dccb","#2a2a4a"],seed:77,img:"works/smoking-pages.jpg"},
  {t:"Pearls of Wisdom",cat:"pages",st:"still",tech:"oil_linen",h:29,w:23,s:"sold",pal:["#2b2622","#7d6e5c","#e8e0d0","#c9b07a","#4a3e34"],seed:67,img:"works/pearls-of-wisdom.jpg"}
 ];
-let lang="fr";try{const s=localStorage.getItem("lang");if(s==="fr"||s==="en")lang=s}catch(e){}
+let lang="en";try{const s=localStorage.getItem("lang");if(s&&T[s])lang=s}catch(e){}
 const calm=matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function rng(seed){let s=seed*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280}}
@@ -524,9 +741,9 @@ function paint(cv,work,px,ms){
   (function step(now){const f=Math.min(1,(now-t0)/ms),to=Math.round(n*(1-Math.pow(1-f,2.2)));draw(done,to);done=to;
     if(f<1)requestAnimationFrame(step);else weave()})(t0);
 }
-const L=()=>T[lang];
-const title=w=>typeof w.t==="string"?w.t:w.t[lang];
-const price=(v,c)=>new Intl.NumberFormat(lang==="fr"?"fr-FR":"en-US",{style:"currency",currency:c||"USD",maximumFractionDigits:0}).format(v);
+const LC={},L=()=>LC[lang]||(LC[lang]=Object.assign({},T.en,T[lang]));
+const title=w=>typeof w.t==="string"?w.t:(w.t[lang]||(w.t.en==="Untitled"?L().untitled:w.t.en));
+const price=(v,c)=>new Intl.NumberFormat(LOCALE[lang]||"en-GB",{style:"currency",currency:c||"USD",maximumFractionDigits:0}).format(v);
 const meta=w=>[w.tech?L()[w.tech]:null,w.w?`${w.h} × ${w.w} cm`:L().nosize,w.y||null].filter(Boolean).join(", ");
 const status=w=>!w.s?"":w.s==="avail"&&w.p?`${L().avail} · ${price(w.p,w.cur)}`:L()[w.s];
 
@@ -565,8 +782,23 @@ document.getElementById("wall").addEventListener("pointermove",e=>{const w=e.cur
   w.style.setProperty("--mx",(e.clientX-q.left)+"px");w.style.setProperty("--my",(e.clientY-q.top)+"px")});
 
 
-const PLACES={bg:{fr:"Bulgarie",en:"Bulgaria"},fr:{fr:"France",en:"France"},uk:{fr:"Royaume-Uni",en:"United Kingdom"},ie:{fr:"Irlande",en:"Ireland"}};
-const CITY={London:{fr:"Londres",en:"London"}};
+const PLACES={bg:{fr:"Bulgarie",en:"Bulgaria",es:"Bulgaria",de:"Bulgarien",pt:"Bulgária",af:"Bulgarye",tr:"Bulgaristan",ru:"Болгария",bg:"България",zh:"保加利亚",ja:"ブルガリア"},
+ fr:{fr:"France",en:"France",es:"Francia",de:"Frankreich",pt:"França",af:"Frankryk",tr:"Fransa",ru:"Франция",bg:"Франция",zh:"法国",ja:"フランス"},
+ uk:{fr:"Royaume-Uni",en:"United Kingdom",es:"Reino Unido",de:"Vereinigtes Königreich",pt:"Reino Unido",af:"Verenigde Koninkryk",tr:"Birleşik Krallık",ru:"Великобритания",bg:"Великобритания",zh:"英国",ja:"イギリス"},
+ ie:{fr:"Irlande",en:"Ireland",es:"Irlanda",de:"Irland",pt:"Irlanda",af:"Ierland",tr:"İrlanda",ru:"Ирландия",bg:"Ирландия",zh:"爱尔兰",ja:"アイルランド"}};
+const CITY={Sofia:{es:"Sofía",pt:"Sófia",tr:"Sofya",ru:"София",bg:"София",zh:"索非亚",ja:"ソフィア"},
+ Marseille:{es:"Marsella",pt:"Marselha",tr:"Marsilya",ru:"Марсель",bg:"Марсилия",zh:"马赛",ja:"マルセイユ"},
+ London:{fr:"Londres",es:"Londres",pt:"Londres",af:"Londen",tr:"Londra",ru:"Лондон",bg:"Лондон",zh:"伦敦",ja:"ロンドン"},
+ Beaune:{ru:"Бон",bg:"Бон",zh:"博讷",ja:"ボーヌ"},Bansko:{ru:"Банско",bg:"Банско",zh:"班斯科",ja:"バンスコ"},Cork:{ru:"Корк",bg:"Корк",zh:"科克",ja:"コーク"}};
+// exhibition names that are translated (the others are proper names)
+const EXPO_T={"Abstract Landscapes":{es:"Paisajes abstractos",de:"Abstrakte Landschaften",pt:"Paisagens abstratas",af:"Abstrakte landskappe",tr:"Soyut Manzaralar",ru:"Абстрактные пейзажи",bg:"Абстрактни пейзажи",zh:"抽象风景",ja:"抽象風景"},
+ "National Palace of Culture":{es:"Palacio Nacional de la Cultura",de:"Nationaler Kulturpalast",pt:"Palácio Nacional da Cultura",af:"Nasionale Kultuurpaleis",tr:"Ulusal Kültür Sarayı",ru:"Национальный дворец культуры",bg:"Национален дворец на културата",zh:"国家文化宫",ja:"国立文化宮殿"},
+ "Spring Exhibition":{es:"Exposición de primavera",de:"Frühjahrsausstellung",pt:"Exposição de primavera",af:"Lente-uitstalling",tr:"Bahar Sergisi",ru:"Весенняя выставка",bg:"Пролетна изложба",zh:"春季展",ja:"春の展覧会"},
+ "Summer Exhibition":{es:"Exposición de verano",de:"Sommerausstellung",pt:"Exposição de verão",af:"Somer-uitstalling",tr:"Yaz Sergisi",ru:"Летняя выставка",bg:"Лятна изложба",zh:"夏季展",ja:"夏の展覧会"},
+ "Group exhibition":{es:"Exposición colectiva",de:"Gruppenausstellung",pt:"Exposição coletiva",af:"Groepuitstalling",tr:"Karma sergi",ru:"Групповая выставка",bg:"Обща изложба",zh:"联展",ja:"グループ展"},
+ "U.S. Embassy":{es:"Embajada de Estados Unidos",de:"US-Botschaft",pt:"Embaixada dos EUA",af:"Amerikaanse ambassade",tr:"ABD Büyükelçiliği",ru:"Посольство США",bg:"Посолство на САЩ",zh:"美国大使馆",ja:"アメリカ大使館"},
+ "IWC Charity Auction":{es:"Subasta benéfica IWC",de:"IWC-Benefizauktion",pt:"Leilão solidário IWC",af:"IWC-liefdadigheidsveiling",tr:"IWC Hayır Müzayedesi",ru:"Благотворительный аукцион IWC",bg:"Благотворителен търг на IWC",zh:"IWC 慈善拍卖",ja:"IWCチャリティーオークション"},
+ "Exhibition":{es:"Exposición",de:"Ausstellung",pt:"Exposição",af:"Uitstalling",tr:"Sergi",ru:"Выставка",bg:"Изложба",zh:"展览",ja:"展覧会"}};
 const SOLO=[
  {y:2021,t:"Variantes from Mother Nature",v:"Tom's Place",c:"Sofia",k:"bg"},
  {y:2019,t:"Summer Exhibition",v:"Tom's Place",c:"Sofia",k:"bg"},
@@ -584,11 +816,11 @@ const GROUP=[
  {y:2016,t:"Snow Pearl Opening",v:"Snow Pearl Gallery",c:"Bansko",k:"bg"},
  {y:2014,t:{fr:"Vente aux enchères caritative IWC",en:"IWC Charity Auction"},v:"Europe Gallery",c:"Sofia",k:"bg"},
  {y:1982,t:{fr:"Exposition",en:"Exhibition"},v:"Cork Gallery",c:"Cork",k:"ie"}];
-const loc=x=>typeof x==="string"?x:(x?x[lang]:"");
+const loc=x=>typeof x==="string"?x:(x?(x[lang]||(EXPO_T[x.en]&&EXPO_T[x.en][lang])||x.en):"");
 function renderExpos(){[["soloList",SOLO],["groupList",GROUP]].forEach(([id,list])=>{const ol=document.getElementById(id);ol.innerHTML="";
   list.forEach(e=>{const li=document.createElement("li"),y=document.createElement("span"),b=document.createElement("span"),t=document.createElement("span"),w=document.createElement("span");
     y.className="y";y.textContent=e.y;t.className="t";t.textContent=loc(e.t);w.className="w";
-    w.textContent=[loc(e.v),CITY[e.c]?CITY[e.c][lang]:e.c,PLACES[e.k][lang]].filter(Boolean).join(" · ");
+    w.textContent=[loc(e.v),(CITY[e.c]&&CITY[e.c][lang])||e.c,PLACES[e.k][lang]||PLACES[e.k].en].filter(Boolean).join(" · ");
     b.append(t,w);li.append(y,b);ol.appendChild(li)})})}
 function renderCountries(){const ul=document.getElementById("countries");ul.innerHTML="";
   L().countries.forEach((c,i)=>{const li=document.createElement("li");li.textContent=c;li.style.setProperty("--i",i);ul.appendChild(li)})}
@@ -618,13 +850,23 @@ document.addEventListener("keydown",e=>{if(room.hidden)return;if(e.key==="Escape
 
 function setLang(l){lang=l;try{localStorage.setItem("lang",l)}catch(e){}
   document.documentElement.lang=l;
-  document.querySelectorAll("[data-i]").forEach(el=>{const v=T[l][el.dataset.i];if(typeof v==="string")el.textContent=v});
-  document.querySelectorAll("[data-i-alt]").forEach(el=>{const v=T[l][el.dataset.iAlt];if(v)el.alt=v});
-  document.getElementById("l-fr").setAttribute("aria-pressed",String(l==="fr"));
-  document.getElementById("l-en").setAttribute("aria-pressed",String(l==="en"));
+  const D=L();
+  document.querySelectorAll("[data-i]").forEach(el=>{const v=D[el.dataset.i];if(typeof v==="string")el.textContent=v});
+  document.querySelectorAll("[data-i-alt]").forEach(el=>{const v=D[el.dataset.iAlt];if(v)el.alt=v});
+  renderLangPick();
     renderFilters();renderWall();renderCountries();renderExpos();renderIntro();if(si>=0){renderSlides();const w=SLIDES[si];document.getElementById("heroCap").textContent=title(w);document.getElementById("heroMeta").textContent=[meta(w),status(w)].filter(Boolean).join(" · ")}}
-document.getElementById("l-fr").onclick=()=>setLang("fr");
-document.getElementById("l-en").onclick=()=>setLang("en");
+function renderLangPick(){const cur=LANGS.find(x=>x[0]===lang)||LANGS[0],btn=document.getElementById("langBtn"),ul=document.getElementById("langList");
+  document.getElementById("langFlag").innerHTML=flagSVG(cur[2]);btn.setAttribute("aria-label","Language: "+cur[1]);btn.title=cur[1];
+  ul.innerHTML="";LANGS.forEach(([code,name,fl])=>{const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.lang=code;
+    b.innerHTML=`<span class="flag">${flagSVG(fl)}</span><span></span>`;b.lastChild.textContent=name;if(code===lang)b.setAttribute("aria-current","true");
+    b.onclick=()=>{closeLang();if(code!==lang)setLang(code);btn.focus()};li.appendChild(b);ul.appendChild(li)})}
+function closeLang(){document.getElementById("langList").hidden=true;document.getElementById("langBtn").setAttribute("aria-expanded","false")}
+document.getElementById("langBtn").onclick=e=>{e.stopPropagation();const ul=document.getElementById("langList"),open=ul.hidden;
+  ul.hidden=!open;e.currentTarget.setAttribute("aria-expanded",String(open));if(open){const c=ul.querySelector('[aria-current="true"]')||ul.querySelector("button");c.focus()}};
+document.addEventListener("click",e=>{if(!e.target.closest("#langPick"))closeLang()});
+document.addEventListener("keydown",e=>{const ul=document.getElementById("langList");if(ul.hidden)return;
+  if(e.key==="Escape"){closeLang();document.getElementById("langBtn").focus()}
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();const bs=[...ul.querySelectorAll("button")],i=bs.indexOf(document.activeElement);bs[(i+(e.key==="ArrowDown"?1:-1)+bs.length)%bs.length].focus()}});
 
 document.getElementById("copyMail").onclick=async()=>{const out=document.getElementById("copyOut");
   try{await navigator.clipboard.writeText("contact.leithridley@gmail.com");out.textContent=L().copied}
