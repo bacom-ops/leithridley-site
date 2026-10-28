@@ -1,0 +1,580 @@
+[
+ {
+  "t": "50 Shades of Orange",
+  "cat": "pages",
+  "st": "abstract",
+  "tech": "oil_linen",
+  "h": 81,
+  "w": 116,
+  "s": "hold",
+  "pal": [
+   "#5a220c",
+   "#c2531a",
+   "#ec8a2e",
+   "#f6c27a",
+   "#3a1608"
+  ],
+  "seed": 43,
+  "img": "works/50-shades-of-orange.jpg",
+  "id": "50-shades-of-orange"
+ },
+ {
+  "t": "Genesis, The New Beginning; let there be…",
+  "cat": "pages",
+  "st": "abstract",
+  "tech": "oil_canvas",
+  "h": 100,
+  "w": 200,
+  "s": "avail",
+  "p": 3600,
+  "pal": [
+   "#1a1410",
+   "#6b2a12",
+   "#d97a2b",
+   "#f2d48a",
+   "#2b1c14"
+  ],
+  "seed": 5,
+  "img": "works/genesis.jpg",
+  "sg": "https://www.singulart.com/fr/oeuvres-d-art/leith-ridley-combe-genesis-1903470",
+  "id": "genesis",
+  "hero": true
+ },
+ {
+  "t": "Angel",
+  "cat": "pages",
+  "st": "abstract",
+  "tech": "acryoil_linen",
+  "h": 120,
+  "w": 100,
+  "s": "sold",
+  "pal": [
+   "#2a2f3d",
+   "#8d9bb5",
+   "#e8dcc6",
+   "#c9a46a",
+   "#1b1e28"
+  ],
+  "seed": 13,
+  "img": "works/angel.jpg",
+  "id": "angel",
+  "hero": true
+ },
+ {
+  "t": "La magie du printemps",
+  "cat": [
+   "mountain",
+   "abstracts"
+  ],
+  "st": "landscape",
+  "tech": "acry_linen",
+  "h": 100,
+  "w": 100,
+  "s": "sold",
+  "pal": [
+   "#6a9a3a",
+   "#a8cf6a",
+   "#8a4a2a",
+   "#e8e0b0",
+   "#4a6a8a"
+  ],
+  "seed": 83,
+  "img": "works/la-magie-du-printemps.jpg",
+  "id": "la-magie-du-printemps"
+ },
+ {
+  "t": "Deep Contemplation",
+  "cat": "mountain",
+  "st": "landscape",
+  "tech": "acry_linen",
+  "pal": [
+   "#8aa85a",
+   "#c8d88a",
+   "#a85a2a",
+   "#3a4a7a",
+   "#d84a2a"
+  ],
+  "seed": 87,
+  "img": "works/deep-contemplation.jpg",
+  "id": "deep-contemplation"
+ },
+ {
+  "t": {
+   "fr": "Sans titre",
+   "en": "Untitled"
+  },
+  "cat": "mountain",
+  "st": "landscape",
+  "pal": [
+   "#5a8a3a",
+   "#a8d06a",
+   "#8a4a2a",
+   "#5a3a8a",
+   "#c8d0d8"
+  ],
+  "seed": 89,
+  "img": "works/foret-sans-titre.jpg",
+  "id": "foret-sans-titre"
+ },
+ {
+  "t": "Portrait of T",
+  "cat": "portraits",
+  "st": "still",
+  "tech": "acry_linen",
+  "h": 100,
+  "w": 80,
+  "y": 2017,
+  "s": "sold",
+  "pal": [
+   "#4a5468",
+   "#d98a6a",
+   "#f2c9a8",
+   "#e8e4dc",
+   "#c9a24a"
+  ],
+  "seed": 113,
+  "img": "works/portrait-of-t.jpg",
+  "id": "portrait-of-t"
+ },
+ {
+  "t": "Proserpine… spirit of Claire",
+  "cat": "portraits",
+  "st": "still",
+  "tech": "acry_collage_canvas",
+  "h": 100,
+  "w": 80,
+  "y": 2017,
+  "s": "sold",
+  "pal": [
+   "#c98a3a",
+   "#e8c27a",
+   "#f2d6b8",
+   "#c92a2a",
+   "#d9643a"
+  ],
+  "seed": 127,
+  "img": "works/proserpine.jpg",
+  "id": "proserpine"
+ },
+ {
+  "t": "Shady Lady",
+  "cat": "portraits",
+  "st": "still",
+  "tech": "acry_collage_linen",
+  "h": 100,
+  "w": 80,
+  "y": 2017,
+  "s": "sold",
+  "pal": [
+   "#d9b86a",
+   "#f0d2b4",
+   "#d92a1a",
+   "#5a7a4a",
+   "#c9905a"
+  ],
+  "seed": 131,
+  "img": "works/shady-lady.jpg",
+  "id": "shady-lady"
+ },
+ {
+  "t": "A Young Irish Girl",
+  "cat": "portraits",
+  "st": "still",
+  "tech": "oil_linen",
+  "h": 65,
+  "w": 50,
+  "y": 2006,
+  "s": "sold",
+  "pal": [
+   "#6a7a78",
+   "#b0502a",
+   "#f2e6d6",
+   "#e8a0a0",
+   "#8a9a8a"
+  ],
+  "seed": 137,
+  "img": "works/young-irish-girl.jpg",
+  "id": "young-irish-girl"
+ },
+ {
+  "t": "Addio del passato",
+  "cat": "portraits",
+  "st": "still",
+  "tech": "acryoil_linen",
+  "h": 100,
+  "w": 80,
+  "y": 2016,
+  "s": "sold",
+  "pal": [
+   "#c9a07a",
+   "#f0d6b8",
+   "#c9402a",
+   "#7a8a8a",
+   "#c9a23a"
+  ],
+  "seed": 139,
+  "img": "works/addio-del-passato.jpg",
+  "id": "addio-del-passato"
+ },
+ {
+  "t": "Lucia",
+  "cat": "portraits",
+  "st": "still",
+  "tech": "oil_linen",
+  "h": 65,
+  "w": 50,
+  "y": 2006,
+  "s": "avail",
+  "p": 2390,
+  "cur": "EUR",
+  "pal": [
+   "#3a2a22",
+   "#8a3a2a",
+   "#c9a487",
+   "#2a3550",
+   "#6b5a4a"
+  ],
+  "seed": 93,
+  "img": "works/lucia.jpg",
+  "sg": "https://www.singulart.com/fr/oeuvres-d-art/leith-ridley-combe-lucia-1653494",
+  "id": "lucia"
+ },
+ {
+  "t": "The Lily Pond",
+  "cat": "flowers",
+  "st": "still",
+  "tech": "oil_linen",
+  "h": 100,
+  "w": 180,
+  "y": 2026,
+  "s": "avail",
+  "p": 3080,
+  "cur": "EUR",
+  "pal": [
+   "#5a7fb8",
+   "#a8bfe0",
+   "#b9cf6a",
+   "#5f7a2e",
+   "#d9603a"
+  ],
+  "seed": 101,
+  "img": "works/lily-pond.jpg",
+  "id": "lily-pond"
+ },
+ {
+  "t": "The Autumn of Narcissus",
+  "cat": "flowers",
+  "st": "still",
+  "tech": "oil_linen",
+  "h": 80,
+  "w": 100,
+  "y": 2026,
+  "s": "avail",
+  "p": 3360,
+  "cur": "EUR",
+  "pal": [
+   "#1a1a22",
+   "#8a6a42",
+   "#e8c23a",
+   "#e6d6b0",
+   "#3a5a9a"
+  ],
+  "seed": 107,
+  "img": "works/narcissus.jpg",
+  "id": "narcissus"
+ },
+ {
+  "t": "Peonies of Joy",
+  "cat": "flowers",
+  "st": "still",
+  "tech": "oil_linen",
+  "h": 96,
+  "w": 116,
+  "s": "avail",
+  "p": 2600,
+  "pal": [
+   "#3a1a2a",
+   "#c2456a",
+   "#f09ab0",
+   "#fbe3e8",
+   "#4d7a3f"
+  ],
+  "seed": 17,
+  "img": "works/peonies-of-joy.jpg",
+  "id": "peonies-of-joy",
+  "hero": true
+ },
+ {
+  "t": "Vitosha Mountain, forest light",
+  "cat": "abstracts",
+  "st": "landscape",
+  "tech": "acryoil",
+  "h": 116,
+  "w": 86,
+  "s": "sold",
+  "pal": [
+   "#1c2a20",
+   "#3f5e3a",
+   "#8fb06a",
+   "#e6dc9a",
+   "#2c3a2a"
+  ],
+  "seed": 21,
+  "img": "works/vitosha-mountain.jpg",
+  "id": "vitosha-mountain"
+ },
+ {
+  "t": "The Messenger",
+  "cat": "pages",
+  "st": "abstract",
+  "tech": "oil_linen",
+  "h": 65,
+  "w": 81,
+  "s": "avail",
+  "p": 1100,
+  "pal": [
+   "#1f2a2e",
+   "#4f6d6a",
+   "#c8b48a",
+   "#e9e1cf",
+   "#6b3a2a"
+  ],
+  "seed": 27,
+  "img": "works/the-messenger.jpg",
+  "id": "the-messenger"
+ },
+ {
+  "t": "Happy Family 2",
+  "cat": "trees",
+  "st": "still",
+  "tech": "acry_linen",
+  "h": 30,
+  "w": 30,
+  "s": "avail",
+  "p": 300,
+  "pal": [
+   "#2f4a2a",
+   "#6f9a3e",
+   "#d9c84a",
+   "#e98a5a",
+   "#3b5f78"
+  ],
+  "seed": 33,
+  "img": "works/happy-family-2.jpg",
+  "id": "happy-family-2"
+ },
+ {
+  "t": "Promenade dans la nuit, Evening Stroll",
+  "cat": "trees",
+  "st": "landscape",
+  "tech": "acryoil_linen",
+  "s": "sold",
+  "pal": [
+   "#1f2a8a",
+   "#e0451f",
+   "#7aa64a",
+   "#5a8ad0",
+   "#c23a1a"
+  ],
+  "seed": 79,
+  "img": "works/promenade-dans-la-nuit.jpg",
+  "id": "promenade-dans-la-nuit",
+  "hero": true
+ },
+ {
+  "t": "Three Sisters",
+  "cat": "trees",
+  "st": "still",
+  "tech": "acry",
+  "h": 20,
+  "w": 20,
+  "s": "sold",
+  "pal": [
+   "#26402e",
+   "#5c8a4a",
+   "#b7cf6a",
+   "#f0e2b0",
+   "#7a5a3a"
+  ],
+  "seed": 47,
+  "img": "works/three-sisters.jpg",
+  "id": "three-sisters"
+ },
+ {
+  "t": "Flying Over",
+  "cat": "abstracts",
+  "st": "landscape",
+  "tech": "acry_linen",
+  "h": 90,
+  "w": 70,
+  "s": "avail",
+  "p": 800,
+  "pal": [
+   "#2f3f4a",
+   "#7a9db0",
+   "#d8c79a",
+   "#e9e4d6",
+   "#5a6e4a"
+  ],
+  "seed": 51,
+  "img": "works/flying-over.jpg",
+  "id": "flying-over"
+ },
+ {
+  "t": "Alexandra",
+  "cat": "flowers",
+  "st": "still",
+  "tech": "oil_linen",
+  "h": 30,
+  "w": 30,
+  "s": "private",
+  "pal": [
+   "#2a1d24",
+   "#9c3b5a",
+   "#e58aa3",
+   "#f3d9de",
+   "#4f6a3a"
+  ],
+  "seed": 55,
+  "img": "works/alexandra.jpg",
+  "id": "alexandra"
+ },
+ {
+  "t": "The Fall of the Watchers",
+  "cat": "pages",
+  "st": "abstract",
+  "tech": "oil_linen",
+  "h": 50,
+  "w": 80,
+  "s": "avail",
+  "p": 820,
+  "pal": [
+   "#120f14",
+   "#3d2a3f",
+   "#8a3b2a",
+   "#d29a54",
+   "#241b26"
+  ],
+  "seed": 59,
+  "img": "works/the-fall-of-the-watchers.jpg",
+  "sg": "https://www.singulart.com/fr/oeuvres-d-art/leith-ridley-combe-the-fall-of-the-watchers-2068068",
+  "id": "the-fall-of-the-watchers"
+ },
+ {
+  "t": "Wild Wind",
+  "cat": "abstracts",
+  "st": "abstract",
+  "tech": "acryoil_canvas",
+  "s": "avail",
+  "p": 900,
+  "pal": [
+   "#1f5a6a",
+   "#8ad06a",
+   "#3a8aa8",
+   "#8a4a2a",
+   "#d8e8d0"
+  ],
+  "seed": 91,
+  "img": "works/wild-wind.jpg",
+  "id": "wild-wind"
+ },
+ {
+  "t": "In the Blue",
+  "cat": "abstracts",
+  "st": "abstract",
+  "h": 120,
+  "w": 100,
+  "s": "sold",
+  "pal": [
+   "#0f1d33",
+   "#24497a",
+   "#5f8fc4",
+   "#cfe0ee",
+   "#132744"
+  ],
+  "seed": 63,
+  "img": "works/in-the-blue.jpg",
+  "id": "in-the-blue",
+  "hero": true
+ },
+ {
+  "t": "Seeds of Knowledge",
+  "cat": "pages",
+  "st": "still",
+  "tech": "oil_linen",
+  "h": 41,
+  "w": 33,
+  "s": "avail",
+  "p": 800,
+  "pal": [
+   "#2c3f73",
+   "#d98a3a",
+   "#f0c9a0",
+   "#6f8f4a",
+   "#1f2a4a"
+  ],
+  "seed": 71,
+  "img": "works/seeds-of-knowledge.jpg",
+  "sg": "https://www.singulart.com/fr/oeuvres-d-art/leith-ridley-combe-seeds-of-knowledge-2330551",
+  "id": "seeds-of-knowledge"
+ },
+ {
+  "t": {
+   "fr": "Sans titre",
+   "en": "Untitled"
+  },
+  "cat": "pages",
+  "st": "abstract",
+  "tech": "linen",
+  "h": 116,
+  "w": 86,
+  "s": "hold",
+  "pal": [
+   "#123a5a",
+   "#3f78a8",
+   "#9cc3d8",
+   "#d9b44a",
+   "#1a2f45"
+  ],
+  "seed": 73,
+  "img": "works/image.jpg",
+  "id": "image"
+ },
+ {
+  "t": "Smoking Pages",
+  "cat": "pages",
+  "st": "still",
+  "tech": "oil_linen",
+  "s": "avail",
+  "pal": [
+   "#3a4a8a",
+   "#e09a6a",
+   "#8a7a5a",
+   "#e9dccb",
+   "#2a2a4a"
+  ],
+  "seed": 77,
+  "img": "works/smoking-pages.jpg",
+  "id": "smoking-pages",
+  "hero": true
+ },
+ {
+  "t": "Pearls of Wisdom",
+  "cat": "pages",
+  "st": "still",
+  "tech": "oil_linen",
+  "h": 29,
+  "w": 23,
+  "s": "sold",
+  "pal": [
+   "#2b2622",
+   "#7d6e5c",
+   "#e8e0d0",
+   "#c9b07a",
+   "#4a3e34"
+  ],
+  "seed": 67,
+  "img": "works/pearls-of-wisdom.jpg",
+  "id": "pearls-of-wisdom"
+ }
+]

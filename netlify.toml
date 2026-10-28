@@ -1,0 +1,14 @@
+[build]
+  publish = "site"
+  command = "echo 'site statique, rien a construire'"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# the studio space is private: keep it out of search engines
+[[headers]]
+  for = "/atelier/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"

@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Leith Ridley, peintre franco-sud-africaine. Danseuse, décoratrice et bruiteuse de cinéma, elle construit chaque tableau comme une partition. Atelier en Bulgarie.">
+<meta property="og:title" content="Leith Ridley, peintre">
+<meta property="og:description" content="Chaque toile commence par un rythme.">
+<meta property="og:image" content="works/genesis.jpg">
+<meta name="theme-color" content="#121110">
+<style>
+/* Layout: one painting opens the page, signed at bottom right; then a salon wall where every canvas is drawn at true relative scale, centred on one hanging line */
+:root{
+  --wall:#121110;
+  --wall-2:#1b1917;
+  --line:#34302b;
+  --ink:#ece6dc;
+  --muted:#9d958a;
+  --gilt:#c9a46a;
+  --display:"Libre Caslon Display", "Didot", Georgia, serif;
+  --text:"Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --cm:clamp(1.5px, .3vw, 3.3px); /* screen pixels per real centimetre */
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--wall);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.7}
+/* the page is a gallery wall: a fine plaster grain, light falling from above, and a warm spot that follows the visitor */
+body{background-color:var(--wall);background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22220%22%20height%3D%22220%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.85%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22/%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%20%200%200%200%200%20.95%20%200%200%200%200%20.88%20%200%200%200%20.07%200%22/%3E%3C/filter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23n%29%22/%3E%3C/svg%3E"),radial-gradient(120% 60% at 50% -10%,#2a251f 0%,transparent 60%);background-attachment:fixed,fixed}
+.wall-light{position:fixed;inset:0;pointer-events:none;z-index:0;mix-blend-mode:screen;background:radial-gradient(ellipse 230px 620px at 12% var(--rail,72px),rgba(255,228,184,.11),rgba(255,228,184,.035) 48%,transparent 72%),radial-gradient(ellipse 230px 620px at 37% var(--rail,72px),rgba(255,228,184,.11),rgba(255,228,184,.035) 48%,transparent 72%),radial-gradient(ellipse 230px 620px at 63% var(--rail,72px),rgba(255,228,184,.11),rgba(255,228,184,.035) 48%,transparent 72%),radial-gradient(ellipse 230px 620px at 88% var(--rail,72px),rgba(255,228,184,.11),rgba(255,228,184,.035) 48%,transparent 72%)}
+/* phones: the header scrolls away, so the spots hang from the top of the screen itself and stay lit all the way down */
+@media (max-width:760px){.wall-light{mix-blend-mode:normal;background:
+  radial-gradient(ellipse 230px 900px at 25% 0,rgba(255,228,184,.2),rgba(255,228,184,.07) 45%,transparent 75%),
+  radial-gradient(ellipse 230px 900px at 75% 0,rgba(255,228,184,.2),rgba(255,228,184,.07) 45%,transparent 75%),
+  radial-gradient(140% 55% at 50% 0,rgba(255,228,184,.07),transparent 72%)}}
+/* the header is the lighting rail: it stays put, and the spots hang from it */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--wall)}
+/* the band runs edge to edge without covering anything: a backdrop behind the header, and a short soft shadow under it */
+.top::before{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 50vw);right:calc(50% - 50vw);background:var(--wall);z-index:-1}
+.top::after{content:"";position:absolute;left:calc(50% - 50vw);right:calc(50% - 50vw);top:100%;height:14px;background:linear-gradient(rgba(0,0,0,.35),transparent);pointer-events:none}
+html,body{overflow-x:clip}
+/* the light falls on the wall only: every painting and word sits above it, in its true colours */
+#top{position:relative;z-index:1}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--wall)}
+.rail{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,#3a332b 12%,#3a332b 88%,transparent)}
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:4px;text-decoration-thickness:1px}
+a:hover{text-decoration-color:var(--gilt)}
+:focus-visible{outline:1px solid var(--gilt);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button.txt{background:none;border:0;padding:0;font:inherit;color:var(--muted);cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px}
+button.txt:hover{color:var(--ink)}
+button.txt[aria-pressed="true"]{color:var(--ink);text-decoration-color:var(--gilt)}
+
+/* top line */
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding-block:24px;font-size:.95rem;color:var(--muted)}
+.top nav{display:flex;gap:20px;flex-wrap:wrap}
+.top nav a{text-decoration:none}
+.top nav a:hover{color:var(--ink)}
+.lang{display:flex;gap:8px;font-size:.85rem}
+
+/* opening painting with signature */
+.opening{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px);align-items:stretch;margin-top:clamp(40px,7vh,72px)}
+.stage-wrap{margin:0;position:relative;padding-bottom:56px}
+.stage-wrap .opening-cap{position:absolute;left:0;top:100%;margin:0;padding:0;border-top:0;max-width:none;transition:top .5s ease,left .5s ease}
+.opening canvas{display:block;width:100%;height:auto}
+.stage{position:relative}
+.open-text{display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+/* the canvas keeps a 30-unit margin for the shadow; pulling it out by that margin puts the painting's left and bottom edges exactly on the column */
+.stage{height:clamp(340px,64vh,600px)}
+.opening canvas{width:100%;height:100%}
+#heroCap{text-align:left;padding:0}
+@media (max-width:760px){.stage{height:clamp(240px,62vw,420px)}}
+.signature{position:absolute;right:clamp(10px,2vw,22px);bottom:clamp(8px,1.6vw,18px);font-family:var(--display);font-style:italic;font-size:clamp(1.5rem,3.4vw,2.8rem);line-height:1;color:var(--ink);text-shadow:0 2px 24px #0008;transform:rotate(-3deg);transform-origin:right bottom;margin:0;font-weight:400}
+.signature small{display:block;font-size:.3em;text-align:right;font-style:normal;color:var(--gilt);margin-top:.3em;letter-spacing:.05em}
+.opening-cap{display:flex;flex-direction:column;gap:2px;font-size:.82rem;color:var(--muted);margin:0;padding-top:14px;border-top:1px solid var(--line);max-width:28ch}
+/* opening statement: one line in the display face, then who she is */
+.intro{font-family:var(--display);font-weight:400;font-size:clamp(2rem,3.6vw,3.1rem);line-height:1.12;max-width:16ch;margin:0;text-wrap:balance}
+.intro-sub{margin:22px 0 0;font-size:1.02rem;line-height:1.65;color:var(--muted);max-width:40ch}
+.intro .w{display:inline-block;animation:rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i)*45ms + .2s)}
+@keyframes rise{from{opacity:0;transform:translateY(.5em)}}
+.slides{list-style:none;padding:0;margin:0 0 auto;display:grid;gap:2px;max-width:28ch}
+.slides button{background:none;border:0;padding:6px 0;font:inherit;font-size:.92rem;color:var(--muted);cursor:pointer;text-align:left;width:100%;display:grid;grid-template-columns:2.2em 1fr;align-items:baseline;position:relative}
+.slides button::after{content:"";position:absolute;left:2.2em;right:0;bottom:2px;height:1px;background:var(--gilt);transform:scaleX(0);transform-origin:left}
+.slides button[aria-current="true"]{color:var(--ink)}
+.slides button[aria-current="true"]::after{animation:prog var(--dur,6.5s) linear forwards}
+.slides.paused button[aria-current="true"]::after{animation-play-state:paused}
+.slides button:hover{color:var(--ink)}
+.slides small{font-variant-numeric:oldstyle-nums;color:var(--gilt);font-size:.85em}
+@keyframes prog{to{transform:scaleX(1)}}
+#heroCap{font-style:italic;color:var(--ink)}
+
+/* salon wall */
+.wall-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-top:120px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.1;margin:0}
+.view{font-size:.95rem;color:var(--muted);display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+#filters{display:flex;flex-wrap:wrap;gap:8px}
+/* each series is its own tab: a clear frame, its name, and how many works it holds */
+#filters button{display:inline-flex;align-items:baseline;gap:8px;background:transparent;border:1px solid var(--line);color:var(--ink);font:inherit;font-size:.92rem;padding:7px 14px;border-radius:2px;cursor:pointer;transition:border-color .25s,background .25s,color .25s}
+#filters button small{font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+#filters button:hover{border-color:var(--gilt)}
+#filters button[aria-pressed="true"]{background:var(--gilt);border-color:var(--gilt);color:var(--wall)}
+#filters button[aria-pressed="true"] small{color:var(--wall);opacity:.75}
+.ex{font-size:.82rem;color:var(--muted);font-style:italic;margin:14px 0 0}
+.wall{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:calc(var(--cm)*14) calc(var(--cm)*16);padding-block:72px 40px;position:relative}
+.piece{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:zoom-in;display:flex;flex-direction:column;align-items:flex-start;max-width:100%}
+.piece{perspective:900px}
+.piece canvas{display:block;max-width:100%;height:auto;box-shadow:0 1px 0 #0006,var(--sx,0px) 24px 40px -18px #000;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s}
+.piece:hover canvas{--ty:-6px;transition-duration:.15s,.6s}
+.piece .cartel i{background:linear-gradient(var(--gilt),var(--gilt)) 0 100%/0 1px no-repeat;transition:background-size .5s}
+.piece:hover .cartel i{background-size:100% 1px}
+
+/* living touches */
+.stage{position:relative}
+.stage canvas{will-change:transform}
+.signature.writing{animation:sign 1.8s cubic-bezier(.6,.1,.3,1) var(--delay,2.2s) both}
+@keyframes sign{from{clip-path:inset(-20% 100% -20% 0)}to{clip-path:inset(-20% -5% -20% 0)}}
+.wall .light{position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(circle 360px at var(--mx,50%) var(--my,40%),#ffe9c21f,transparent 70%);opacity:0;transition:opacity .8s}
+.wall .light{display:none}
+h2.brush{display:inline-block;position:relative;isolation:isolate}
+h2.brush::after{content:"";position:absolute;left:-2%;right:-4%;bottom:.02em;height:.16em;background:var(--gilt);opacity:.55;border-radius:40% 60% 50% 45%/60% 40% 60% 40%;transform:scaleX(0) skewX(-12deg);transform-origin:left;transition:transform 1.1s cubic-bezier(.7,0,.2,1) .15s;z-index:-1}
+h2.brush.in::after{transform:scaleX(1) skewX(-12deg)}
+.expo li{transition:padding .4s cubic-bezier(.2,.7,.2,1)}
+.expo li:hover{padding-left:14px}
+.expo li:hover .what{color:var(--ink)}
+.room{animation:fade .35s ease both}
+@keyframes fade{from{opacity:0}}
+.cartel{font-size:.78rem;line-height:1.45;color:var(--muted);margin-top:12px;text-align:left;max-width:22ch}
+.cartel i{color:var(--ink);font-size:.95rem}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#b0412e;margin-right:6px;vertical-align:middle}
+.more-wrap{display:flex;justify-content:center;margin:28px 0 8px}
+.more{background:transparent;border:1px solid var(--gilt);color:var(--gilt);font:inherit;font-size:.95rem;letter-spacing:.04em;padding:12px 26px;border-radius:2px;cursor:pointer;min-height:44px;transition:background .25s,color .25s}
+.more:hover{background:var(--gilt);color:var(--wall)}
+[hidden]{display:none!important}
+.more[hidden]{display:none}
+.piece[hidden]{display:none}
+.scale{display:flex;align-items:center;gap:10px;font-size:.75rem;color:var(--muted);justify-content:flex-end}
+.scale span{display:block;height:5px;width:calc(var(--cm)*100);border:1px solid var(--muted);border-top:0}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);margin-top:140px;align-items:start}
+.about h2{margin-bottom:24px}
+.about p{margin:0 0 1.1em;max-width:58ch}
+.about p:first-of-type::first-letter{font-family:var(--display);float:left;font-size:4.2em;line-height:.8;padding:.06em .1em 0 0;color:var(--gilt)}
+.said{font-family:var(--display);font-style:italic;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.3;margin:1.6em 0 0;max-width:24ch;color:var(--ink)}
+.portrait{margin-top:28px;aspect-ratio:3/4;max-width:min(100%,320px);border:1px dashed var(--line);display:grid;place-items:center;padding:20px;text-align:center;color:var(--muted);font-size:.85rem;font-style:italic}
+
+/* exhibitions */
+.expo{margin-top:140px}
+.expo ol{list-style:none;padding:0;margin:28px 0 0}
+.expo li{display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr);gap:8px 32px;padding-block:22px;border-top:1px solid var(--line)}
+.expo .when{color:var(--muted);font-size:.9rem;font-variant-numeric:oldstyle-nums}
+.expo .what{font-size:1.35rem;line-height:1.3}
+.expo .where{display:block;color:var(--muted);font-size:.92rem;margin-top:4px}
+.expo .now{color:var(--gilt);font-style:italic;font-size:.9rem}
+.expo li.past .what{color:var(--muted)}
+
+/* contact */
+.contact{margin-top:140px;padding-block:64px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+.contact p{max-width:44ch;margin:0 0 1em}
+.mail{font-family:var(--display);font-size:clamp(1.4rem,3.4vw,2.4rem);word-break:break-all;user-select:all;display:block;margin:6px 0 10px}
+.out{font-size:.85rem;color:var(--gilt);min-height:1.4em;font-style:italic}
+form{display:grid;gap:18px}
+label{display:grid;gap:4px;font-size:.85rem;color:var(--muted)}
+input,select,textarea{background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--ink);font:inherit;font-size:1.05rem;padding:6px 0;width:100%;border-radius:0}
+select option{background:var(--wall-2)}
+input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--gilt)}
+textarea{min-height:110px;resize:vertical}
+.send{justify-self:start;background:none;border:1px solid var(--gilt);color:var(--ink);font:inherit;padding:8px 22px;cursor:pointer}
+.send:hover{background:var(--gilt);color:var(--wall)}
+
+footer{padding-block:28px 40px;color:var(--muted);font-size:.8rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* viewing room */
+.room{position:fixed;inset:0;z-index:20;background:#0a0908f5;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.room canvas{max-width:min(100%,1100px);max-height:74vh;width:auto;height:auto;box-shadow:0 30px 60px -20px #000}
+.room-cap{text-align:center;color:var(--muted);font-size:.9rem;max-width:60ch}
+.room-cap i{display:block;color:var(--ink);font-family:var(--display);font-size:1.7rem;margin-bottom:2px}
+.room-nav{display:flex;gap:28px;font-size:.95rem}
+
+@media (max-width:760px){
+  .about,.contact{grid-template-columns:minmax(0,1fr)}
+  .about h2{position:static}
+  .expo li{grid-template-columns:minmax(0,1fr)}
+  .intro{margin-top:48px}
+  .wall-head,.about,.expo,.contact{margin-top:88px}
+  .wall{justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}h2.brush::after{transform:scaleX(1) skewX(-12deg)}}
+
+
+/* logo */
+.brand{display:block;text-decoration:none;line-height:0}
+/* the name is painted with Genesis: the canvas shows through the letters and drifts slowly */
+.painted{display:inline-block;font-family:"Abril Fatface","Bodoni 72",Didot,Georgia,serif;font-weight:400;line-height:.86;letter-spacing:-.005em;color:var(--ink);background:url(works/genesis.jpg) 30% 40%/260% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:drift 38s ease-in-out infinite alternate}
+.brand .painted{font-size:1.5rem;line-height:1;white-space:nowrap;background-size:900% auto}
+html{scroll-padding-top:100px}
+@media (max-width:760px){.top{position:relative;top:auto}.top::after{display:none}html{scroll-padding-top:0}}
+.brand:hover .painted{animation-duration:9s}
+@keyframes drift{from{background-position:0% 30%}to{background-position:100% 70%}}
+.sign-off{margin-top:120px;padding-top:56px;border-top:1px solid var(--line);text-align:center}
+.sign-off .painted{font-size:clamp(4rem,16vw,13rem);background-size:140% auto}
+@keyframes stroke{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.top{align-items:center}
+.contact .mail{text-decoration:none}
+
+/* brush cursor */
+.cur{position:fixed;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:1px solid var(--gilt);pointer-events:none;z-index:30;display:grid;place-items:center;transition:width .35s cubic-bezier(.2,.7,.2,1),height .35s cubic-bezier(.2,.7,.2,1),margin .35s cubic-bezier(.2,.7,.2,1),background .35s;font-size:.72rem;font-style:italic;color:var(--wall)}
+.cur span{opacity:0;transition:opacity .2s}
+.cur.big{width:68px;height:68px;margin:-34px 0 0 -34px;background:var(--gilt)}
+.cur.big span{opacity:1}
+.cur{opacity:0}.cur.on{opacity:1}
+.has-cur .piece,.has-cur .stage{cursor:none}
+.piece{transform:translateY(var(--py,0px))}
+@media (max-width:760px){.opening{grid-template-columns:minmax(0,1fr)}.stage-wrap{order:-1}}
+
+/* the photograph of Leith: an old print, slightly warm, with its caption */
+.portrait-photo{margin:28px 0 0;max-width:min(100%,340px)}
+.portrait-photo img{display:block;width:100%;height:auto;filter:sepia(.12) contrast(1.03);box-shadow:0 18px 36px -18px #000;outline:1px solid var(--line);outline-offset:6px}
+.portrait-photo figcaption{margin-top:16px;font-size:.82rem;font-style:italic;color:var(--muted)}
+.said-fig{margin:1.8em 0 0}
+.said-fig .said{margin:0}
+.said-by{margin-top:12px;font-size:.85rem;letter-spacing:.06em;color:var(--gilt)}
+.sg-link{display:inline-block;margin-top:10px;color:var(--gilt);font-size:.9rem;text-decoration:underline;text-underline-offset:4px}
+.room-cap .sg-link{display:block}
+.room-cap .sg-link[hidden]{display:none}
+.sg-note{margin:28px 0 0;font-size:.9rem;color:var(--muted)}
+.sg-note a{color:var(--gilt)}
+/* collections */
+.series{font-family:var(--display);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.35;max-width:36ch;margin:36px 0 0;text-wrap:balance;color:var(--ink)}
+.coll{margin-top:140px}
+.coll-lede{color:var(--muted);margin:20px 0 0;max-width:48ch}
+.countries{list-style:none;padding:0;margin:28px 0 0;display:flex;flex-wrap:wrap;gap:.1em .9em;font-family:var(--display);font-size:clamp(1.9rem,5.4vw,4rem);line-height:1.15}
+.countries li{color:var(--muted);transition:color .9s ease calc(var(--i)*140ms)}
+.countries li:not(:last-child)::after{content:"·";color:var(--gilt);margin-left:.9em}
+.countries.in li{color:var(--ink)}
+.countries li:hover{color:var(--gilt)}
+/* exhibitions: a year column in gilt, then the show, then where */
+.expos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px clamp(32px,6vw,96px);margin-top:72px}
+.expos h3{font-family:var(--display);font-weight:400;font-size:1.5rem;margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.expo-list{list-style:none;padding:0;margin:0;display:grid;gap:16px}
+.expo-list li{display:grid;grid-template-columns:3.6rem minmax(0,1fr);gap:16px;align-items:baseline}
+.expo-list .y{color:var(--gilt);font-variant-numeric:tabular-nums lining-nums;font-size:.95rem}
+.expo-list .t{font-style:italic;color:var(--ink)}
+.expo-list .w{display:block;font-size:.85rem;color:var(--muted);margin-top:2px}
+@media (max-width:760px){.expos{grid-template-columns:minmax(0,1fr);margin-top:48px}}
+.st.sold::before,.st.hold::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:middle;background:#b0412e}
+.st.hold::before{background:var(--gilt)}
+.st.avail{color:var(--ink)}
+.mail{text-decoration:underline;text-decoration-color:var(--gilt)}
+@media (max-width:760px){.coll{margin-top:88px}}
+
+/* ---------- phones ---------- */
+@media (max-width:760px){
+  /* header: logo and language on one line, the menu on a second */
+  .top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px 16px;padding-block:16px}
+  .top .brand{grid-column:1;grid-row:1}
+  .top .lang{grid-column:2;grid-row:1}
+  .top nav{grid-column:1/-1;grid-row:2;gap:6px 20px;font-size:.95rem}
+  .brand .painted{font-size:1.3rem}
+  /* opening: tighter rhythm */
+  .opening{margin-top:20px;gap:22px}
+  .open-text{gap:18px}
+  .intro{font-size:2rem}
+  .intro-sub{font-size:.98rem;margin-top:14px}
+  /* wall: two even columns instead of true scale, wide canvases across both */
+  .wall{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 14px;align-items:start;justify-content:stretch;padding-block:28px 8px}
+  .piece{width:100%;transform:none}
+  .piece.wide{grid-column:1/-1}
+  .piece canvas{width:100%!important;height:auto}
+  .cartel{max-width:none;font-size:.76rem}
+  .cartel i{font-size:.9rem}
+  .scale,.scale-note{display:none}
+  /* series tabs: one swipeable row */
+  .wall-head{flex-direction:column;align-items:stretch}
+  .view{min-width:0;width:100%}
+  #filters{flex-wrap:wrap;gap:8px 6px}
+  #filters button{flex:none;padding:8px 12px;min-height:40px;font-size:.88rem}
+  /* bio and collections at phone size */
+  .portrait-photo{max-width:260px;margin-top:16px}
+  .countries{font-size:1.65rem;gap:.15em .7em}
+  .countries li:not(:last-child)::after{margin-left:.7em}
+  .sign-off{margin-top:72px;padding-top:40px}
+  /* numbered list of the opening paintings: one swipeable row of chips, the current one highlighted */
+  .open-text{display:flex;flex-direction:column}
+  .stage-wrap{padding-bottom:80px}
+  .slides{order:-1;display:flex;gap:8px;overflow-x:auto;max-width:none;margin:0 0 4px;padding-bottom:4px;scrollbar-width:none;scroll-behavior:smooth}
+  .slides::-webkit-scrollbar{display:none}
+  .slides li{flex:none}
+  .slides button{display:inline-flex;gap:8px;align-items:baseline;white-space:nowrap;width:auto;padding:8px 12px 10px;border:1px solid var(--line);border-radius:2px;font-size:.85rem}
+  .slides button::after{left:12px;right:12px;bottom:4px}
+  .slides button[aria-current="true"]{border-color:var(--gilt)}
+  /* enlarged view: finger-sized controls */
+  .room-nav{gap:4px}
+  .room-nav button.txt{min-height:44px;padding:0 14px}
+  .room-cap i{font-size:1.4rem}
+}
+</style>
+</head>
+<body>
+<div class="wall-light" id="wallLight" aria-hidden="true"></div>
+<div class="wrap" id="top">
+  <div class="top" id="rail">
+    <span class="rail" aria-hidden="true"></span>
+    <a class="brand" href="#top" aria-label="Leith Ridley, accueil"><span class="painted">LEITH RIDLEY</span></a>
+    <nav aria-label="Menu">
+      <a href="#atelier" data-i="nav_about">L'artiste</a>
+      <a href="#oeuvres" data-i="nav_gal">Œuvres</a>
+      <a href="#collections" data-i="nav_coll">Expositions</a>
+      <a href="#contact" data-i="nav_contact">Écrire</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button class="txt" type="button" id="l-fr" aria-pressed="true">français</button>
+      <button class="txt" type="button" id="l-en" aria-pressed="false">english</button>
+    </div>
+  </div>
+
+  <div class="opening">
+    <div class="open-text">
+      <div class="intro-block">
+        <p class="intro" id="intro"></p>
+        <p class="intro-sub" data-i="intro_sub"></p>
+      </div>
+      <ol class="slides" id="slides" aria-label="Œuvres"></ol>
+    </div>
+    <figure class="stage-wrap">
+      <div class="stage" id="stage">
+        <canvas id="heroCanvas" width="1200" height="900" aria-hidden="true"></canvas>
+      </div>
+      <figcaption class="opening-cap" id="heroCapBox"><button class="txt" type="button" id="heroCap"></button><span id="heroMeta"></span></figcaption>
+    </figure>
+  </div>
+
+  <section class="about" id="atelier">
+    <div>
+      <h2 class="brush" data-i="about_title">L'artiste</h2>
+      <figure class="portrait-photo">
+        <img src="works/leith-atelier.jpg" width="380" height="475" alt="Leith Ridley, pinceau à la main, peignant une grande scène décorative" data-i-alt="portrait_alt">
+      </figure>
+    </div>
+    <div>
+      <p data-i="about_p1"></p>
+      <p data-i="about_p2"></p>
+      <p data-i="about_p3"></p>
+      <p data-i="about_p4"></p>
+      <figure class="said-fig"><blockquote class="said" data-i="said"></blockquote><figcaption class="said-by">— <span data-i="said_by">Leith Ridley</span></figcaption></figure>
+    </div>
+  </section>
+
+  <div class="wall-head" id="oeuvres">
+    <h2 class="brush" data-i="gal_title">Sur le mur de l'atelier</h2>
+    <div class="view"><span data-i="see">Voir&nbsp;:</span><span id="filters"></span></div>
+  </div>
+  <p class="ex"><span data-i="gal_note">Titres, formats et prix repris de son site actuel.</span> <span class="scale-note" data-i="scale_note">Chaque toile est accrochée à l'échelle de son format réel.</span></p>
+  <p class="series" id="series" hidden></p>
+  <div class="wall" id="wall"></div>
+  <div class="more-wrap"><button type="button" class="more" id="moreBtn" hidden></button></div>
+  <div class="scale"><span></span><em data-i="metre">1 mètre</em></div>
+
+
+  <section class="coll" id="collections">
+    <h2 class="brush" data-i="coll_title">Expositions et collections</h2>
+    <p class="coll-lede" data-i="coll_p">Ses toiles font partie de collections privées dans sept pays.</p>
+    <ul class="countries" id="countries"></ul>
+    <div class="expos">
+      <div><h3 data-i="expo_next">Expositions personnelles</h3><ol class="expo-list" id="soloList"></ol></div>
+      <div><h3 data-i="group_t">Expositions collectives</h3><ol class="expo-list" id="groupList"></ol></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div>
+      <h2 class="brush" data-i="contact_title">Écrire à l'artiste</h2>
+      <p data-i="contact_p" style="margin-top:20px">Pour acquérir une toile ou commander un tableau, écrivez à Leith :</p>
+      <a class="mail" id="email" href="mailto:contact.leithridley@gmail.com">contact.leithridley@gmail.com</a>
+      <button class="txt" type="button" id="copyMail" data-i="copy">copier l'adresse</button>
+      <div class="out" id="copyOut" aria-live="polite"></div>
+      <p class="sg-note"><span data-i="sg_note">Une sélection de plus de cent toiles est aussi en vente sur</span> <a href="https://www.singulart.com/fr/artiste/leith-ridley-combe-4189" target="_blank" rel="noopener">Singulart ↗</a></p>
+    </div>
+    <form id="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <p hidden><label>Ne pas remplir <input name="bot-field"></label></p>
+      <label for="f-name"><span data-i="f_name">Votre nom</span><input id="f-name" name="name" autocomplete="name" required></label>
+      <label for="f-email"><span data-i="f_email">Votre e-mail</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
+      <label for="f-subject"><span data-i="f_subject">Au sujet de</span>
+        <select id="f-subject" name="subject">
+          <option value="buy" data-i="o_buy">l'achat d'une toile</option>
+          <option value="commission" data-i="o_comm">une commande</option>
+          <option value="other" data-i="o_other">autre chose</option>
+        </select></label>
+      <label for="f-msg"><span data-i="f_msg">Votre message</span><textarea id="f-msg" name="message" required></textarea></label>
+      <button class="send" type="submit" data-i="f_send">Envoyer</button>
+      <div class="out" id="formOut" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <div class="sign-off" aria-hidden="true"><span class="painted">LEITH<br>RIDLEY</span></div>
+  <footer><span>© 2026 Leith Ridley</span><span data-i="foot_r">Atelier en Bulgarie · Images reproduites avec l'accord de l'artiste.</span></footer>
+</div>
+
+<div class="room" id="room" hidden role="dialog" aria-modal="true" aria-labelledby="roomTitle">
+  <canvas id="roomCanvas"></canvas>
+  <div class="room-cap"><i id="roomTitle"></i><span id="roomMeta"></span><a class="sg-link" id="roomSg" target="_blank" rel="noopener" hidden data-i="sg_buy">Acheter sur Singulart ↗</a></div>
+  <div class="room-nav">
+    <button class="txt" type="button" id="rPrev" data-i="prev">précédente</button>
+    <button class="txt" type="button" id="rClose" data-i="close">fermer</button>
+    <button class="txt" type="button" id="rNext" data-i="next">suivante</button>
+  </div>
+</div>
+
+<script>
+const T={
+ fr:{nav_gal:"Œuvres",nav_about:"L'artiste",nav_coll:"Expositions",nav_contact:"Écrire",ex_short:"Image provisoire",
+  intro:"Chaque toile commence par un rythme.",intro_sub:"Leith Ridley, peintre franco-sud-africaine. Danseuse classique, puis décoratrice et bruiteuse de cinéma, elle construit chaque tableau comme une partition, couche après couche.",
+  gal_title:"Sur le mur de l'atelier",see:"Voir :",
+  gal_note:"Titres, formats et prix repris de son site actuel.",scale_note:"Chaque toile est accrochée à l'échelle de son format réel.",
+  metre:"1 mètre",more:"Voir les {n} autres œuvres",less:"Réduire le mur",all:"Toutes les œuvres",pages:"Smoking Pages",trees:"Happy Trees",flowers:"Fleurs",portraits:"Portraits",mountain:"Forêts de montagne",abstracts:"Abstraits et paysages",
+  about_title:"L'artiste",portrait_cap:"Leith au travail, il y a bien des années.",portrait_alt:"Leith Ridley, pinceau à la main, peignant une grande scène décorative",
+  about_p1:"Leith Ridley est une peintre franco-sud-africaine. Elle a exposé à Sofia, Marseille, Londres et en France, et ses toiles ont rejoint des collections privées en Europe, en Australie et aux États-Unis.",
+  about_p2:"Avant l'atelier, il y a eu la scène. Danseuse classique professionnelle en Europe, elle y a appris le rythme, la discipline et ce que raconte un corps en mouvement. Puis le cinéma, en Afrique du Sud : décoratrice, elle peignait des mondes entiers à l'échelle d'un plateau ; bruiteuse, elle construisait des sons couche après couche. La peinture, elle, l'accompagne depuis toujours.",
+  about_p3:"De ces vies, elle a gardé une manière de peindre. Chaque toile se construit comme une bande-son, par couches successives, et se règle comme une chorégraphie, entre l'élan et la retenue. Ses tableaux sont des partitions silencieuses où la couleur et la matière prennent le relais du mouvement.",
+  said:"« Je veux que le spectateur puisse voir ce qu'il y trouve, pour que la peinture vive, qu'on ne se lasse pas de l'observer. »",about_p4:"Elle passe librement d'un sujet à l'autre : livres qui fument et anges messagers, forêts de montagne, pivoines, arbres qui dansent. Toujours avec la même précision technique et la même intensité. Elle peint aujourd'hui dans son atelier en Bulgarie, au pied des montagnes.",said_by:"Leith Ridley",d_trees:"Des arbres qui dansent : couleurs franches, peinture épaisse posée au couteau, une joie qu'on ne cherche pas à retenir.",d_mountain:"Les forêts de montagne qui entourent son atelier : la lumière qui passe entre les troncs, le printemps, l'eau des ruisseaux.",d_flowers:"Pivoines, roses, fruits et papillons : la nature morte, peinte avec tendresse et parfois un sourire.",d_abstracts:"Des paysages qui se défont en couleur et en matière : la montagne, le vent, le bleu, la lumière d'hiver.",d_portraits:"Des visages peints dans la tradition des maîtres anciens : la lumière sur la peau, le poids des étoffes, l'éclat des bijoux.",
+  coll_title:"Expositions et collections",coll_p:"Quinze expositions depuis 1982, de Sofia à Marseille, Londres, Beaune et Cork. Ses toiles font partie de collections privées dans sept pays :",
+  expo_next:"Expositions personnelles",group_t:"Expositions collectives",sg_buy:"Acheter sur Singulart ↗",sg_note:"Une sélection de plus de cent toiles est aussi en vente sur",
+  countries:["Australie","États-Unis","France","Italie","Allemagne","Belgique","Bulgarie"],
+  contact_title:"Écrire à l'artiste",contact_p:"Pour acquérir une toile ou commander un tableau, écrivez à Leith :",copy:"copier l'adresse",copied:"Adresse copiée.",copyFail:"Sélectionnez l'adresse pour la copier.",
+  f_name:"Votre nom",f_subject:"Au sujet de",f_msg:"Votre message",f_send:"Envoyer",f_email:"Votre e-mail",
+  o_buy:"l'achat d'une toile",o_comm:"une commande",o_other:"autre chose",
+  formDone:"Merci, votre message est parti. Leith vous répondra par e-mail.",formMail:"Votre messagerie s'ouvre avec le message prêt à partir.",formFail:"La copie n'a pas fonctionné : sélectionnez votre message et copiez-le.",
+  foot_r:"Atelier en Bulgarie · Images reproduites avec l'accord de l'artiste.",prev:"précédente",next:"suivante",close:"fermer",
+  avail:"disponible",sold:"vendu",hold:"réservé",private:"collection privée",
+  oil_linen:"huile sur lin",acry_linen:"acrylique sur lin",acryoil_linen:"acrylique et huile sur lin",acryoil_canvas:"acrylique et huile sur toile",acry_collage_canvas:"acrylique et collage sur toile",oil_board:"huile sur panneau",oil_paper:"huile sur papier",acry_canvas:"acrylique sur toile",acry_board:"acrylique sur panneau",acry_paper:"acrylique sur papier",mixed_canvas:"technique mixte sur toile",watercolour_paper:"aquarelle sur papier",acry_collage_linen:"acrylique et collage sur lin",oil_canvas:"huile sur toile",acry:"acrylique",acryoil:"acrylique et huile",linen:"sur lin",nosize:"format à préciser",look:"voir",d_pages:"Inspiration, symbolisme, esprit et connaissance : les pages brûlantes des mots écrits, des livres, des écritures, des messages."},
+ en:{nav_gal:"Works",nav_about:"The artist",nav_coll:"Exhibitions",nav_contact:"Write",ex_short:"Placeholder image",
+  intro:"Every canvas begins with a rhythm.",intro_sub:"Leith Ridley, French–South African painter. A classical dancer, then a film set decorator and Foley artist, she builds every canvas like a score, layer upon layer.",
+  gal_title:"On the studio wall",see:"Show:",
+  gal_note:"Titles, sizes and prices come from her current site.",scale_note:"Each canvas is hung at the scale of its real size.",
+  metre:"1 metre",more:"See {n} more works",less:"Show fewer",all:"All works",pages:"Smoking Pages",trees:"Happy Trees",flowers:"Flowers",portraits:"Portraits",mountain:"Mountain Forests",abstracts:"Abstracts & Landscapes",
+  about_title:"The artist",portrait_cap:"Leith at work, many years ago.",portrait_alt:"Leith Ridley, brush in hand, painting a large decorative scene",
+  about_p1:"Leith Ridley is a French–South African painter. She has exhibited in Sofia, Marseille, London and France, and her canvases have joined private collections across Europe, Australia and the United States.",
+  about_p2:"Before the studio, there was the stage. As a professional classical dancer in Europe she learned rhythm, discipline and what a body in motion can say. Then came film, in South Africa: as a set decorator she painted whole worlds at the scale of a sound stage; as a Foley artist she built sounds layer by layer. Painting has been with her all along.",
+  about_p3:"From those lives she kept a way of painting. Each canvas is built like a soundtrack, in successive layers, and set like a choreography, between impulse and restraint. Her paintings are silent scores in which colour and texture take over from movement.",
+  said:"“I want viewers to be able to see what they find in it, so that the painting lives and you never tire of looking at it.”",about_p4:"She moves freely between subjects: smoking books and messenger angels, mountain forests, peonies, dancing trees. Always with the same technical precision and the same intensity. Today she paints in her studio in Bulgaria, at the foot of the mountains.",said_by:"Leith Ridley",d_trees:"Dancing trees: bold colour, thick paint laid on with the knife, a joy that makes no attempt to hold back.",d_mountain:"The mountain forests around her studio: light falling between the trunks, spring, the water of the streams.",d_flowers:"Peonies, roses, fruit and butterflies: still life, painted with tenderness and sometimes a smile.",d_abstracts:"Landscapes dissolving into colour and texture: the mountain, the wind, the blue, the light of winter.",d_portraits:"Faces painted in the tradition of the old masters: light on skin, the weight of fabric, the glint of jewels.",
+  coll_title:"Exhibitions and collections",coll_p:"Fifteen exhibitions since 1982, from Sofia to Marseille, London, Beaune and Cork. Her canvases are held in private collections in seven countries:",
+  expo_next:"Solo exhibitions",group_t:"Group exhibitions",sg_buy:"Buy on Singulart ↗",sg_note:"A selection of more than a hundred canvases is also for sale on",
+  countries:["Australia","United States","France","Italy","Germany","Belgium","Bulgaria"],
+  contact_title:"Write to the artist",contact_p:"To acquire a canvas or commission a painting, write to Leith:",copy:"copy address",copied:"Address copied.",copyFail:"Select the address to copy it.",
+  f_name:"Your name",f_subject:"About",f_msg:"Your message",f_send:"Send",f_email:"Your email",
+  o_buy:"buying a canvas",o_comm:"a commission",o_other:"something else",
+  formDone:"Thank you, your message is on its way. Leith will reply by email.",formMail:"Your email app is opening with the message ready to send.",formFail:"Copying didn't work: select your message and copy it.",
+  foot_r:"Studio in Bulgaria · Images reproduced with the artist's permission.",prev:"previous",next:"next",close:"close",
+  avail:"available",sold:"sold",hold:"on hold",private:"private collection",
+  oil_linen:"oil on linen",acry_linen:"acrylic on linen",acryoil_linen:"acrylic and oil on linen",acryoil_canvas:"acrylic and oil on canvas",acry_collage_canvas:"acrylic and collage on canvas",oil_board:"oil on board",oil_paper:"oil on paper",acry_canvas:"acrylic on canvas",acry_board:"acrylic on board",acry_paper:"acrylic on paper",mixed_canvas:"mixed media on canvas",watercolour_paper:"watercolour on paper",acry_collage_linen:"acrylic and collage on linen",oil_canvas:"oil on canvas",acry:"acrylic",acryoil:"acrylic and oil",linen:"on linen",nosize:"size to be confirmed",look:"view",d_pages:"Inspiration, symbolism, spirit and learning: the smoking hot pages of written words, books, scriptures, messages."}
+};
+// h × w in cm, as listed on her current site (height first)
+const WORKS=[
+ {t:"50 Shades of Orange",cat:"pages",st:"abstract",tech:"oil_linen",h:81,w:116,s:"hold",pal:["#5a220c","#c2531a","#ec8a2e","#f6c27a","#3a1608"],seed:43,img:"works/50-shades-of-orange.jpg"},
+ {t:"Genesis, The New Beginning; let there be…",cat:"pages",st:"abstract",tech:"oil_canvas",h:100,w:200,s:"avail",p:3600,pal:["#1a1410","#6b2a12","#d97a2b","#f2d48a","#2b1c14"],seed:5,img:"works/genesis.jpg",sg:"https://www.singulart.com/fr/oeuvres-d-art/leith-ridley-combe-genesis-1903470"},
+ {t:"Angel",cat:"pages",st:"abstract",tech:"acryoil_linen",h:120,w:100,s:"sold",pal:["#2a2f3d","#8d9bb5","#e8dcc6","#c9a46a","#1b1e28"],seed:13,img:"works/angel.jpg"},
+ {t:"La magie du printemps",cat:["mountain","abstracts"],st:"landscape",tech:"acry_linen",h:100,w:100,s:"sold",pal:["#6a9a3a","#a8cf6a","#8a4a2a","#e8e0b0","#4a6a8a"],seed:83,img:"works/la-magie-du-printemps.jpg"},
+ {t:"Deep Contemplation",cat:"mountain",st:"landscape",tech:"acry_linen",pal:["#8aa85a","#c8d88a","#a85a2a","#3a4a7a","#d84a2a"],seed:87,img:"works/deep-contemplation.jpg"},
+ {t:{fr:"Sans titre",en:"Untitled"},cat:"mountain",st:"landscape",pal:["#5a8a3a","#a8d06a","#8a4a2a","#5a3a8a","#c8d0d8"],seed:89,img:"works/foret-sans-titre.jpg"},
+ {t:"Portrait of T",cat:"portraits",st:"still",tech:"acry_linen",h:100,w:80,y:2017,s:"sold",pal:["#4a5468","#d98a6a","#f2c9a8","#e8e4dc","#c9a24a"],seed:113,img:"works/portrait-of-t.jpg"},
+ {t:"Proserpine… spirit of Claire",cat:"portraits",st:"still",tech:"acry_collage_canvas",h:100,w:80,y:2017,s:"sold",pal:["#c98a3a","#e8c27a","#f2d6b8","#c92a2a","#d9643a"],seed:127,img:"works/proserpine.jpg"},
+ {t:"Shady Lady",cat:"portraits",st:"still",tech:"acry_collage_linen",h:100,w:80,y:2017,s:"sold",pal:["#d9b86a","#f0d2b4","#d92a1a","#5a7a4a","#c9905a"],seed:131,img:"works/shady-lady.jpg"},
+ {t:"A Young Irish Girl",cat:"portraits",st:"still",tech:"oil_linen",h:65,w:50,y:2006,s:"sold",pal:["#6a7a78","#b0502a","#f2e6d6","#e8a0a0","#8a9a8a"],seed:137,img:"works/young-irish-girl.jpg"},
+ {t:"Addio del passato",cat:"portraits",st:"still",tech:"acryoil_linen",h:100,w:80,y:2016,s:"sold",pal:["#c9a07a","#f0d6b8","#c9402a","#7a8a8a","#c9a23a"],seed:139,img:"works/addio-del-passato.jpg"},
+ {t:"Lucia",cat:"portraits",st:"still",tech:"oil_linen",h:65,w:50,y:2006,s:"avail",p:2390,cur:"EUR",pal:["#3a2a22","#8a3a2a","#c9a487","#2a3550","#6b5a4a"],seed:93,img:"works/lucia.jpg",sg:"https://www.singulart.com/fr/oeuvres-d-art/leith-ridley-combe-lucia-1653494"},
+ {t:"The Lily Pond",cat:"flowers",st:"still",tech:"oil_linen",h:100,w:180,y:2026,s:"avail",p:3080,cur:"EUR",pal:["#5a7fb8","#a8bfe0","#b9cf6a","#5f7a2e","#d9603a"],seed:101,img:"works/lily-pond.jpg"},
+ {t:"The Autumn of Narcissus",cat:"flowers",st:"still",tech:"oil_linen",h:80,w:100,y:2026,s:"avail",p:3360,cur:"EUR",pal:["#1a1a22","#8a6a42","#e8c23a","#e6d6b0","#3a5a9a"],seed:107,img:"works/narcissus.jpg"},
+ {t:"Peonies of Joy",cat:"flowers",st:"still",tech:"oil_linen",h:96,w:116,s:"avail",p:2600,pal:["#3a1a2a","#c2456a","#f09ab0","#fbe3e8","#4d7a3f"],seed:17,img:"works/peonies-of-joy.jpg"},
+ {t:"Vitosha Mountain, forest light",cat:"abstracts",st:"landscape",tech:"acryoil",h:116,w:86,s:"sold",pal:["#1c2a20","#3f5e3a","#8fb06a","#e6dc9a","#2c3a2a"],seed:21,img:"works/vitosha-mountain.jpg"},
+ {t:"The Messenger",cat:"pages",st:"abstract",tech:"oil_linen",h:65,w:81,s:"avail",p:1100,pal:["#1f2a2e","#4f6d6a","#c8b48a","#e9e1cf","#6b3a2a"],seed:27,img:"works/the-messenger.jpg"},
+ {t:"Happy Family 2",cat:"trees",st:"still",tech:"acry_linen",h:30,w:30,s:"avail",p:300,pal:["#2f4a2a","#6f9a3e","#d9c84a","#e98a5a","#3b5f78"],seed:33,img:"works/happy-family-2.jpg"},
+ {t:"Promenade dans la nuit, Evening Stroll",cat:"trees",st:"landscape",tech:"acryoil_linen",s:"sold",pal:["#1f2a8a","#e0451f","#7aa64a","#5a8ad0","#c23a1a"],seed:79,img:"works/promenade-dans-la-nuit.jpg"},
+ {t:"Three Sisters",cat:"trees",st:"still",tech:"acry",h:20,w:20,s:"sold",pal:["#26402e","#5c8a4a","#b7cf6a","#f0e2b0","#7a5a3a"],seed:47,img:"works/three-sisters.jpg"},
+ {t:"Flying Over",cat:"abstracts",st:"landscape",tech:"acry_linen",h:90,w:70,s:"avail",p:800,pal:["#2f3f4a","#7a9db0","#d8c79a","#e9e4d6","#5a6e4a"],seed:51,img:"works/flying-over.jpg"},
+ {t:"Alexandra",cat:"flowers",st:"still",tech:"oil_linen",h:30,w:30,s:"private",pal:["#2a1d24","#9c3b5a","#e58aa3","#f3d9de","#4f6a3a"],seed:55,img:"works/alexandra.jpg"},
+ {t:"The Fall of the Watchers",cat:"pages",st:"abstract",tech:"oil_linen",h:50,w:80,s:"avail",p:820,pal:["#120f14","#3d2a3f","#8a3b2a","#d29a54","#241b26"],seed:59,img:"works/the-fall-of-the-watchers.jpg",sg:"https://www.singulart.com/fr/oeuvres-d-art/leith-ridley-combe-the-fall-of-the-watchers-2068068"},
+ {t:"Wild Wind",cat:"abstracts",st:"abstract",tech:"acryoil_canvas",s:"avail",p:900,pal:["#1f5a6a","#8ad06a","#3a8aa8","#8a4a2a","#d8e8d0"],seed:91,img:"works/wild-wind.jpg"},
+ {t:"In the Blue",cat:"abstracts",st:"abstract",tech:null,h:120,w:100,s:"sold",pal:["#0f1d33","#24497a","#5f8fc4","#cfe0ee","#132744"],seed:63,img:"works/in-the-blue.jpg"},
+ {t:"Seeds of Knowledge",cat:"pages",st:"still",tech:"oil_linen",h:41,w:33,s:"avail",p:800,pal:["#2c3f73","#d98a3a","#f0c9a0","#6f8f4a","#1f2a4a"],seed:71,img:"works/seeds-of-knowledge.jpg",sg:"https://www.singulart.com/fr/oeuvres-d-art/leith-ridley-combe-seeds-of-knowledge-2330551"},
+ {t:{fr:"Sans titre",en:"Untitled"},cat:"pages",st:"abstract",tech:"linen",h:116,w:86,s:"hold",pal:["#123a5a","#3f78a8","#9cc3d8","#d9b44a","#1a2f45"],seed:73,img:"works/image.jpg"},
+ {t:"Smoking Pages",cat:"pages",st:"still",tech:"oil_linen",s:"avail",pal:["#3a4a8a","#e09a6a","#8a7a5a","#e9dccb","#2a2a4a"],seed:77,img:"works/smoking-pages.jpg"},
+ {t:"Pearls of Wisdom",cat:"pages",st:"still",tech:"oil_linen",h:29,w:23,s:"sold",pal:["#2b2622","#7d6e5c","#e8e0d0","#c9b07a","#4a3e34"],seed:67,img:"works/pearls-of-wisdom.jpg"}
+];
+let lang="fr";try{const s=localStorage.getItem("lang");if(s==="fr"||s==="en")lang=s}catch(e){}
+const calm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function rng(seed){let s=seed*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280}}
+const IMGS={};
+function getImg(work){if(!work.img)return null;let im=IMGS[work.img];
+  if(!im){im=new Image();im.src=work.img;IMGS[work.img]=im;im.onload=()=>renderWall()}
+  return im.complete&&im.naturalWidth?im:null}
+function paint(cv,work,px,ms){
+  const im=getImg(work),r=rng(work.seed),ratio=im?im.naturalHeight/im.naturalWidth:(work.h&&work.w?work.h/work.w:1.25),W=Math.round(px),H=Math.round(W*ratio),k=W/600,st=work.st;
+  cv.width=W;cv.height=H;const c=cv.getContext("2d"),p=work.pal;
+  if(im){ // a real photograph: show it, or reveal it brushstroke by brushstroke
+    if(!ms||calm){c.drawImage(im,0,0,W,H);return}
+    const off=document.createElement("canvas");off.width=W;off.height=H;off.getContext("2d").drawImage(im,0,0,W,H);
+    c.fillStyle=p[0];c.fillRect(0,0,W,H);const pat=c.createPattern(off,"no-repeat"),n=900,sk=[];
+    for(let i=0;i<n;i++)sk.push([r()*W,r()*H,r()*Math.PI*2,(40+r()*140)*k,(14+r()*34)*k*(1.4-i/n)]);
+    const t0=performance.now();let done=0;c.strokeStyle=pat;c.lineCap="round";
+    (function step(now){const f=Math.min(1,(now-t0)/ms),to=Math.round(n*(1-Math.pow(1-f,2)));
+      for(let i=done;i<to;i++){const[x,y,a,len,lw]=sk[i];c.globalAlpha=.85;c.lineWidth=lw;c.beginPath();c.moveTo(x,y);
+        c.quadraticCurveTo(x+Math.cos(a+.5)*len*.5,y+Math.sin(a+.5)*len*.5,x+Math.cos(a)*len,y+Math.sin(a)*len);c.stroke()}
+      done=to;if(f<1)requestAnimationFrame(step);else{c.globalAlpha=1;
+        const a0=performance.now();(function fin(t){const q=Math.min(1,(t-a0)/600);c.globalAlpha=q;c.drawImage(off,0,0);c.globalAlpha=1;if(q<1)requestAnimationFrame(fin)})(a0)}})(t0);
+    return}
+  const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,p[0]);g.addColorStop(1,p[4]);c.fillStyle=g;c.fillRect(0,0,W,H);
+  const n=Math.round((st==="abstract"?1300:1100)*(ratio<.7?1.5:1)),strokes=[];
+  for(let i=0;i<n;i++){const t=i/n;let x=r()*W,y=r()*H;
+    if(st==="landscape")y=(Math.floor(r()*4)/4+r()*.3)*H;
+    if(st==="still"){const cx=W*(.35+r()*.3),cy=H*(.45+r()*.25),a=r()*6.28,d=r()*W*.22;if(r()<.6){x=cx+Math.cos(a)*d;y=cy+Math.sin(a)*d*.8}}
+    strokes.push([x,y,.08+r()*.35*(1-t*.4),p[Math.floor(r()*p.length)],(st==="abstract"?18:10)*k*(.3+r()*(1.4-t)),st==="landscape"?(r()-.5)*.35:r()*Math.PI*2,(20+r()*90)*k])}
+  const draw=(a,b)=>{c.lineCap="round";for(let i=a;i<b;i++){const[x,y,al,col,lw,ang,len]=strokes[i];
+    c.globalAlpha=al;c.strokeStyle=col;c.lineWidth=lw;c.beginPath();c.moveTo(x,y);
+    c.quadraticCurveTo(x+Math.cos(ang+.4)*len*.5,y+Math.sin(ang+.4)*len*.5,x+Math.cos(ang)*len,y+Math.sin(ang)*len);c.stroke()}};
+  const weave=()=>{c.globalAlpha=.05;c.fillStyle="#000";for(let yy=0;yy<H;yy+=3*k)c.fillRect(0,yy,W,1);c.globalAlpha=1};
+  if(!ms||calm){draw(0,n);weave();return}
+  const t0=performance.now();let done=0;
+  (function step(now){const f=Math.min(1,(now-t0)/ms),to=Math.round(n*(1-Math.pow(1-f,2.2)));draw(done,to);done=to;
+    if(f<1)requestAnimationFrame(step);else weave()})(t0);
+}
+const L=()=>T[lang];
+const title=w=>typeof w.t==="string"?w.t:w.t[lang];
+const price=(v,c)=>new Intl.NumberFormat(lang==="fr"?"fr-FR":"en-US",{style:"currency",currency:c||"USD",maximumFractionDigits:0}).format(v);
+const meta=w=>[w.tech?L()[w.tech]:null,w.w?`${w.h} × ${w.w} cm`:L().nosize,w.y||null].filter(Boolean).join(", ");
+const status=w=>!w.s?"":w.s==="avail"&&w.p?`${L().avail} · ${price(w.p,w.cur)}`:L()[w.s];
+
+let filter="all",visible=[],expanded=false;const LIMIT=()=>innerWidth<760?6:10;
+function renderFilters(){const f=document.getElementById("filters");f.innerHTML="";
+  const se=document.getElementById("series"),d=L()["d_"+filter];se.hidden=!d;if(d){se.textContent=d;if(!calm)se.animate([{opacity:0,transform:"translateY(6px)"},{opacity:1,transform:"none"}],{duration:600,easing:"ease-out"})}
+  ["all","pages","trees","mountain","flowers","portraits","abstracts"].forEach(k=>{const b=document.createElement("button");
+    const n=k==="all"?WORKS.length:WORKS.filter(w=>[].concat(w.cat).includes(k)).length;
+    b.type="button";b.textContent=L()[k];const c=document.createElement("small");c.textContent=n;b.appendChild(c);b.setAttribute("aria-pressed",String(filter===k));
+    b.onclick=()=>{if(filter===k)return;filter=k;expanded=false;renderFilters();rehang()};f.appendChild(b)})}
+function rehang(){const wall=document.getElementById("wall"),before=new Map();
+  wall.querySelectorAll(".piece:not([hidden])").forEach(el=>before.set(el.dataset.k,el.getBoundingClientRect()));
+  renderWall();if(calm)return;
+  wall.querySelectorAll(".piece:not([hidden])").forEach((el,i)=>{const o=before.get(el.dataset.k),n=el.getBoundingClientRect();
+    if(o)el.animate([{transform:`translate(${o.left-n.left}px,${o.top-n.top}px)`},{transform:"none"}],{duration:700,easing:"cubic-bezier(.2,.7,.2,1)"});
+    else el.animate([{opacity:0,transform:"translateY(-24px) rotate(-1.5deg)"},{opacity:1,transform:"none"}],{duration:650,delay:80*i,easing:"cubic-bezier(.3,1.3,.5,1)",fill:"backwards"})})}
+function renderWall(){const wall=document.getElementById("wall");wall.innerHTML='<div class="light"></div>';
+  const cm=parseFloat(getComputedStyle(wall).getPropertyValue("--cm"))||3;
+  visible=WORKS.filter(w=>filter==="all"||[].concat(w.cat).includes(filter));
+  visible.forEach((w,i)=>{const b=document.createElement("button");b.type="button";b.className="piece"+((w.w&&w.h?w.w/w.h:(IMGS[w.img]&&IMGS[w.img].naturalWidth?IMGS[w.img].naturalWidth/IMGS[w.img].naturalHeight:1))>=1.4?" wide":"");b.dataset.k=w.seed;
+    b.setAttribute("aria-label",title(w));
+    const cv=document.createElement("canvas");const wc=w.w||40;paint(cv,w,Math.max(240,wc*cm*2));cv.style.width=`calc(var(--cm) * ${wc})`;
+    const cap=document.createElement("div");cap.className="cartel";
+    const ti=document.createElement("i");ti.textContent=title(w);
+    const m=document.createElement("span");m.textContent=meta(w);
+    const s=document.createElement("span");s.className="st "+w.s;s.textContent=status(w);
+    cap.append(ti,document.createElement("br"),m,document.createElement("br"),s);
+    b.addEventListener("pointermove",e=>{if(calm||e.pointerType!=="mouse")return;const q=cv.getBoundingClientRect();
+      const x=(e.clientX-q.left)/q.width-.5,y=(e.clientY-q.top)/q.height-.5;
+      cv.style.setProperty("--ry",(x*7).toFixed(2)+"deg");cv.style.setProperty("--rx",(-y*7).toFixed(2)+"deg");cv.style.setProperty("--sx",(-x*30).toFixed(1)+"px")});
+    b.addEventListener("pointerleave",()=>{["--rx","--ry","--sx"].forEach(v=>cv.style.removeProperty(v))});
+    b.append(cv,cap);b.onclick=()=>openRoom(i,cv);if(!expanded&&i>=LIMIT())b.hidden=true;wall.appendChild(b)});
+  const mb=document.getElementById("moreBtn"),extra=visible.length-LIMIT();
+  mb.hidden=extra<=0;mb.textContent=expanded?L().less:L().more.replace("{n}",extra)}
+document.getElementById("wall").addEventListener("pointermove",e=>{const w=e.currentTarget,q=w.getBoundingClientRect();
+  w.style.setProperty("--mx",(e.clientX-q.left)+"px");w.style.setProperty("--my",(e.clientY-q.top)+"px")});
+
+
+const PLACES={bg:{fr:"Bulgarie",en:"Bulgaria"},fr:{fr:"France",en:"France"},uk:{fr:"Royaume-Uni",en:"United Kingdom"},ie:{fr:"Irlande",en:"Ireland"}};
+const CITY={London:{fr:"Londres",en:"London"}};
+const SOLO=[
+ {y:2021,t:"Variantes from Mother Nature",v:"Tom's Place",c:"Sofia",k:"bg"},
+ {y:2019,t:"Summer Exhibition",v:"Tom's Place",c:"Sofia",k:"bg"},
+ {y:2019,t:"Momentum",v:"Gallery (a) Cube Contemporary Art",c:"Sofia",k:"bg"},
+ {y:2019,t:{fr:"Paysages abstraits",en:"Abstract Landscapes"},v:"Sequoia Events",c:"Sofia",k:"bg"},
+ {y:2007,t:"Tribute to European Art, 16th–19th Centuries",v:"",c:"Beaune",k:"fr"}];
+const GROUP=[
+ {y:2025,t:"EXPOvibrations",v:"Les Docks",c:"Marseille",k:"fr"},
+ {y:2020,t:"Artco19",v:{fr:"Palais national de la culture",en:"National Palace of Culture"},c:"Sofia",k:"bg"},
+ {y:2020,t:{fr:"Exposition de printemps",en:"Spring Exhibition"},v:"Ikar Gallery",c:"Sofia",k:"bg"},
+ {y:2019,t:"30 × 30",v:"Astry Gallery",c:"Sofia",k:"bg"},
+ {y:2019,t:"Parallax Art Fair",v:"Kensington",c:"London",k:"uk"},
+ {y:2019,t:{fr:"Exposition d'été",en:"Summer Exhibition"},v:"Ikar Gallery",c:"Sofia",k:"bg"},
+ {y:2017,t:{fr:"Exposition collective",en:"Group exhibition"},v:{fr:"Ambassade des États-Unis",en:"U.S. Embassy"},c:"Sofia",k:"bg"},
+ {y:2016,t:"Snow Pearl Opening",v:"Snow Pearl Gallery",c:"Bansko",k:"bg"},
+ {y:2014,t:{fr:"Vente aux enchères caritative IWC",en:"IWC Charity Auction"},v:"Europe Gallery",c:"Sofia",k:"bg"},
+ {y:1982,t:{fr:"Exposition",en:"Exhibition"},v:"Cork Gallery",c:"Cork",k:"ie"}];
+const loc=x=>typeof x==="string"?x:(x?x[lang]:"");
+function renderExpos(){[["soloList",SOLO],["groupList",GROUP]].forEach(([id,list])=>{const ol=document.getElementById(id);ol.innerHTML="";
+  list.forEach(e=>{const li=document.createElement("li"),y=document.createElement("span"),b=document.createElement("span"),t=document.createElement("span"),w=document.createElement("span");
+    y.className="y";y.textContent=e.y;t.className="t";t.textContent=loc(e.t);w.className="w";
+    w.textContent=[loc(e.v),CITY[e.c]?CITY[e.c][lang]:e.c,PLACES[e.k][lang]].filter(Boolean).join(" · ");
+    b.append(t,w);li.append(y,b);ol.appendChild(li)})})}
+function renderCountries(){const ul=document.getElementById("countries");ul.innerHTML="";
+  L().countries.forEach((c,i)=>{const li=document.createElement("li");li.textContent=c;li.style.setProperty("--i",i);ul.appendChild(li)})}
+
+let cur=0;const room=document.getElementById("room");
+function openRoom(i,src,dir=1){cur=(i+visible.length)%visible.length;const w=visible[cur];
+  const rc=document.getElementById("roomCanvas");paint(rc,w,1200);
+  document.getElementById("roomTitle").textContent=title(w);
+  document.getElementById("roomMeta").textContent=[meta(w),status(w)].filter(Boolean).join(" · ");
+  const sgl=document.getElementById("roomSg");sgl.hidden=!(w.sg&&w.s==="avail");if(w.sg)sgl.href=w.sg;
+  const wasOpen=!room.hidden;room.hidden=false;document.getElementById("rClose").focus();
+  if(calm)return;
+  if(src&&!wasOpen){const a=src.getBoundingClientRect(),b=rc.getBoundingClientRect();
+    rc.animate([{transform:`translate(${a.left+a.width/2-(b.left+b.width/2)}px,${a.top+a.height/2-(b.top+b.height/2)}px) scale(${a.width/b.width})`},{transform:"none"}],{duration:550,easing:"cubic-bezier(.2,.8,.2,1)"})}
+  else if(wasOpen)rc.animate([{opacity:0,transform:`translateX(${dir*40}px)`},{opacity:1,transform:"none"}],{duration:400,easing:"ease-out"})}
+document.getElementById("rClose").onclick=()=>room.hidden=true;
+document.getElementById("rPrev").onclick=()=>openRoom(cur-1,null,-1);
+document.getElementById("rNext").onclick=()=>openRoom(cur+1);
+room.addEventListener("click",e=>{if(e.target===room)room.hidden=true});
+// swipe left or right to move between paintings
+let sx=null,sy=null;
+room.addEventListener("touchstart",e=>{const t=e.touches[0];sx=t.clientX;sy=t.clientY},{passive:true});
+room.addEventListener("touchend",e=>{if(sx===null)return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;sx=null;
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?openRoom(cur+1):openRoom(cur-1,null,-1)}},{passive:true});
+document.addEventListener("keydown",e=>{if(room.hidden)return;if(e.key==="Escape")room.hidden=true;
+  if(e.key==="ArrowRight")openRoom(cur+1);if(e.key==="ArrowLeft")openRoom(cur-1,null,-1)});
+
+function setLang(l){lang=l;try{localStorage.setItem("lang",l)}catch(e){}
+  document.documentElement.lang=l;
+  document.querySelectorAll("[data-i]").forEach(el=>{const v=T[l][el.dataset.i];if(typeof v==="string")el.textContent=v});
+  document.querySelectorAll("[data-i-alt]").forEach(el=>{const v=T[l][el.dataset.iAlt];if(v)el.alt=v});
+  document.getElementById("l-fr").setAttribute("aria-pressed",String(l==="fr"));
+  document.getElementById("l-en").setAttribute("aria-pressed",String(l==="en"));
+    renderFilters();renderWall();renderCountries();renderExpos();renderIntro();if(si>=0){renderSlides();const w=SLIDES[si];document.getElementById("heroCap").textContent=title(w);document.getElementById("heroMeta").textContent=[meta(w),status(w)].filter(Boolean).join(" · ")}}
+document.getElementById("l-fr").onclick=()=>setLang("fr");
+document.getElementById("l-en").onclick=()=>setLang("en");
+
+document.getElementById("copyMail").onclick=async()=>{const out=document.getElementById("copyOut");
+  try{await navigator.clipboard.writeText("contact.leithridley@gmail.com");out.textContent=L().copied}
+  catch(e){const r=document.createRange();r.selectNodeContents(document.getElementById("email"));const g=getSelection();g.removeAllRanges();g.addRange(r);out.textContent=L().copyFail}};
+document.getElementById("form").addEventListener("submit",async e=>{e.preventDefault();
+  const s=document.getElementById("f-subject"),out=document.getElementById("formOut");
+  const form=e.target,btn=form.querySelector(".send"),subj=s.options[s.selectedIndex].text;
+  const name=document.getElementById("f-name").value,mail=document.getElementById("f-email").value,msg=document.getElementById("f-msg").value;
+  const viaMail=()=>{const a=document.createElement("a");a.target="_blank";a.rel="noopener";a.href=`mailto:contact.leithridley@gmail.com?subject=${encodeURIComponent("Leith Ridley · "+subj)}&body=${encodeURIComponent(msg+"\n\n"+name+"\n"+mail)}`;document.body.appendChild(a);a.click();a.remove();out.textContent=L().formMail};
+  if(/claude\.ai|claudeusercontent|^$/.test(location.hostname)||location.protocol==="file:"){viaMail();return}
+  btn.disabled=true;
+  try{const r=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(new FormData(form)).toString()});
+    if(!r.ok)throw 0;form.reset();out.textContent=L().formDone}catch(err){viaMail()}finally{btn.disabled=false}});
+
+// ---- opening: a slow rotation of paintings, each repainted over the last
+const SLIDES=[];
+// the opening shows the works marked "à la une" in the studio space, or a default selection
+function pickSlides(){const f=WORKS.filter(w=>w.hero&&w.img).slice(0,8);
+  SLIDES.splice(0,SLIDES.length,...(f.length?f:["Genesis, The New Beginning; let there be…","Angel","Peonies of Joy","In the Blue","Promenade dans la nuit, Evening Stroll","Smoking Pages"].map(t=>WORKS.find(w=>title(w)===t)).filter(Boolean)))}
+pickSlides();
+const DUR=6500,hc=document.getElementById("heroCanvas"),hctx=hc.getContext("2d");let HW=hc.width,HH=hc.height;
+let si=-1,timer=null,paused=false,busy=false;
+function frame(w){const im=getImg(w),off=document.createElement("canvas");off.width=HW;off.height=HH;const c=off.getContext("2d");
+  if(!im)return off;
+  const P=Math.round(Math.min(HW,HH)*.05),r=Math.min((HW-P)/im.naturalWidth,(HH-P)/im.naturalHeight),w2=im.naturalWidth*r,h2=im.naturalHeight*r,x=innerWidth<760?(HW-w2)/2:0,y=0;
+  c.shadowColor="rgba(0,0,0,.55)";c.shadowBlur=P*.8;c.shadowOffsetY=P*.3;c.drawImage(im,x,y,w2,h2);off.g={x,y,w:w2,h:h2};return off}
+// crossfade between paintings, each one easing very slowly towards the viewer while it is shown
+const FADE=1200;let heroCur=null,prevF=null,tf=0;
+function paintHero(now){const f=prevF?Math.min(1,(now-tf)/FADE):1,e=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2;
+  const z=t=>calm?1:1+.015*Math.min(1,Math.max(0,t/(DUR+FADE)));
+  const draw=(fr,a)=>{if(!fr||a<=0)return;const s=z(now-fr.t),w=HW*s,h=HH*s;hctx.globalAlpha=a;hctx.drawImage(fr.off,0,0,w,h)};
+  hctx.globalAlpha=1;hctx.clearRect(0,0,HW,HH);
+  if(prevF&&f<1)draw(prevF,1-e);draw(heroCur,prevF&&f<1?e:1);hctx.globalAlpha=1;if(f>=1)prevF=null}
+(function tick(now){if(heroCur&&!calm)paintHero(now);requestAnimationFrame(tick)})(performance.now());
+function show(i){i=(i+SLIDES.length)%SLIDES.length;const w=SLIDES[i];
+  if(!getImg(w)){const im=IMGS[w.img];im.addEventListener("load",()=>show(i),{once:true});return}
+  si=i;const now=performance.now();
+  if(heroCur&&!calm){prevF=heroCur;tf=now}heroCur={off:frame(w),t:now};paintHero(now);placeCap();
+  const cap=document.getElementById("heroCap"),m=document.getElementById("heroMeta");
+  cap.textContent=title(w);m.textContent=[meta(w),status(w)].filter(Boolean).join(" · ");
+  if(!calm)[cap,m].forEach(el=>el.animate([{opacity:0,transform:"translateY(4px)"},{opacity:1,transform:"none"}],{duration:600}));
+  renderSlides();schedule()}
+function schedule(){clearTimeout(timer);if(calm||paused)return;timer=setTimeout(()=>show(si+1),DUR)}
+function renderSlides(){const ol=document.getElementById("slides");ol.innerHTML="";ol.style.setProperty("--dur",DUR+"ms");
+  SLIDES.forEach((w,i)=>{const li=document.createElement("li"),b=document.createElement("button");b.type="button";
+    b.setAttribute("aria-current",String(i===si));b.innerHTML="<small></small><span></span>";
+    b.children[0].textContent=String(i+1).padStart(2,"0");b.children[1].textContent=title(w);
+    b.onclick=()=>show(i);li.appendChild(b);ol.appendChild(li)});
+  // keep the current chip in view on phones without moving the page
+  if(innerWidth<760){const a=ol.querySelector('[aria-current="true"]');if(a)ol.scrollTo({left:Math.max(0,a.parentElement.offsetLeft-16)})}}
+const stage=document.getElementById("stage");
+stage.addEventListener("pointerenter",()=>{paused=true;clearTimeout(timer);document.getElementById("slides").classList.add("paused")});
+stage.addEventListener("pointerleave",()=>{paused=false;document.getElementById("slides").classList.remove("paused");schedule()});
+stage.addEventListener("click",()=>{const w=SLIDES[si],idx=visible.indexOf(w);if(idx>=0)openRoom(idx,hc)});
+document.getElementById("heroCap").onclick=()=>{const idx=visible.indexOf(SLIDES[si]);if(idx>=0)openRoom(idx,hc)};
+document.addEventListener("visibilitychange",()=>{if(document.hidden)clearTimeout(timer);else schedule()});
+function placeCap(){const g=heroCur&&heroCur.off.g,box=document.getElementById("heroCapBox");if(!g||!box)return;
+  const d=HW/(stage.clientWidth||1);box.style.left=(g.x/d)+"px";box.style.top=((g.y+g.h)/d+14)+"px";box.style.width=Math.max(220,g.w/d)+"px"}
+function sizeHero(){const q=stage.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);
+  const W=Math.max(1,Math.round(q.width*d)),H=Math.max(1,Math.round(q.height*d));if(W===HW&&H===HH)return;
+  hc.width=HW=W;hc.height=HH=H;if(si>=0){heroCur={off:frame(SLIDES[si]),t:heroCur?heroCur.t:performance.now()};prevF=null;paintHero(performance.now());placeCap()}}
+let hrt;addEventListener("resize",()=>{clearTimeout(hrt);hrt=setTimeout(sizeHero,150)});
+sizeHero();SLIDES.forEach(getImg);show(0);
+
+function renderIntro(){const p=document.getElementById("intro");p.innerHTML="";
+  L().intro.split(" ").forEach((w,i)=>{const s=document.createElement("span");s.className="w";s.style.setProperty("--i",i);s.textContent=w;p.append(s," ")})}
+
+if(!calm){
+  // depth on the wall: paintings drift at slightly different speeds while scrolling
+  let tk=false;const depth=[.05,-.035,.025,-.05,.04,-.02,.03];
+  const drift=()=>{const vh=innerHeight;if(innerWidth<760){document.querySelectorAll(".piece").forEach(el=>el.style.removeProperty("--py"));tk=false;return}document.querySelectorAll(".piece").forEach((el,i)=>{
+      const q=el.getBoundingClientRect(),c=q.top+q.height/2-vh/2;if(q.bottom<-200||q.top>vh+200)return;
+      el.style.setProperty("--py",(c*depth[i%depth.length]).toFixed(1)+"px")});tk=false};
+  addEventListener("scroll",()=>{if(!tk){tk=true;requestAnimationFrame(drift)}},{passive:true});
+  // brush cursor (mouse only)
+  if(matchMedia("(pointer:fine)").matches){const cur=document.createElement("div");cur.className="cur";cur.innerHTML="<span></span>";document.body.appendChild(cur);
+    document.documentElement.classList.add("has-cur");let mx=-99,my=-99,x=-99,y=-99;
+    addEventListener("pointermove",()=>cur.classList.add("on"),{passive:true});document.documentElement.addEventListener("mouseleave",()=>cur.classList.remove("on"));
+    addEventListener("pointermove",e=>{mx=e.clientX;my=e.clientY;const t=e.target.closest&&e.target.closest(".piece,.stage");
+      cur.classList.toggle("big",!!t);cur.firstChild.textContent=L().look});
+    (function loop(){x+=(mx-x)*.22;y+=(my-y)*.22;cur.style.transform=`translate(${x}px,${y}px)`;requestAnimationFrame(loop)})()}}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.5});
+document.querySelectorAll("h2.brush,.countries").forEach(h=>io.observe(h));
+document.getElementById("moreBtn").onclick=()=>{expanded=!expanded;
+  if(expanded){rehang()}else{renderWall();const t=document.getElementById("oeuvres");scrollTo({top:t.getBoundingClientRect().top+scrollY-90,behavior:calm?"auto":"smooth"})}};
+let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(renderWall,250)});
+
+(function(){const el=document.getElementById("wallLight"),rail=document.getElementById("rail");
+  const set=()=>el.style.setProperty("--rail",(rail.getBoundingClientRect().bottom)+"px");
+  set();addEventListener("resize",set);addEventListener("scroll",set,{passive:true})})();
+// menu links scroll inside the page themselves (the artifact frame does not follow #anchors reliably)
+document.querySelectorAll('a[href^="#"]').forEach(l=>l.addEventListener("click",e=>{const id=l.getAttribute("href").slice(1),t=id&&document.getElementById(id);
+  if(!t)return;e.preventDefault();const y=t.getBoundingClientRect().top+scrollY-(document.getElementById("rail").offsetHeight+16);
+  scrollTo({top:id==="top"?0:y,behavior:calm?"auto":"smooth"})}));
+setLang(lang);
+// live catalogue: once online, the list of works comes from the artist's studio space (/atelier)
+if(!/claude\.ai|claudeusercontent/.test(location.hostname)&&location.protocol!=="file:")
+  fetch("/api/works",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(d=>{
+    if(!Array.isArray(d)||!d.length)return;const before=SLIDES.map(w=>w.img).join("|");
+    WORKS.splice(0,WORKS.length,...d.filter(w=>w&&w.img&&!w.hidden));pickSlides();
+    if(SLIDES.map(w=>w.img).join("|")!==before){SLIDES.forEach(getImg);show(0)}
+    setLang(lang)}).catch(()=>{});
+</script>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#121110">
+<title>L'atelier · Leith Ridley</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23121110'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia' font-size='30' fill='%23c9a46a'%3ELR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+:root{
+  --wall:#121110;--wall-2:#1b1917;--wall-3:#24211e;--line:#34302b;--ink:#ece6dc;--muted:#a39b90;--gilt:#c9a46a;--gilt-2:#e2c48e;--red:#d96a5a;--ok:#8fb27a;
+  --serif:"Libre Caslon Text",Georgia,serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wall);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;min-height:100vh;
+  background-image:radial-gradient(ellipse 60% 420px at 50% 0,rgba(255,228,184,.07),transparent 75%)}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--gilt)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left)) 80px}
+h1,h2{font-family:var(--serif);font-weight:400;margin:0}
+.name{font-family:"Abril Fatface",Georgia,serif;letter-spacing:.06em;color:var(--gilt);font-size:1.15rem;text-decoration:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:3px;border:1px solid var(--line);background:transparent;cursor:pointer;text-decoration:none;color:var(--ink);transition:border-color .2s,background .2s,color .2s}
+.btn:hover{border-color:var(--gilt)}
+.btn.primary{background:var(--gilt);border-color:var(--gilt);color:#17130e;font-weight:600}
+.btn.primary:hover{background:var(--gilt-2)}
+.btn.danger{border-color:#5a2e28;color:var(--red)}
+.btn.danger:hover{background:#2a1714}
+.btn:disabled{opacity:.5;cursor:wait}
+.icon{width:44px;padding:0}
+
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.login form{width:min(380px,100%);display:flex;flex-direction:column;gap:18px}
+.login h1{font-size:2rem;line-height:1.15}
+.login p{color:var(--muted);margin:0}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(18,17,16,.94);backdrop-filter:blur(8px);z-index:5}
+.top nav{display:flex;gap:8px;align-items:center}
+.top .btn{white-space:nowrap;padding:8px 14px}
+@media (max-width:420px){.top .name{font-size:1rem}}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin:36px 0 22px}
+.head h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.1}
+.head p{margin:6px 0 0;color:var(--muted)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.tools input,.tools select{min-height:44px;background:var(--wall-2);border:1px solid var(--line);border-radius:3px;padding:8px 12px}
+.tools input{flex:1;min-width:180px}
+
+/* list of works */
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.row{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--wall-2);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.row img{width:76px;height:76px;object-fit:cover;border-radius:2px;background:var(--wall-3)}
+.row .t{font-family:var(--serif);font-size:1.05rem;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .m{color:var(--muted);font-size:.88rem}
+.row .acts{display:flex;gap:6px;align-items:center}
+.chip{display:inline-block;font-size:.75rem;padding:2px 8px;border-radius:20px;border:1px solid var(--line);margin-right:6px;white-space:nowrap}
+.chip.avail{border-color:#3d5232;color:var(--ok)}
+.chip.sold{border-color:#5a2e28;color:var(--red)}
+.chip.hold{border-color:#5a4a28;color:var(--gilt)}
+.chip.hide{border-style:dashed;color:var(--muted)}
+.chip.star{border-color:var(--gilt);color:var(--gilt)}
+.row.hidden-w{opacity:.55}
+@media (max-width:640px){
+  .row{grid-template-columns:64px minmax(0,1fr);gap:10px}
+  .row img{width:64px;height:64px}
+  .row .acts{grid-column:1/-1;justify-content:flex-end}
+}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+
+/* editor */
+.editor{position:fixed;inset:0;z-index:20;background:rgba(8,7,6,.7);display:flex;justify-content:flex-end}
+.panel{width:min(620px,100%);height:100%;overflow-y:auto;background:var(--wall);border-left:1px solid var(--line);padding:0 max(18px,env(safe-area-inset-right)) 40px max(18px,env(safe-area-inset-left));-webkit-overflow-scrolling:touch}
+.panel .bar{position:sticky;top:0;background:var(--wall);display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);z-index:2;gap:10px}
+.panel h2{font-size:1.5rem}
+fieldset{border:0;margin:0;padding:0}
+.f{display:flex;flex-direction:column;gap:6px;margin-top:20px}
+.f>label,.f>legend,.lab{font-size:.9rem;color:var(--muted)}
+.f>legend{margin-bottom:6px}
+.req::after{content:" *";color:var(--gilt)}
+.f input[type=text],.f input[type=number],.f input[type=url],.f select,.f textarea{min-height:46px;background:var(--wall-2);border:1px solid var(--line);border-radius:3px;padding:10px 12px;width:100%}
+.f input:focus,.f select:focus,.tools input:focus{outline:2px solid var(--gilt);outline-offset:1px}
+.hint{font-size:.82rem;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dims{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:end}
+.dims .x{padding-bottom:12px;color:var(--muted)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills label{position:relative}
+.pills input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.pills span{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border:1px solid var(--line);border-radius:3px;cursor:pointer;transition:all .15s}
+.pills input:checked+span{background:var(--gilt);border-color:var(--gilt);color:#17130e}
+.pills input:focus-visible+span{outline:2px solid var(--gilt-2);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:20px;cursor:pointer}
+.check input{width:22px;height:22px;accent-color:var(--gilt);margin:1px 0 0}
+.check small{display:block;color:var(--muted)}
+
+.drop{border:1px dashed var(--line);border-radius:4px;padding:16px;display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;cursor:pointer;background:var(--wall-2)}
+.drop:hover,.drop.over{border-color:var(--gilt)}
+.drop img{width:120px;height:120px;object-fit:contain;background:var(--wall-3);border-radius:2px}
+.drop .ph{width:120px;height:120px;display:grid;place-items:center;background:var(--wall-3);border-radius:2px;color:var(--muted);font-size:2rem}
+.drop strong{display:block;font-weight:600}
+.warn{margin-top:10px;padding:10px 12px;border-left:3px solid var(--gilt);background:#211c14;font-size:.9rem;border-radius:0 3px 3px 0}
+.warn.bad{border-color:var(--red);background:#241513}
+.err{color:var(--red);font-size:.88rem;margin-top:4px}
+.invalid input,.invalid select,.invalid .pills span{border-color:var(--red)!important}
+.foot{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
+.foot .grow{flex:1}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--wall-3);border:1px solid var(--line);border-left:3px solid var(--ok);padding:12px 18px;border-radius:3px;z-index:40;box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:calc(100% - 32px)}
+.toast.bad{border-left-color:var(--red)}
+.confirm{margin-top:12px;padding:14px;border:1px solid #5a2e28;border-radius:3px;background:#1d1311}
+.confirm p{margin:0 0 10px}
+.small{font-size:.85rem;color:var(--muted)}
+.under{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+</style>
+</head>
+<body>
+
+<!-- 1. sign in -->
+<section class="login" id="login">
+  <form id="loginForm">
+    <a class="name" href="/">LEITH RIDLEY</a>
+    <h1>L'atelier</h1>
+    <p>Votre espace pour ajouter et modifier les œuvres du site.</p>
+    <div class="f"><label for="pw">Mot de passe</label><input id="pw" type="password" autocomplete="current-password" required style="min-height:48px;background:var(--wall-2);border:1px solid var(--line);border-radius:3px;padding:10px 12px"></div>
+    <label class="check" style="margin-top:0"><input type="checkbox" id="remember" checked><span>Rester connectée sur cet appareil</span></label>
+    <button class="btn primary" type="submit">Entrer</button>
+    <p class="err" id="loginErr" role="alert"></p>
+  </form>
+</section>
+
+<!-- 2. the works -->
+<div id="app" hidden>
+  <div class="wrap">
+    <header class="top">
+      <a class="name" href="/" target="_blank" rel="noopener">LEITH RIDLEY</a>
+      <nav><a class="btn" href="/" target="_blank" rel="noopener">Voir le site</a><button class="btn" type="button" id="logout">Quitter</button></nav>
+    </header>
+    <div class="head">
+      <div><h1>Mes œuvres</h1><p id="count"></p></div>
+      <button class="btn primary" type="button" id="addBtn">+ Ajouter une œuvre</button>
+    </div>
+    <div class="tools">
+      <input type="search" id="q" placeholder="Rechercher un titre…" aria-label="Rechercher un titre">
+      <select id="fcat" aria-label="Filtrer par série"><option value="">Toutes les séries</option></select>
+    </div>
+    <ul class="list" id="list"></ul>
+    <div class="under">
+      <span class="small">L'ordre de la liste est l'ordre sur le mur du site. Chaque changement est en ligne immédiatement.</span>
+      <button class="btn" type="button" id="undoBtn">Annuler la dernière modification</button>
+    </div>
+  </div>
+</div>
+
+<!-- 3. add / edit a work -->
+<div class="editor" id="editor" hidden>
+  <form class="panel" id="wf" novalidate>
+    <div class="bar"><h2 id="edTitle">Nouvelle œuvre</h2><button class="btn icon" type="button" id="closeEd" aria-label="Fermer">✕</button></div>
+
+    <div class="f" id="f-photo">
+      <span class="lab req">Photo de la toile</span>
+      <label class="drop" id="drop" for="file">
+        <span class="ph" id="ph">＋</span><img id="preview" alt="" hidden>
+        <span><strong id="dropTitle">Choisir une photo</strong><span class="hint">Photo prise de face, recadrée au bord de la toile, sans le cadre ni le mur. JPEG ou PNG.</span></span>
+      </label>
+      <input type="file" id="file" accept="image/*" hidden>
+      <div id="photoWarn"></div>
+    </div>
+
+    <div class="f" id="f-title"><label class="req" for="t">Titre</label><input type="text" id="t" maxlength="160" autocomplete="off"></div>
+    <div class="f"><label for="ten">Titre en anglais <span class="hint">(seulement s'il est différent)</span></label><input type="text" id="ten" maxlength="160" autocomplete="off"></div>
+
+    <fieldset class="f" id="f-cat"><legend class="req">Série</legend><div class="pills" id="cats"></div></fieldset>
+
+    <div class="f" id="f-tech"><label class="req" for="tech">Technique</label><select id="tech"></select></div>
+
+    <div class="f" id="f-dims">
+      <span class="lab req">Dimensions (en cm)</span>
+      <div class="dims">
+        <label class="f" style="margin:0"><span class="hint">Hauteur</span><input type="number" id="h" inputmode="decimal" min="1" max="1000" step="0.5"></label>
+        <span class="x">×</span>
+        <label class="f" style="margin:0"><span class="hint">Largeur</span><input type="number" id="w" inputmode="decimal" min="1" max="1000" step="0.5"></label>
+      </div>
+      <span class="hint">Hauteur d'abord, comme sur le certificat. Elles servent à accrocher la toile à la bonne échelle sur le mur.</span>
+    </div>
+
+    <div class="f"><label for="y">Année</label><input type="number" id="y" inputmode="numeric" min="1950" max="2100" placeholder="2026"></div>
+
+    <fieldset class="f" id="f-status"><legend class="req">Statut</legend><div class="pills" id="statuses"></div></fieldset>
+
+    <div class="two" id="priceRow">
+      <div class="f" id="f-price"><label class="req" for="p">Prix</label><input type="number" id="p" inputmode="numeric" min="1" step="1"></div>
+      <div class="f"><label for="cur">Devise</label><select id="cur"><option value="EUR">€ euro</option><option value="USD">$ dollar US</option><option value="GBP">£ livre</option><option value="BGN">лв lev</option></select></div>
+    </div>
+
+    <div class="f" id="f-sg"><label for="sg">Lien Singulart <span class="hint">(facultatif)</span></label><input type="url" id="sg" placeholder="https://www.singulart.com/…" autocomplete="off"><span class="hint">Si l'œuvre est en vente sur Singulart, un bouton « Acheter sur Singulart » apparaît.</span></div>
+
+    <label class="check"><input type="checkbox" id="hero"><span>Mettre à la une<small>L'œuvre défile dans le grand tableau d'ouverture du site (8 au maximum).</small></span></label>
+    <label class="check"><input type="checkbox" id="hidden"><span>Masquer du site<small>L'œuvre reste ici mais n'apparaît pas en ligne.</small></span></label>
+
+    <div class="foot">
+      <button class="btn primary" type="submit" id="saveBtn">Enregistrer</button>
+      <button class="btn" type="button" id="cancelBtn">Annuler</button>
+      <span class="grow"></span>
+      <button class="btn danger" type="button" id="delBtn">Supprimer</button>
+    </div>
+    <div class="confirm" id="confirmDel" hidden>
+      <p>Supprimer définitivement cette œuvre du site ?</p>
+      <button class="btn danger" type="button" id="delYes">Oui, supprimer</button>
+      <button class="btn" type="button" id="delNo">Non</button>
+    </div>
+    <p class="err" id="formErr" role="alert"></p>
+  </form>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+const CATS={pages:"Smoking Pages",trees:"Happy Trees",mountain:"Forêts de montagne",flowers:"Fleurs",portraits:"Portraits",abstracts:"Abstraits et paysages"};
+const TECHS={oil_linen:"Huile sur lin",oil_canvas:"Huile sur toile",oil_board:"Huile sur panneau",oil_paper:"Huile sur papier",
+  acry_linen:"Acrylique sur lin",acry_canvas:"Acrylique sur toile",acry_board:"Acrylique sur panneau",acry_paper:"Acrylique sur papier",acry:"Acrylique",
+  acryoil_linen:"Acrylique et huile sur lin",acryoil_canvas:"Acrylique et huile sur toile",acryoil:"Acrylique et huile",
+  acry_collage_linen:"Acrylique et collage sur lin",acry_collage_canvas:"Acrylique et collage sur toile",
+  mixed_canvas:"Technique mixte sur toile",watercolour_paper:"Aquarelle sur papier",linen:"Sur lin"};
+const STATUS={avail:"Disponible",hold:"Réservée",sold:"Vendue",private:"Collection privée"};
+const STYLE={pages:"still",flowers:"still",portraits:"still",trees:"landscape",mountain:"landscape",abstracts:"abstract"};
+const $=id=>document.getElementById(id);
+
+let KEY="",LIST=[],editing=-1,photo=null;// photo: {blob,url,w,h,pal} when a new one is chosen
+
+// ---------- server
+async function api(path,opt={}){
+  const r=await fetch(path,{...opt,headers:{"x-atelier-key":KEY,...(opt.headers||{})}});
+  if(r.status===401){logout();throw new Error("Session expirée, reconnectez-vous.")}
+  if(!r.ok){let m="";try{m=(await r.json()).error}catch(e){}throw new Error(m==="nothing to undo"?"Il n'y a rien à annuler.":m==="some works are incomplete"?"Une œuvre est incomplète.":"Le serveur n'a pas répondu ("+r.status+"). Réessayez dans un instant.")}
+  return r.json()}
+const load=async()=>{LIST=await (await fetch("/api/works",{cache:"no-store"})).json();render()};
+const save=()=>api("/api/works",{method:"PUT",headers:{"content-type":"application/json"},body:JSON.stringify(LIST)});
+
+// ---------- sign in
+async function tryKey(k){KEY=k;try{await api("/api/works?check=1",{method:"POST"});return true}catch(e){KEY="";return false}}
+$("loginForm").onsubmit=async e=>{e.preventDefault();const b=e.submitter;b.disabled=true;$("loginErr").textContent="";
+  if(await tryKey($("pw").value)){try{if($("remember").checked)localStorage.setItem("atelier-key",KEY);else sessionStorage.setItem("atelier-key",KEY)}catch(e){}enter()}
+  else $("loginErr").textContent="Mot de passe incorrect.";b.disabled=false};
+function logout(){KEY="";try{localStorage.removeItem("atelier-key");sessionStorage.removeItem("atelier-key")}catch(e){}$("app").hidden=true;$("editor").hidden=true;$("login").hidden=false}
+$("logout").onclick=logout;
+async function enter(){$("login").hidden=true;$("app").hidden=false;try{await load()}catch(e){toast("Impossible de charger les œuvres.",true)}}
+(async()=>{let k="";try{k=localStorage.getItem("atelier-key")||sessionStorage.getItem("atelier-key")||""}catch(e){}
+  if(k&&await tryKey(k))enter();else $("pw").focus()})();
+
+// ---------- list
+const src=w=>w.img.startsWith("/")?w.img:"/"+w.img;
+const ttl=w=>typeof w.t==="string"?w.t:(w.t.fr||w.t.en);
+const money=(v,c)=>new Intl.NumberFormat("fr-FR",{style:"currency",currency:c||"USD",maximumFractionDigits:0}).format(v);
+Object.entries(CATS).forEach(([k,v])=>$("fcat").add(new Option(v,k)));
+$("q").oninput=render;$("fcat").onchange=render;
+function render(){
+  const q=$("q").value.trim().toLowerCase(),fc=$("fcat").value,ul=$("list");ul.innerHTML="";
+  const shown=LIST.map((w,i)=>[w,i]).filter(([w])=>(!q||ttl(w).toLowerCase().includes(q)||(typeof w.t==="object"&&(w.t.en||"").toLowerCase().includes(q)))&&(!fc||[].concat(w.cat).includes(fc)));
+  const online=LIST.filter(w=>!w.hidden).length;
+  $("count").textContent=`${LIST.length} œuvre${LIST.length>1?"s":""}, dont ${online} visible${online>1?"s":""} sur le site`;
+  if(!shown.length){ul.innerHTML='<li class="empty">Aucune œuvre ne correspond.</li>';return}
+  const filtered=!!(q||fc);
+  shown.forEach(([w,i])=>{const li=document.createElement("li");li.className="row"+(w.hidden?" hidden-w":"");
+    const img=document.createElement("img");img.loading="lazy";img.src=src(w);img.alt="";
+    const mid=document.createElement("div");mid.style.minWidth="0";
+    const t=document.createElement("div");t.className="t";t.textContent=ttl(w);
+    const m=document.createElement("div");m.className="m";
+    m.textContent=[[].concat(w.cat).map(c=>CATS[c]).join(", "),w.h&&w.w?`${w.h} × ${w.w} cm`:"format à préciser",w.y].filter(Boolean).join(" · ");
+    const chips=document.createElement("div");chips.style.marginTop="4px";
+    const chip=(cls,txt)=>{const s=document.createElement("span");s.className="chip "+cls;s.textContent=txt;chips.appendChild(s)};
+    if(w.s)chip(w.s,STATUS[w.s]+(w.s==="avail"&&w.p?" · "+money(w.p,w.cur):""));
+    if(w.hero)chip("star","À la une");if(w.hidden)chip("hide","Masquée");
+    mid.append(t,m,chips);
+    const acts=document.createElement("div");acts.className="acts";
+    const mk=(label,aria,fn,dis)=>{const b=document.createElement("button");b.type="button";b.className="btn"+(label.length<3?" icon":"");b.textContent=label;b.setAttribute("aria-label",aria);b.disabled=!!dis;b.onclick=fn;acts.appendChild(b)};
+    mk("↑","Monter "+ttl(w),()=>move(i,-1),filtered||i===0);
+    mk("↓","Descendre "+ttl(w),()=>move(i,1),filtered||i===LIST.length-1);
+    mk("Modifier","Modifier "+ttl(w),()=>openEditor(i));
+    li.append(img,mid,acts);ul.appendChild(li)})}
+async function move(i,d){const j=i+d;if(j<0||j>=LIST.length)return;const old=LIST.slice();[LIST[i],LIST[j]]=[LIST[j],LIST[i]];render();
+  try{await save();toast("Ordre enregistré.")}catch(e){LIST=old;render();toast(e.message,true)}}
+$("undoBtn").onclick=async()=>{if(!confirmInline($("undoBtn"),"Revenir à la version d'avant la dernière modification ?"))return;
+  try{await api("/api/works?restore=1",{method:"POST"});await load();toast("Dernière modification annulée.")}catch(e){toast(e.message,true)}};
+// a two-step button instead of a browser dialog: first click arms it, second click confirms
+function confirmInline(btn,label){if(btn.dataset.armed){delete btn.dataset.armed;btn.textContent=btn.dataset.orig;return true}
+  btn.dataset.orig=btn.textContent;btn.dataset.armed="1";btn.textContent=label+" Cliquez encore pour confirmer.";
+  setTimeout(()=>{if(btn.dataset.armed){delete btn.dataset.armed;btn.textContent=btn.dataset.orig}},6000);return false}
+
+// ---------- editor
+Object.entries(CATS).forEach(([k,v])=>$("cats").insertAdjacentHTML("beforeend",`<label><input type="checkbox" name="cat" value="${k}"><span>${v}</span></label>`));
+Object.entries(STATUS).forEach(([k,v])=>$("statuses").insertAdjacentHTML("beforeend",`<label><input type="radio" name="s" value="${k}"><span>${v}</span></label>`));
+$("tech").add(new Option("Choisir…",""));Object.entries(TECHS).forEach(([k,v])=>$("tech").add(new Option(v,k)));
+document.querySelectorAll('input[name="s"]').forEach(r=>r.onchange=syncPrice);
+function syncPrice(){const s=(document.querySelector('input[name="s"]:checked')||{}).value;$("priceRow").hidden=s!=="avail"}
+["h","w"].forEach(id=>$(id).addEventListener("input",checkRatio));
+
+function openEditor(i){editing=i;photo=null;const w=i>=0?LIST[i]:null;
+  $("wf").reset();$("formErr").textContent="";$("photoWarn").innerHTML="";$("confirmDel").hidden=true;
+  document.querySelectorAll(".invalid").forEach(el=>el.classList.remove("invalid"));document.querySelectorAll(".f .err").forEach(e=>e.remove());
+  $("edTitle").textContent=w?"Modifier l'œuvre":"Nouvelle œuvre";$("delBtn").hidden=!w;
+  $("preview").hidden=!w;$("ph").hidden=!!w;$("dropTitle").textContent=w?"Changer la photo":"Choisir une photo";
+  if(w){$("preview").src=src(w);
+    $("t").value=typeof w.t==="string"?w.t:(w.t.fr||"");$("ten").value=typeof w.t==="object"?(w.t.en||""):"";
+    [].concat(w.cat).forEach(c=>{const el=document.querySelector(`input[name="cat"][value="${c}"]`);if(el)el.checked=true});
+    $("tech").value=w.tech||"";$("h").value=w.h||"";$("w").value=w.w||"";$("y").value=w.y||"";
+    if(w.s){const el=document.querySelector(`input[name="s"][value="${w.s}"]`);if(el)el.checked=true}
+    $("p").value=w.p||"";$("cur").value=w.cur||"USD";$("sg").value=w.sg||"";$("hero").checked=!!w.hero;$("hidden").checked=!!w.hidden}
+  else{$("cur").value="EUR";$("y").value=new Date().getFullYear();document.querySelector('input[name="s"][value="avail"]').checked=true}
+  syncPrice();$("editor").hidden=false;$("editor").querySelector(".panel").scrollTop=0;document.body.style.overflow="hidden";
+  setTimeout(()=>(w?$("t"):$("drop")).focus(),50)}
+function closeEditor(){$("editor").hidden=true;document.body.style.overflow="";if(photo)URL.revokeObjectURL(photo.url);photo=null}
+$("addBtn").onclick=()=>openEditor(-1);$("closeEd").onclick=closeEditor;$("cancelBtn").onclick=closeEditor;
+$("editor").addEventListener("click",e=>{if(e.target===$("editor"))closeEditor()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("editor").hidden)closeEditor()});
+$("drop").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();$("file").click()}});
+$("drop").tabIndex=0;
+["dragenter","dragover"].forEach(ev=>$("drop").addEventListener(ev,e=>{e.preventDefault();$("drop").classList.add("over")}));
+["dragleave","drop"].forEach(ev=>$("drop").addEventListener(ev,e=>{e.preventDefault();$("drop").classList.remove("over")}));
+$("drop").addEventListener("drop",e=>{const f=e.dataTransfer.files[0];if(f)takePhoto(f)});
+$("file").onchange=e=>{const f=e.target.files[0];if(f)takePhoto(f)};
+
+// resize in the browser (longest side 2000 px), so every photo on the site has the same quality and weight
+async function takePhoto(file){
+  if(!file.type.startsWith("image/")){warn("Ce fichier n'est pas une photo.",true);return}
+  $("dropTitle").textContent="Préparation de la photo…";
+  try{
+    const bmp=await createImageBitmap(file,{imageOrientation:"from-image"}).catch(()=>loadImg(file));
+    const W0=bmp.width,H0=bmp.height,k=Math.min(1,2000/Math.max(W0,H0)),W=Math.round(W0*k),H=Math.round(H0*k);
+    const cv=document.createElement("canvas");cv.width=W;cv.height=H;const c=cv.getContext("2d");c.drawImage(bmp,0,0,W,H);
+    const blob=await new Promise(r=>cv.toBlob(r,"image/jpeg",.86));
+    if(photo)URL.revokeObjectURL(photo.url);
+    photo={blob,url:URL.createObjectURL(blob),w:W,h:H,pal:palette(cv)};
+    $("preview").src=photo.url;$("preview").hidden=false;$("ph").hidden=true;$("dropTitle").textContent="Changer la photo";
+    $("f-photo").classList.remove("invalid");$("photoWarn").innerHTML="";
+    if(Math.max(W0,H0)<1000)warn(`Cette photo est petite (${W0} × ${H0} px) : elle risque d'être floue en grand. Une photo d'au moins 1500 px est préférable.`);
+    checkRatio()}
+  catch(e){warn("Cette photo n'a pas pu être lue. Essayez en JPEG.",true);$("dropTitle").textContent="Choisir une photo"}}
+function loadImg(file){return new Promise((ok,ko)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=ko;im.src=URL.createObjectURL(file)})}
+// five colours taken from the painting: shown while the photo loads on the site
+function palette(cv){const s=document.createElement("canvas");s.width=s.height=48;const c=s.getContext("2d");c.drawImage(cv,0,0,48,48);
+  const d=c.getImageData(0,0,48,48).data,b=new Map();
+  for(let i=0;i<d.length;i+=4){const k=(d[i]>>5)<<6|(d[i+1]>>5)<<3|(d[i+2]>>5);const e=b.get(k)||[0,0,0,0];e[0]+=d[i];e[1]+=d[i+1];e[2]+=d[i+2];e[3]++;b.set(k,e)}
+  const top=[...b.values()].sort((a,z)=>z[3]-a[3]).slice(0,5).map(e=>[e[0]/e[3],e[1]/e[3],e[2]/e[3]]);
+  while(top.length<5)top.push(top[top.length-1]||[40,36,32]);
+  top.sort((a,z)=>(a[0]*.3+a[1]*.59+a[2]*.11)-(z[0]*.3+z[1]*.59+z[2]*.11));
+  return top.map(([r,g,bb])=>"#"+[r,g,bb].map(v=>Math.round(v).toString(16).padStart(2,"0")).join(""))}
+function warn(msg,bad){$("photoWarn").insertAdjacentHTML("beforeend",`<div class="warn${bad?" bad":""}"></div>`);$("photoWarn").lastChild.textContent=msg}
+// the photo must have the same shape as the canvas, otherwise it would be stretched on the wall
+function checkRatio(){document.querySelectorAll(".warn.ratio").forEach(e=>e.remove());
+  const h=+$("h").value,w=+$("w").value;let pw,ph;
+  if(photo){pw=photo.w;ph=photo.h}else if(!$("preview").hidden&&$("preview").naturalWidth){pw=$("preview").naturalWidth;ph=$("preview").naturalHeight}
+  if(!h||!w||!pw)return;const a=ph/pw,b=h/w,diff=Math.abs(a-b)/b;if(diff<.08)return;
+  let msg;if(Math.abs(a-w/h)/(w/h)<.08)msg=`La photo est dans l'autre sens que les dimensions saisies (${h} × ${w} cm). Vérifiez que la hauteur et la largeur ne sont pas inversées.`;
+  else msg=`La photo n'a pas la même forme que la toile (${h} × ${w} cm). Recadrez-la au bord de la toile, ou vérifiez les dimensions.`;
+  const el=document.createElement("div");el.className="warn ratio";el.textContent=msg;$("photoWarn").appendChild(el)}
+$("preview").addEventListener("load",checkRatio);
+
+function bad(id,msg){const f=$(id);f.classList.add("invalid");const e=document.createElement("div");e.className="err";e.textContent=msg;f.appendChild(e);return false}
+function validate(){document.querySelectorAll(".invalid").forEach(el=>el.classList.remove("invalid"));document.querySelectorAll(".f .err").forEach(e=>e.remove());
+  let ok=true;const cur=editing>=0?LIST[editing]:null;
+  if(!photo&&!cur)ok=bad("f-photo","Ajoutez une photo de la toile.");
+  if(!$("t").value.trim())ok=bad("f-title","Le titre est obligatoire.");
+  if(!document.querySelector('input[name="cat"]:checked'))ok=bad("f-cat","Choisissez au moins une série.");
+  if(!$("tech").value)ok=bad("f-tech","Choisissez la technique.");
+  const h=+$("h").value,w=+$("w").value;if(!(h>0&&w>0&&h<=1000&&w<=1000))ok=bad("f-dims","Indiquez la hauteur et la largeur en centimètres.");
+  const s=(document.querySelector('input[name="s"]:checked')||{}).value;if(!s)ok=bad("f-status","Choisissez un statut.");
+  if(s==="avail"&&!(+$("p").value>0))ok=bad("f-price","Indiquez le prix, ou changez le statut.");
+  const sg=$("sg").value.trim();if(sg&&!/^https:\/\/(www\.)?singulart\.com\//.test(sg))ok=bad("f-sg","Le lien doit commencer par https://www.singulart.com/");
+  const yv=$("y").value;if(yv&&!(+yv>=1950&&+yv<=2100))ok=false,$("y").closest(".f").classList.add("invalid");
+  if(!ok){const first=document.querySelector(".invalid");if(first)first.scrollIntoView({behavior:"smooth",block:"center"})}
+  return ok}
+
+$("wf").onsubmit=async e=>{e.preventDefault();if(!validate())return;
+  const btn=$("saveBtn");btn.disabled=true;btn.textContent="Enregistrement…";$("formErr").textContent="";
+  const cur=editing>=0?LIST[editing]:null,old=LIST.slice();let uploaded=null;
+  try{
+    let img=cur?cur.img:null,pal=cur?cur.pal:null;
+    if(photo){const r=await api("/api/upload",{method:"POST",headers:{"content-type":"image/jpeg"},body:photo.blob});uploaded=r.url;img=r.url;pal=photo.pal}
+    const fr=$("t").value.trim(),en=$("ten").value.trim(),cats=[...document.querySelectorAll('input[name="cat"]:checked')].map(i=>i.value);
+    const s=document.querySelector('input[name="s"]:checked').value;
+    const w={id:cur?cur.id:"w"+Date.now().toString(36),t:en&&en!==fr?{fr,en}:fr,cat:cats.length===1?cats[0]:cats,st:cur&&cur.st?cur.st:STYLE[cats[0]],
+      tech:$("tech").value,h:+$("h").value,w:+$("w").value,s,img,pal,seed:cur?cur.seed:Math.floor(Math.random()*1e6)};
+    if($("y").value)w.y=+$("y").value;
+    if(s==="avail"){w.p=Math.round(+$("p").value);w.cur=$("cur").value}else if(cur&&cur.cur)w.cur=cur.cur;
+    if($("sg").value.trim())w.sg=$("sg").value.trim();
+    if($("hero").checked)w.hero=true;if($("hidden").checked)w.hidden=true;
+    if(cur)LIST[editing]=w;else LIST.unshift(w);// new works go first on the wall
+    await save();
+    closeEditor();render();toast(cur?"Modifications enregistrées.":"Œuvre ajoutée au site.")}
+  catch(err){LIST=old;$("formErr").textContent=err.message;
+    if(uploaded)api("/api/upload?key="+uploaded.split("/").pop(),{method:"DELETE"}).catch(()=>{})}
+  finally{btn.disabled=false;btn.textContent="Enregistrer"}};
+
+$("delBtn").onclick=()=>{$("confirmDel").hidden=false;$("delYes").focus()};
+$("delNo").onclick=()=>{$("confirmDel").hidden=true};
+$("delYes").onclick=async()=>{const w=LIST[editing],old=LIST.slice();LIST.splice(editing,1);
+  try{await save();// the photo itself is kept, so "Annuler la dernière modification" can bring the work back
+    closeEditor();render();toast("Œuvre supprimée.")}
+  catch(e){LIST=old;$("formErr").textContent=e.message}};
+
+// an error disappears as soon as the field is corrected
+$("wf").addEventListener("input",e=>{const f=e.target.closest(".f");if(f&&f.classList.contains("invalid")){f.classList.remove("invalid");f.querySelectorAll(":scope>.err").forEach(x=>x.remove())}});
+$("wf").addEventListener("change",e=>{const f=e.target.closest(".f");if(f&&f.classList.contains("invalid")){f.classList.remove("invalid");f.querySelectorAll(":scope>.err").forEach(x=>x.remove())}});
+let tt;function toast(msg,isBad){const t=$("toast");t.textContent=msg;t.className="toast"+(isBad?" bad":"");t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,3500)}
+</script>
+</body>
+</html>
