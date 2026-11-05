@@ -368,10 +368,10 @@ html{scroll-padding-top:100px}
   </section>
 
   <div class="wall-head" id="oeuvres">
-    <h2 class="brush" data-i="gal_title">Sur le mur de l'atelier</h2>
+    <h2 class="brush" data-i="gal_title">Selected works</h2>
     <div class="view"><span data-i="see">Voir&nbsp;:</span><span id="filters"></span></div>
   </div>
-  <p class="ex"><span data-i="gal_note">Titres, formats et prix repris de son site actuel.</span> <span class="scale-note" data-i="scale_note">Chaque toile est accrochée à l'échelle de son format réel.</span></p>
+  <p class="ex"><span class="scale-note" data-i="scale_note">Chaque toile est accrochée à l'échelle de son format réel.</span></p>
   <p class="series" id="series" hidden></p>
   <div class="wall" id="wall"></div>
   <div class="more-wrap"><button type="button" class="more" id="moreBtn" hidden></button></div>
@@ -437,7 +437,7 @@ html{scroll-padding-top:100px}
 const T={
  fr:{nav_gal:"Œuvres",nav_about:"L'artiste",nav_coll:"Expositions",nav_contact:"Écrire",untitled:"Sans titre",ex_short:"Image provisoire",
   intro:"Chaque toile commence par un rythme.",intro_sub:"Leith Ridley, peintre franco-sud-africaine. Danseuse classique, puis décoratrice et bruiteuse de cinéma, elle construit chaque tableau comme une partition, couche après couche.",
-  gal_title:"Sur le mur de l'atelier",see:"Voir :",
+  gal_title:"Œuvres choisies",see:"Voir :",
   gal_note:"Titres, formats et prix repris de son site actuel.",scale_note:"Chaque toile est accrochée à l'échelle de son format réel.",
   metre:"1 mètre",more:"Voir les {n} autres œuvres",less:"Réduire le mur",all:"Toutes les œuvres",pages:"Smoking Pages",trees:"Happy Trees",flowers:"Fleurs",portraits:"Portraits",mountain:"Forêts de montagne",abstracts:"Abstraits et paysages",
   about_title:"L'artiste",portrait_cap:"Leith au travail, il y a bien des années.",portrait_alt:"Leith Ridley, pinceau à la main, peignant une grande scène décorative",
@@ -457,7 +457,7 @@ const T={
   oil_linen:"huile sur lin",acry_linen:"acrylique sur lin",acryoil_linen:"acrylique et huile sur lin",acryoil_canvas:"acrylique et huile sur toile",acry_collage_canvas:"acrylique et collage sur toile",oil_board:"huile sur panneau",oil_paper:"huile sur papier",acry_canvas:"acrylique sur toile",acry_board:"acrylique sur panneau",acry_paper:"acrylique sur papier",mixed_canvas:"technique mixte sur toile",watercolour_paper:"aquarelle sur papier",acry_collage_linen:"acrylique et collage sur lin",oil_canvas:"huile sur toile",acry:"acrylique",acryoil:"acrylique et huile",linen:"sur lin",nosize:"format à préciser",look:"voir",d_pages:"Inspiration, symbolisme, esprit et connaissance : les pages brûlantes des mots écrits, des livres, des écritures, des messages."},
  en:{nav_gal:"Works",nav_about:"The artist",nav_coll:"Exhibitions",nav_contact:"Write",untitled:"Untitled",ex_short:"Placeholder image",
   intro:"Every canvas begins with a rhythm.",intro_sub:"Leith Ridley, French–South African painter. A classical dancer, then a film set decorator and Foley artist, she builds every canvas like a score, layer upon layer.",
-  gal_title:"On the studio wall",see:"Show:",
+  gal_title:"Selected works",see:"Show:",
   gal_note:"Titles, sizes and prices come from her current site.",scale_note:"Each canvas is hung at the scale of its real size.",
   metre:"1 metre",more:"See {n} more works",less:"Show fewer",all:"All works",pages:"Smoking Pages",trees:"Happy Trees",flowers:"Flowers",portraits:"Portraits",mountain:"Mountain Forests",abstracts:"Abstracts & Landscapes",
   about_title:"The artist",portrait_cap:"Leith at work, many years ago.",portrait_alt:"Leith Ridley, brush in hand, painting a large decorative scene",
@@ -477,7 +477,7 @@ const T={
   oil_linen:"oil on linen",acry_linen:"acrylic on linen",acryoil_linen:"acrylic and oil on linen",acryoil_canvas:"acrylic and oil on canvas",acry_collage_canvas:"acrylic and collage on canvas",oil_board:"oil on board",oil_paper:"oil on paper",acry_canvas:"acrylic on canvas",acry_board:"acrylic on board",acry_paper:"acrylic on paper",mixed_canvas:"mixed media on canvas",watercolour_paper:"watercolour on paper",acry_collage_linen:"acrylic and collage on linen",oil_canvas:"oil on canvas",acry:"acrylic",acryoil:"acrylic and oil",linen:"on linen",nosize:"size to be confirmed",look:"view",d_pages:"Inspiration, symbolism, spirit and learning: the smoking hot pages of written words, books, scriptures, messages."},
  es:{nav_gal:"Obras",nav_about:"La artista",nav_coll:"Exposiciones",nav_contact:"Escribir",untitled:"Sin título",
   intro:"Cada lienzo empieza con un ritmo.",intro_sub:"Leith Ridley, pintora franco-sudafricana. Bailarina clásica, después decoradora y artista de efectos sonoros en el cine, construye cada cuadro como una partitura, capa a capa.",
-  gal_title:"En la pared del taller",see:"Ver:",gal_note:"Títulos, formatos y precios tomados de su sitio actual.",scale_note:"Cada lienzo está colgado a la escala de su tamaño real.",
+  gal_title:"Obras seleccionadas",see:"Ver:",gal_note:"Títulos, formatos y precios tomados de su sitio actual.",scale_note:"Cada lienzo está colgado a la escala de su tamaño real.",
   metre:"1 metro",more:"Ver {n} obras más",less:"Mostrar menos",all:"Todas las obras",flowers:"Flores",portraits:"Retratos",mountain:"Bosques de montaña",abstracts:"Abstractos y paisajes",
   about_title:"La artista",portrait_alt:"Leith Ridley, pincel en mano, pintando una gran escena decorativa",
   about_p1:"Leith Ridley es una pintora franco-sudafricana. Ha expuesto en Sofía, Marsella, Londres y Francia, y sus lienzos forman parte de colecciones privadas en Europa, Australia y Estados Unidos.",
@@ -497,7 +497,7 @@ const T={
   oil_linen:"óleo sobre lino",acry_linen:"acrílico sobre lino",acryoil_linen:"acrílico y óleo sobre lino",acryoil_canvas:"acrílico y óleo sobre lienzo",acry_collage_canvas:"acrílico y collage sobre lienzo",oil_board:"óleo sobre tabla",oil_paper:"óleo sobre papel",acry_canvas:"acrílico sobre lienzo",acry_board:"acrílico sobre tabla",acry_paper:"acrílico sobre papel",mixed_canvas:"técnica mixta sobre lienzo",watercolour_paper:"acuarela sobre papel",acry_collage_linen:"acrílico y collage sobre lino",oil_canvas:"óleo sobre lienzo",acry:"acrílico",acryoil:"acrílico y óleo",linen:"sobre lino",nosize:"formato por confirmar",look:"ver"},
  de:{nav_gal:"Werke",nav_about:"Die Künstlerin",nav_coll:"Ausstellungen",nav_contact:"Kontakt",untitled:"Ohne Titel",
   intro:"Jedes Bild beginnt mit einem Rhythmus.",intro_sub:"Leith Ridley, französisch-südafrikanische Malerin. Zuerst klassische Tänzerin, dann Szenenbildnerin und Geräuschemacherin beim Film, baut sie jedes Bild wie eine Partitur auf, Schicht für Schicht.",
-  gal_title:"An der Atelierwand",see:"Zeigen:",gal_note:"Titel, Formate und Preise stammen von ihrer bisherigen Website.",scale_note:"Jedes Bild hängt im Maßstab seiner tatsächlichen Größe.",
+  gal_title:"Ausgewählte Werke",see:"Zeigen:",gal_note:"Titel, Formate und Preise stammen von ihrer bisherigen Website.",scale_note:"Jedes Bild hängt im Maßstab seiner tatsächlichen Größe.",
   metre:"1 Meter",more:"{n} weitere Werke ansehen",less:"Weniger anzeigen",all:"Alle Werke",flowers:"Blumen",portraits:"Porträts",mountain:"Bergwälder",abstracts:"Abstraktes & Landschaften",
   about_title:"Die Künstlerin",portrait_alt:"Leith Ridley mit dem Pinsel in der Hand beim Malen einer großen dekorativen Szene",
   about_p1:"Leith Ridley ist eine französisch-südafrikanische Malerin. Sie hat in Sofia, Marseille, London und Frankreich ausgestellt, und ihre Bilder befinden sich in Privatsammlungen in Europa, Australien und den Vereinigten Staaten.",
@@ -517,7 +517,7 @@ const T={
   oil_linen:"Öl auf Leinen",acry_linen:"Acryl auf Leinen",acryoil_linen:"Acryl und Öl auf Leinen",acryoil_canvas:"Acryl und Öl auf Leinwand",acry_collage_canvas:"Acryl und Collage auf Leinwand",oil_board:"Öl auf Holz",oil_paper:"Öl auf Papier",acry_canvas:"Acryl auf Leinwand",acry_board:"Acryl auf Holz",acry_paper:"Acryl auf Papier",mixed_canvas:"Mischtechnik auf Leinwand",watercolour_paper:"Aquarell auf Papier",acry_collage_linen:"Acryl und Collage auf Leinen",oil_canvas:"Öl auf Leinwand",acry:"Acryl",acryoil:"Acryl und Öl",linen:"auf Leinen",nosize:"Format folgt",look:"ansehen"},
  pt:{nav_gal:"Obras",nav_about:"A artista",nav_coll:"Exposições",nav_contact:"Contacto",untitled:"Sem título",
   intro:"Cada tela começa com um ritmo.",intro_sub:"Leith Ridley, pintora franco-sul-africana. Bailarina clássica, depois cenógrafa e artista de efeitos sonoros no cinema, constrói cada quadro como uma partitura, camada a camada.",
-  gal_title:"Na parede do ateliê",see:"Ver:",gal_note:"Títulos, formatos e preços retirados do seu site atual.",scale_note:"Cada tela está pendurada à escala do seu tamanho real.",
+  gal_title:"Obras selecionadas",see:"Ver:",gal_note:"Títulos, formatos e preços retirados do seu site atual.",scale_note:"Cada tela está pendurada à escala do seu tamanho real.",
   metre:"1 metro",more:"Ver mais {n} obras",less:"Mostrar menos",all:"Todas as obras",flowers:"Flores",portraits:"Retratos",mountain:"Florestas de montanha",abstracts:"Abstratos e paisagens",
   about_title:"A artista",portrait_alt:"Leith Ridley, de pincel na mão, a pintar uma grande cena decorativa",
   about_p1:"Leith Ridley é uma pintora franco-sul-africana. Expôs em Sófia, Marselha, Londres e França, e as suas telas integram coleções privadas na Europa, na Austrália e nos Estados Unidos.",
@@ -537,7 +537,7 @@ const T={
   oil_linen:"óleo sobre linho",acry_linen:"acrílico sobre linho",acryoil_linen:"acrílico e óleo sobre linho",acryoil_canvas:"acrílico e óleo sobre tela",acry_collage_canvas:"acrílico e colagem sobre tela",oil_board:"óleo sobre madeira",oil_paper:"óleo sobre papel",acry_canvas:"acrílico sobre tela",acry_board:"acrílico sobre madeira",acry_paper:"acrílico sobre papel",mixed_canvas:"técnica mista sobre tela",watercolour_paper:"aguarela sobre papel",acry_collage_linen:"acrílico e colagem sobre linho",oil_canvas:"óleo sobre tela",acry:"acrílico",acryoil:"acrílico e óleo",linen:"sobre linho",nosize:"formato a confirmar",look:"ver"},
  af:{nav_gal:"Werke",nav_about:"Die kunstenaar",nav_coll:"Uitstallings",nav_contact:"Kontak",untitled:"Sonder titel",
   intro:"Elke doek begin met 'n ritme.",intro_sub:"Leith Ridley, Frans-Suid-Afrikaanse skilder. Eers 'n klassieke danser, toe 'n stelversierder en klankeffekkunstenaar in die rolprentbedryf, bou sy elke skildery soos 'n partituur op, laag vir laag.",
-  gal_title:"Op die ateljeemuur",see:"Wys:",gal_note:"Titels, groottes en pryse kom van haar huidige webwerf.",scale_note:"Elke doek hang op die skaal van sy werklike grootte.",
+  gal_title:"Uitgesoekte werke",see:"Wys:",gal_note:"Titels, groottes en pryse kom van haar huidige webwerf.",scale_note:"Elke doek hang op die skaal van sy werklike grootte.",
   metre:"1 meter",more:"Sien nog {n} werke",less:"Wys minder",all:"Alle werke",flowers:"Blomme",portraits:"Portrette",mountain:"Bergwoude",abstracts:"Abstrak en landskappe",
   about_title:"Die kunstenaar",portrait_alt:"Leith Ridley met 'n kwas in die hand terwyl sy 'n groot dekoratiewe toneel skilder",
   about_p1:"Leith Ridley is 'n Frans-Suid-Afrikaanse skilder. Sy het in Sofia, Marseille, Londen en Frankryk uitgestal, en haar doeke is deel van privaat versamelings in Europa, Australië en die Verenigde State.",
@@ -557,7 +557,7 @@ const T={
   oil_linen:"olie op linne",acry_linen:"akriel op linne",acryoil_linen:"akriel en olie op linne",acryoil_canvas:"akriel en olie op doek",acry_collage_canvas:"akriel en collage op doek",oil_board:"olie op paneel",oil_paper:"olie op papier",acry_canvas:"akriel op doek",acry_board:"akriel op paneel",acry_paper:"akriel op papier",mixed_canvas:"gemengde media op doek",watercolour_paper:"waterverf op papier",acry_collage_linen:"akriel en collage op linne",oil_canvas:"olie op doek",acry:"akriel",acryoil:"akriel en olie",linen:"op linne",nosize:"grootte word bevestig",look:"kyk"},
  tr:{nav_gal:"Eserler",nav_about:"Sanatçı",nav_coll:"Sergiler",nav_contact:"İletişim",untitled:"İsimsiz",
   intro:"Her tuval bir ritimle başlar.",intro_sub:"Leith Ridley, Fransız-Güney Afrikalı ressam. Önce klasik dansçı, ardından sinemada set dekoratörü ve ses efekti sanatçısı olan Ridley, her tabloyu bir partisyon gibi, katman katman kurar.",
-  gal_title:"Atölye duvarında",see:"Göster:",gal_note:"Başlıklar, ölçüler ve fiyatlar mevcut sitesinden alınmıştır.",scale_note:"Her tuval gerçek boyutunun ölçeğinde asılmıştır.",
+  gal_title:"Seçilmiş eserler",see:"Göster:",gal_note:"Başlıklar, ölçüler ve fiyatlar mevcut sitesinden alınmıştır.",scale_note:"Her tuval gerçek boyutunun ölçeğinde asılmıştır.",
   metre:"1 metre",more:"{n} eser daha gör",less:"Daha az göster",all:"Tüm eserler",flowers:"Çiçekler",portraits:"Portreler",mountain:"Dağ ormanları",abstracts:"Soyut ve manzaralar",
   about_title:"Sanatçı",portrait_alt:"Elinde fırçayla büyük bir dekoratif sahne boyayan Leith Ridley",
   about_p1:"Leith Ridley, Fransız-Güney Afrikalı bir ressamdır. Sofya, Marsilya, Londra ve Fransa'da sergiler açmış; tuvalleri Avrupa, Avustralya ve Amerika Birleşik Devletleri'ndeki özel koleksiyonlarda yer almaktadır.",
@@ -577,7 +577,7 @@ const T={
   oil_linen:"keten üzerine yağlıboya",acry_linen:"keten üzerine akrilik",acryoil_linen:"keten üzerine akrilik ve yağlıboya",acryoil_canvas:"tuval üzerine akrilik ve yağlıboya",acry_collage_canvas:"tuval üzerine akrilik ve kolaj",oil_board:"pano üzerine yağlıboya",oil_paper:"kâğıt üzerine yağlıboya",acry_canvas:"tuval üzerine akrilik",acry_board:"pano üzerine akrilik",acry_paper:"kâğıt üzerine akrilik",mixed_canvas:"tuval üzerine karışık teknik",watercolour_paper:"kâğıt üzerine suluboya",acry_collage_linen:"keten üzerine akrilik ve kolaj",oil_canvas:"tuval üzerine yağlıboya",acry:"akrilik",acryoil:"akrilik ve yağlıboya",linen:"keten üzerine",nosize:"ölçü belirtilecek",look:"bak"},
  ru:{nav_gal:"Работы",nav_about:"Художница",nav_coll:"Выставки",nav_contact:"Написать",untitled:"Без названия",
   intro:"Каждое полотно начинается с ритма.",intro_sub:"Лейт Ридли — франко-южноафриканская художница. Классическая балерина, затем художник-декоратор и шумовик в кино, она выстраивает каждую картину как партитуру — слой за слоем.",
-  gal_title:"На стене мастерской",see:"Показать:",gal_note:"Названия, размеры и цены взяты с её нынешнего сайта.",scale_note:"Каждое полотно повешено в масштабе его реального размера.",
+  gal_title:"Избранные работы",see:"Показать:",gal_note:"Названия, размеры и цены взяты с её нынешнего сайта.",scale_note:"Каждое полотно повешено в масштабе его реального размера.",
   metre:"1 метр",more:"Показать остальные ({n})",less:"Свернуть",all:"Все работы",flowers:"Цветы",portraits:"Портреты",mountain:"Горные леса",abstracts:"Абстракции и пейзажи",
   about_title:"Художница",portrait_alt:"Лейт Ридли с кистью в руке пишет большую декоративную сцену",
   about_p1:"Лейт Ридли — франко-южноафриканская художница. Её работы выставлялись в Софии, Марселе, Лондоне и во Франции, а полотна находятся в частных коллекциях Европы, Австралии и США.",
@@ -597,7 +597,7 @@ const T={
   oil_linen:"масло на льняном холсте",acry_linen:"акрил на льняном холсте",acryoil_linen:"акрил и масло на льняном холсте",acryoil_canvas:"акрил и масло на холсте",acry_collage_canvas:"акрил и коллаж на холсте",oil_board:"масло на доске",oil_paper:"масло на бумаге",acry_canvas:"акрил на холсте",acry_board:"акрил на доске",acry_paper:"акрил на бумаге",mixed_canvas:"смешанная техника на холсте",watercolour_paper:"акварель на бумаге",acry_collage_linen:"акрил и коллаж на льняном холсте",oil_canvas:"масло на холсте",acry:"акрил",acryoil:"акрил и масло",linen:"на льняном холсте",nosize:"размер уточняется",look:"смотреть"},
  bg:{nav_gal:"Творби",nav_about:"Художничката",nav_coll:"Изложби",nav_contact:"Контакт",untitled:"Без заглавие",
   intro:"Всяко платно започва с ритъм.",intro_sub:"Лийт Ридли — френско-южноафриканска художничка. Класическа балерина, после декоратор и шумов артист в киното, тя изгражда всяка картина като партитура, пласт след пласт.",
-  gal_title:"На стената на ателието",see:"Покажи:",gal_note:"Заглавията, размерите и цените са взети от сегашния ѝ сайт.",scale_note:"Всяко платно е окачено в мащаба на реалния си размер.",
+  gal_title:"Избрани творби",see:"Покажи:",gal_note:"Заглавията, размерите и цените са взети от сегашния ѝ сайт.",scale_note:"Всяко платно е окачено в мащаба на реалния си размер.",
   metre:"1 метър",more:"Покажи останалите ({n})",less:"Покажи по-малко",all:"Всички творби",flowers:"Цветя",portraits:"Портрети",mountain:"Планински гори",abstracts:"Абстракции и пейзажи",
   about_title:"Художничката",portrait_alt:"Лийт Ридли с четка в ръка рисува голяма декоративна сцена",
   about_p1:"Лийт Ридли е френско-южноафриканска художничка. Излагала е в София, Марсилия, Лондон и Франция, а нейни платна са част от частни колекции в Европа, Австралия и САЩ.",
@@ -617,7 +617,7 @@ const T={
   oil_linen:"масло върху лен",acry_linen:"акрил върху лен",acryoil_linen:"акрил и масло върху лен",acryoil_canvas:"акрил и масло върху платно",acry_collage_canvas:"акрил и колаж върху платно",oil_board:"масло върху дърво",oil_paper:"масло върху хартия",acry_canvas:"акрил върху платно",acry_board:"акрил върху дърво",acry_paper:"акрил върху хартия",mixed_canvas:"смесена техника върху платно",watercolour_paper:"акварел върху хартия",acry_collage_linen:"акрил и колаж върху лен",oil_canvas:"масло върху платно",acry:"акрил",acryoil:"акрил и масло",linen:"върху лен",nosize:"размерът предстои",look:"виж"},
  zh:{nav_gal:"作品",nav_about:"艺术家",nav_coll:"展览",nav_contact:"联系",untitled:"无题",
   intro:"每一幅画，都从一种节奏开始。",intro_sub:"莉丝·里德利（Leith Ridley），法国与南非双重背景的画家。她曾是古典芭蕾舞者，后在电影业担任布景师和拟音师。她像谱写乐谱一样，一层一层地构建每一幅画。",
-  gal_title:"画室的墙上",see:"浏览：",gal_note:"标题、尺寸和价格均来自她现有的网站。",scale_note:"每幅画都按实际尺寸的比例悬挂。",
+  gal_title:"作品精选",see:"浏览：",gal_note:"标题、尺寸和价格均来自她现有的网站。",scale_note:"每幅画都按实际尺寸的比例悬挂。",
   metre:"1 米",more:"查看其余 {n} 件作品",less:"收起",all:"全部作品",flowers:"花卉",portraits:"肖像",mountain:"山林",abstracts:"抽象与风景",
   about_title:"艺术家",portrait_alt:"莉丝·里德利手持画笔，正在绘制一幅大型装饰场景",
   about_p1:"莉丝·里德利是一位法国与南非双重背景的画家。她曾在索非亚、马赛、伦敦以及法国各地举办展览，作品为欧洲、澳大利亚和美国的私人藏家所收藏。",
@@ -637,7 +637,7 @@ const T={
   oil_linen:"亚麻布面油画",acry_linen:"亚麻布面丙烯",acryoil_linen:"亚麻布面丙烯与油彩",acryoil_canvas:"布面丙烯与油彩",acry_collage_canvas:"布面丙烯与拼贴",oil_board:"木板油画",oil_paper:"纸本油画",acry_canvas:"布面丙烯",acry_board:"木板丙烯",acry_paper:"纸本丙烯",mixed_canvas:"布面综合材料",watercolour_paper:"纸本水彩",acry_collage_linen:"亚麻布面丙烯与拼贴",oil_canvas:"布面油画",acry:"丙烯",acryoil:"丙烯与油彩",linen:"亚麻布面",nosize:"尺寸待定",look:"查看"},
  ja:{nav_gal:"作品",nav_about:"アーティスト",nav_coll:"展覧会",nav_contact:"お問い合わせ",untitled:"無題",
   intro:"すべてのキャンバスは、ひとつのリズムから始まる。",intro_sub:"リース・リドリー。フランスと南アフリカにルーツを持つ画家。クラシックバレエのダンサーを経て、映画の装飾美術とフォーリー（効果音）の仕事に携わり、一枚一枚の絵を楽譜のように、層を重ねて築き上げる。",
-  gal_title:"アトリエの壁に",see:"表示：",gal_note:"タイトル、サイズ、価格は現在のサイトから引用しています。",scale_note:"各作品は実寸の比率で展示しています。",
+  gal_title:"作品セレクション",see:"表示：",gal_note:"タイトル、サイズ、価格は現在のサイトから引用しています。",scale_note:"各作品は実寸の比率で展示しています。",
   metre:"1メートル",more:"残り{n}点の作品を見る",less:"閉じる",all:"すべての作品",flowers:"花",portraits:"肖像画",mountain:"山の森",abstracts:"抽象と風景",
   about_title:"アーティスト",portrait_alt:"筆を手に、大きな装飾画を描くリース・リドリー",
   about_p1:"リース・リドリーは、フランスと南アフリカにルーツを持つ画家です。ソフィア、マルセイユ、ロンドン、そしてフランス各地で展覧会を開き、作品はヨーロッパ、オーストラリア、アメリカの個人コレクションに収められています。",
